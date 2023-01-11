@@ -21,7 +21,7 @@ import {
   FirstContentInput,
   FirstContentHead,
   TextError,
-} from "../../../styles/20230109";
+} from "../../styles/20230109";
 import { useState } from "react";
 
 //과제
@@ -39,67 +39,53 @@ export default function EmotionPage() {
 
   function onChangeName(event) {
     setName(event.target.value);
+    if (name) {
+      setNameError("");
+    }
   }
 
   function onChangePassword(event) {
     setPassword(event.target.value);
+    if (password) {
+      setPasswordError("");
+    }
   }
 
   function onChangeTitle(event) {
     setTitle(event.target.value);
+    if (title) {
+      setTitleError("");
+    }
   }
 
   function onChangeContent(event) {
     setContent(event.target.value);
+    if (content) {
+      setContentError("");
+    }
   }
 
-  function onClickContent(event) {
-    if (name === "" && password === "" && title === "" && content === "") {
-      setNameError("이름이 없습니다.");
-      setPasswordError("비밀번호가 없습니다.");
-      setContentError("내용이 없습니다.");
-      setTitleError("제목이 없습니다.");
-    } else if (name === "" && password === "" && title === "") {
-      setNameError("이름이 없습니다.");
-      setPasswordError("비밀번호가 없습니다.");
-      setTitleError("제목이 없습니다.");
-    } else if (name === "" && password === "" && content === "") {
-      setPasswordError("비밀번호가 없습니다.");
-      setNameError("이름이 없습니다.");
-      setContentError("내용이 없습니다.");
-    } else if (name === "" && title === "" && content === "") {
-      setNameError("이름이 없습니다.");
-      setContentError("내용이 없습니다.");
-      setTitleError("제목이 없습니다.");
-    } else if (name === "" && content === "") {
-      setNameError("이름이 없습니다.");
-      setContentError("내용이 없습니다.");
-    } else if (name === "" && title === "") {
-      setTitleError("제목이 없습니다.");
-      setNameError("이름이 없습니다.");
-    } else if (name === "" && password === "") {
-      setNameError("이름이 없습니다.");
-      setPasswordError("비밀번호가 없습니다.");
-    } else if (password === "" && content === "" && title === "") {
-      setPasswordError("비밀번호가 없습니다.");
-      setTitleError("제목이 없습니다.");
-      setContentError("내용이 없습니다.");
-    } else if (password === "" && title === "") {
-      setTitleError("제목이 없습니다.");
-      setPasswordError("비밀번호가 없습니다.");
-    } else if (password === "" && content === "") {
-      setContentError("내용이 없습니다.");
-      setPasswordError("비밀번호가 없습니다.");
-    } else if (title === "" && content === "") {
-      setContentError("내용이 없습니다.");
-      setTitleError("제목이 없습니다.");
-    } else if (name === "") {
-      setNameError("이름이 없습니다.");
-    } else if (password === "") {
-      setPasswordError("비밀번호가 없습니다.");
-    } else if (content === "") {
-      setContentError("내용이 없습니다.");
-    } else alert("회원가입을 축하합니다.");
+  // if문을 분리해서 다시 진행
+  function onClickContent() {
+    if (!name) {
+      setNameError("이름을 입력해주세요.");
+    }
+
+    if (!password) {
+      setPasswordError("비밀번호를 입력해주세요");
+    }
+
+    if (!title) {
+      setTitleError("제목을 입력해주세요");
+    }
+
+    if (!content) {
+      setContentError("내용을 입력해주세요");
+    }
+
+    if (name && password && title && content) {
+      alert("회원가입을 축하합니다.");
+    }
   }
 
   return (
