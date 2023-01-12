@@ -22,11 +22,25 @@ import {
   FirstContentHead,
   TextError,
 } from "../../styles/20230109";
+import { gql, useMutation } from "@apollo/client";
 import { useState } from "react";
 
+const apiInputImp = gql`
+  mutation createBoard($createBoardInput: CreateBoardInput!) {
+    createBoard(createBoardInput: $createBoardInput) {
+      _id
+      writer
+      title
+      contents
+    }
+  }
+`;
+
 //과제
-export default function EmotionPage() {
+export default function PortFolio() {
   //여기는 자바스크립트 쓰는 곳
+  const [apiImp] = useMutation(apiInputImp);
+
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [title, setTitle] = useState("");
@@ -66,7 +80,7 @@ export default function EmotionPage() {
   }
 
   // if문을 분리해서 다시 진행
-  function onClickContent() {
+  const onClickContent = async () => {
     if (!name) {
       setNameError("이름을 입력해주세요.");
     }
@@ -82,11 +96,22 @@ export default function EmotionPage() {
     if (!content) {
       setContentError("내용을 입력해주세요");
     }
+    const result = await apiImp({
+      variables: {
+        createBoardInput: {
+          writer: name,
+          password: password,
+          title: title,
+          contents: content,
+        },
+      },
+    });
+    console.log(result);
 
     if (name && password && title && content) {
       alert("회원가입을 축하합니다.");
     }
-  }
+  };
 
   return (
     <Container>
