@@ -100,9 +100,10 @@ export default function PortFolio() {
       variables: {
         createBoardInput: {
           writer: name,
-          password: password,
-          title: title,
+          password: password, //value 생략 가능
+          title: title, //value 생략 가능
           contents: content,
+          //키와 value가 동일하면 value 생략 가능합니다. (shorthand-property)
         },
       },
     });

@@ -34,6 +34,7 @@ export default function SighUpState() {
   // if문을 나눠서 선언해야 클릭할때마다 Error 알림을 최신화 합니다. (다시해볼 것)
   function onClickSighUp() {
     if (email.indexOf("@") == -1) {
+      // includes도 확인
       setEmailError("이메일에 '@'가 없습니다.");
     }
 
