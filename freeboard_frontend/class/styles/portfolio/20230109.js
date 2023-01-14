@@ -30,23 +30,44 @@ export const Title = styled.div`
 `;
 
 export const FirstContent = styled.div`
+  width: 105%;
   margin-bottom: 30px;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 `;
 
-export const FirstContentItem = styled.div`
+export const FirstContentItem1 = styled.div`
   width: 100%;
 `;
 
-export const FirstContentHead = styled.div`
+export const FirstContentHead1 = styled.div`
+  width: 100%;
   font-size: 16px;
   font-weight: 500;
   margin-bottom: 8px;
   display: flex;
 `;
 
-export const FirstContentInput = styled.input`
+export const FirstContentInput1 = styled.input`
+  width: 90%;
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #bdbdbd;
+  height: 52px;
+`;
+export const FirstContentItem2 = styled.div`
+  width: 100%;
+`;
+
+export const FirstContentHead2 = styled.div`
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  display: flex;
+`;
+
+export const FirstContentInput2 = styled.input`
   width: 90%;
   padding: 10px;
   margin-top: 10px;
@@ -59,6 +80,7 @@ export const Content = styled.div`
 `;
 
 export const ContentHead = styled.div`
+  width: 100%;
   font-size: 16px;
   font-weight: 500;
   margin-bottom: 8px;

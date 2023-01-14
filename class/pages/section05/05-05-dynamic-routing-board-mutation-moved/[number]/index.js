@@ -25,7 +25,7 @@ export default function StaticRoutingMovedPage() {
 
   return (
     <div>
-      <div>{router.query.qqq}번 게시글 이동이 완료되었습니다.</div>
+      <div>{router.query.number}번 게시글 이동이 완료되었습니다.</div>
       <div>작성자 : {data?.fetchBoard?.writer}</div>
       {/* 없을때 조건 추가 : {data?.fetchBoard.writer : "data가 로딩중입니다!!"}  -> data가 들어오면 출력합니다.*/}
       {/* 1차 수정 : {data && data.fetchBoard.writer}*/}

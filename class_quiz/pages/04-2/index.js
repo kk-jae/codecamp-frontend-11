@@ -1,7 +1,7 @@
 import { useMutation, gql } from "@apollo/client";
 import { useState } from "react";
 
-const quiz4_Mutation = gql`
+const CREATE_PRODUCT = gql`
   mutation createProduct(
     $seller: String
     $createProductInput: CreateProductInput!
@@ -15,15 +15,15 @@ const quiz4_Mutation = gql`
 `;
 
 export default function Quiz04_2() {
-  const [MyQuizMutation] = useMutation(quiz4_Mutation);
+  const [createProduct] = useMutation(CREATE_PRODUCT);
 
   const [seller, setSeller] = useState();
   const [name, setName] = useState();
   const [detail, setDetail] = useState();
   const [price, setPrice] = useState();
 
-  const onClickQuiz4 = async () => {
-    const result = await MyQuizMutation({
+  const onClickCreateProduct = async () => {
+    const result = await createProduct({
       variables: {
         seller: seller,
         createProductInput: {
@@ -62,7 +62,7 @@ export default function Quiz04_2() {
       <input type="text" onChange={onChangeDetail} />
       제품 가격:
       <input type="number" onChange={onChangePrice} />
-      <button onClick={onClickQuiz4}>GRAPHQL-API 요청하기</button>
+      <button onClick={onClickCreateProduct}>GRAPHQL-API 요청하기</button>
     </div>
   );
 }

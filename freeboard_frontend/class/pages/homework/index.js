@@ -17,15 +17,18 @@ import {
   ContentInp,
   LastBtn,
   FirstContent,
-  FirstContentItem,
-  FirstContentInput,
-  FirstContentHead,
+  FirstContentItem1,
+  FirstContentItem2,
+  FirstContentInput1,
+  FirstContentInput2,
+  FirstContentHead1,
+  FirstContentHead2,
   TextError,
-} from "../../styles/20230109";
+} from "../../styles/portfolio/20230109";
 import { gql, useMutation } from "@apollo/client";
 import { useState } from "react";
 
-const apiInputImp = gql`
+const CREATE_BOARD = gql`
   mutation createBoard($createBoardInput: CreateBoardInput!) {
     createBoard(createBoardInput: $createBoardInput) {
       _id
@@ -39,7 +42,7 @@ const apiInputImp = gql`
 //과제
 export default function PortFolio() {
   //여기는 자바스크립트 쓰는 곳
-  const [apiImp] = useMutation(apiInputImp);
+  const [createBoard] = useMutation(CREATE_BOARD);
 
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -96,7 +99,7 @@ export default function PortFolio() {
     if (!content) {
       setContentError("내용을 입력해주세요");
     }
-    const result = await apiImp({
+    const result = await createBoard({
       variables: {
         createBoardInput: {
           writer: name,
@@ -119,28 +122,28 @@ export default function PortFolio() {
       <Head>게시물 등록</Head>
       <Title>
         <FirstContent>
-          <FirstContentItem>
-            <FirstContentHead>
+          <FirstContentItem1>
+            <FirstContentHead1>
               작성자
               <TextError>{nameError}</TextError>
-            </FirstContentHead>
-            <FirstContentInput
+            </FirstContentHead1>
+            <FirstContentInput1
               onChange={onChangeName}
               type="text"
               placeholder="이름을 입력하세요"
             />
-          </FirstContentItem>
-          <FirstContentItem>
-            <FirstContentHead>
+          </FirstContentItem1>
+          <FirstContentItem2>
+            <FirstContentHead2>
               비밀번호
               <TextError>{passwordError}</TextError>
-            </FirstContentHead>
-            <FirstContentInput
+            </FirstContentHead2>
+            <FirstContentInput2
               onChange={onChangePassword}
               type="password"
               placeholder="비밀번호를 입력하세요"
             />
-          </FirstContentItem>
+          </FirstContentItem2>
         </FirstContent>
         <Content>
           <ContentHead>

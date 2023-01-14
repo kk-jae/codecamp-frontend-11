@@ -49,10 +49,10 @@
     resize-observer-polyfill "^1.5.1"
     throttle-debounce "^5.0.0"
 
-"@apollo/client@^3.7.3":
-  version "3.7.3"
-  resolved "https://registry.npmjs.org/@apollo/client/-/client-3.7.3.tgz"
-  integrity sha512-nzZ6d6a4flLpm3pZOGpuAUxLlp9heob7QcCkyIqZlCLvciUibgufRfYTwfkWCc4NaGHGSZyodzvfr79H6oUwGQ==
+"@apollo/client@^3.7.4":
+  version "3.7.4"
+  resolved "https://registry.npmjs.org/@apollo/client/-/client-3.7.4.tgz"
+  integrity sha512-bgiCKRmLSBImX4JRrw8NjqGo0AQE/mowCdHX1PJp2r5zIXrJx0UeaAYmx1qJY69Oz/KR7SKlLt4xK+bOP1jx7A==
   dependencies:
     "@graphql-typed-document-node/core" "^3.1.1"
     "@wry/context" "^0.7.0"
@@ -387,7 +387,7 @@ ansi-styles@^3.2.1:
 
 antd@^5.1.4:
   version "5.1.4"
-  resolved "https://registry.npmjs.org/antd/-/antd-5.1.4.tgz"
+  resolved "https://registry.yarnpkg.com/antd/-/antd-5.1.4.tgz#d754473669f0cfe706f20ba72c041cf416b09e0f"
   integrity sha512-74j1+8jRYDglCSvNgx7DGvBH6gerHvtV6k6DylIVQLuViza5YPYH0MVUQwrw6a65iTfuRUY59Oo3EfqerGk8Uw==
   dependencies:
     "@ant-design/colors" "^6.0.0"
@@ -454,7 +454,7 @@ asynckit@^0.4.0:
 
 axios@^1.2.2:
   version "1.2.2"
-  resolved "https://registry.npmjs.org/axios/-/axios-1.2.2.tgz"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-1.2.2.tgz#72681724c6e6a43a9fea860fc558127dbe32f9f1"
   integrity sha512-bz/J4gS2S3I7mpN/YZfGFTqhXTYzRho8Ay38w2otuuDR322KzFIWm/4W2K6gIwvWaws5n+mnb7D1lN9uD+QH6Q==
   dependencies:
     follow-redirects "^1.15.0"

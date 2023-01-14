@@ -7,6 +7,7 @@ const FETCH_BOARD = gql`
       writer
       title
       contents
+      # 조회하고 싶은 내용들
     }
   }
 `;
