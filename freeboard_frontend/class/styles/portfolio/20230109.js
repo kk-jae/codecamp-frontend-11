@@ -2,10 +2,12 @@
 import styled from "@emotion/styled";
 //과제
 export const Container = styled.div`
+  box-sizing: board-box;
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
   width: 1200px;
   background-color: white;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
@@ -14,7 +16,7 @@ export const Container = styled.div`
 export const Head = styled.div`
   font-weight: 700;
   font-size: 36px;
-  padding: 40px;
+  padding: 40px 0px 40px 0px;
 `;
 
 export const TextError = styled.div`
@@ -30,19 +32,20 @@ export const Title = styled.div`
 `;
 
 export const FirstContent = styled.div`
-  width: 105%;
+  width: 100%;
   margin-bottom: 30px;
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: space-between;
 `;
 
 export const FirstContentItem1 = styled.div`
-  width: 100%;
+  /* width: 100%; */
 `;
 
 export const FirstContentHead1 = styled.div`
-  width: 100%;
+  width: 486px;
   font-size: 16px;
   font-weight: 500;
   margin-bottom: 8px;
@@ -50,29 +53,11 @@ export const FirstContentHead1 = styled.div`
 `;
 
 export const FirstContentInput1 = styled.input`
-  width: 90%;
-  padding: 10px;
+  width: 476px;
+  padding-left: 10px;
+  height: 52px;
   margin-top: 10px;
   border: 1px solid #bdbdbd;
-  height: 52px;
-`;
-export const FirstContentItem2 = styled.div`
-  width: 100%;
-`;
-
-export const FirstContentHead2 = styled.div`
-  font-size: 16px;
-  font-weight: 500;
-  margin-bottom: 8px;
-  display: flex;
-`;
-
-export const FirstContentInput2 = styled.input`
-  width: 90%;
-  padding: 10px;
-  margin-top: 10px;
-  border: 1px solid #bdbdbd;
-  height: 52px;
 `;
 
 export const Content = styled.div`
@@ -83,39 +68,42 @@ export const ContentHead = styled.div`
   width: 100%;
   font-size: 16px;
   font-weight: 500;
-  margin-bottom: 8px;
+  margin-bottom: 13px;
   display: flex;
 `;
 
 export const ContentInput = styled.input`
-  width: 100%;
-  padding: 10px;
+  width: 986px;
+  padding-left: 10px;
+  height: 52px;
   margin-top: 10px;
   border: 1px solid #bdbdbd;
-  height: 52px;
 `;
 
 export const ContentInputN = styled.textarea`
   //textarea 사용시 placeholder 위치가 위로 배치됩니다.(기본값)
-  width: 100%;
-  padding: 10px;
+  width: 986px;
+  padding-left: 10px;
+  height: 480px;
   margin-top: 10px;
   border: 1px solid #bdbdbd;
-  height: 480px;
 `;
 
 export const AdrTop = styled.div``;
 
 export const AdrTopInput = styled.input`
-  width: 50px;
-  padding: 10px;
+  width: 77px;
+  height: 52px;
+  text-align: center;
   margin-right: 10px;
+  border: 1px solid #bdbdbd;
 `;
 export const AdrTopBtn = styled.button`
   background-color: black;
   color: white;
-  // width: 124px;
-  padding: 8px;
+  width: 124px;
+  height: 52px;
+  border: 1px solid black;
 `;
 export const AdrBot = styled.div``;
 
@@ -156,4 +144,5 @@ export const LastBtn = styled.button`
   border: none;
   font-size: 16px;
   font-weight: 500;
+  margin-bottom: 80px;
 `;

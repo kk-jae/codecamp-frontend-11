@@ -34,9 +34,7 @@ export default function GraphqlMutationPage() {
       //   "/section05/05-05-dynamic-routing-board-mutation-moved/" + result.data.createBoard.number
       // );  수정전 링크
 
-      router.push(
-        `/section05/05-05-dynamic-routing-board-mutation-moved/${result.data.createBoard.number}`
-      );
+      router.push`/section05/05-05-dynamic-routing-board-mutation-moved/${result.data.createBoard.number}`();
     } catch (error) {
       alert(error.message);
     }

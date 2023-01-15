@@ -18,15 +18,13 @@ import {
   LastBtn,
   FirstContent,
   FirstContentItem1,
-  FirstContentItem2,
   FirstContentInput1,
-  FirstContentInput2,
   FirstContentHead1,
-  FirstContentHead2,
   TextError,
 } from "../../styles/portfolio/20230109";
 import { gql, useMutation } from "@apollo/client";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 const CREATE_BOARD = gql`
   mutation createBoard($createBoardInput: CreateBoardInput!) {
@@ -44,20 +42,23 @@ export default function PortFolio() {
   //여기는 자바스크립트 쓰는 곳
   const [createBoard] = useMutation(CREATE_BOARD);
 
-  const [name, setName] = useState("");
+  const [writer, setWriter] = useState("");
   const [password, setPassword] = useState("");
   const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [contents, setContents] = useState("");
+  const [youtubeUrl, setYoutubeUrl] = useState("");
 
-  const [nameError, setNameError] = useState("");
+  const [writerError, setWriterError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [titleError, setTitleError] = useState("");
-  const [contentError, setContentError] = useState("");
+  const [contentsError, setContentsError] = useState("");
 
-  function onChangeName(event) {
-    setName(event.target.value);
-    if (name) {
-      setNameError("");
+  const router = useRouter();
+
+  function onChangeWriter(event) {
+    setWriter(event.target.value);
+    if (writer) {
+      setWriterError("");
     }
   }
 
@@ -75,17 +76,20 @@ export default function PortFolio() {
     }
   }
 
-  function onChangeContent(event) {
-    setContent(event.target.value);
-    if (content) {
-      setContentError("");
+  function onChangeContents(event) {
+    setContents(event.target.value);
+    if (contents) {
+      setContentsError("");
     }
+  }
+  function onChangeYoutubeUrl(event) {
+    setYoutubeUrl(event.target.value);
   }
 
   // if문을 분리해서 다시 진행
-  const onClickContent = async () => {
-    if (!name) {
-      setNameError("이름을 입력해주세요.");
+  const onClickContents = async () => {
+    if (!writer) {
+      setWriterError("이름을 입력해주세요.");
     }
 
     if (!password) {
@@ -96,24 +100,27 @@ export default function PortFolio() {
       setTitleError("제목을 입력해주세요");
     }
 
-    if (!content) {
-      setContentError("내용을 입력해주세요");
+    if (!contents) {
+      setContentsError("내용을 입력해주세요");
     }
-    const result = await createBoard({
-      variables: {
-        createBoardInput: {
-          writer: name,
-          password: password, //value 생략 가능
-          title: title, //value 생략 가능
-          contents: content,
-          //키와 value가 동일하면 value 생략 가능합니다. (shorthand-property)
-        },
-      },
-    });
-    console.log(result);
 
-    if (name && password && title && content) {
+    if (writer && password && title && contents) {
       alert("회원가입을 축하합니다.");
+      router.push(`/homeworkQuery/${result.data.createBoard._id}`);
+      const result = await createBoard({
+        variables: {
+          createBoardInput: {
+            writer: writer,
+            password: password, //value 생략 가능
+            title: title, //value 생략 가능
+            contents: contents,
+            //키와 value가 동일하면 value 생략 가능합니다. (shorthand-property)
+            youtubeUrl: youtubeUrl,
+          },
+        },
+      });
+      console.log(result);
+      console.log(router);
     }
   };
 
@@ -125,25 +132,25 @@ export default function PortFolio() {
           <FirstContentItem1>
             <FirstContentHead1>
               작성자
-              <TextError>{nameError}</TextError>
+              <TextError>{writerError}</TextError>
             </FirstContentHead1>
             <FirstContentInput1
-              onChange={onChangeName}
+              onChange={onChangeWriter}
               type="text"
               placeholder="이름을 입력하세요"
             />
           </FirstContentItem1>
-          <FirstContentItem2>
-            <FirstContentHead2>
+          <FirstContentItem1>
+            <FirstContentHead1>
               비밀번호
               <TextError>{passwordError}</TextError>
-            </FirstContentHead2>
-            <FirstContentInput2
+            </FirstContentHead1>
+            <FirstContentInput1
               onChange={onChangePassword}
               type="password"
               placeholder="비밀번호를 입력하세요"
             />
-          </FirstContentItem2>
+          </FirstContentItem1>
         </FirstContent>
         <Content>
           <ContentHead>
@@ -157,10 +164,10 @@ export default function PortFolio() {
         <Content>
           <ContentHead>
             내용
-            <TextError>{contentError}</TextError>
+            <TextError>{contentsError}</TextError>
           </ContentHead>
           <ContentInputN
-            onChange={onChangeContent}
+            onChange={onChangeContents}
             placeholder="내용을 입력하세요"
           />
         </Content>
@@ -176,7 +183,7 @@ export default function PortFolio() {
           </AdrBot>
         </Content>
         <Content>
-          <ContentHead>유튜브</ContentHead>
+          <ContentHead onChange={onChangeYoutubeUrl}>유튜브</ContentHead>
           <ContentInput placeholder="링크를 복사해주세요" />
         </Content>
         <ContentPhoto>
@@ -204,7 +211,7 @@ export default function PortFolio() {
           사진
         </Content>
       </Title>
-      <LastBtn onClick={onClickContent}>등록하기</LastBtn>
+      <LastBtn onClick={onClickContents}>등록하기</LastBtn>
     </Container>
   );
 }
