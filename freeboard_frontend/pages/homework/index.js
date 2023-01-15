@@ -106,7 +106,6 @@ export default function PortFolio() {
 
     if (writer && password && title && contents) {
       alert("회원가입을 축하합니다.");
-      router.push(`/homeworkQuery/${result.data.createBoard._id}`);
       const result = await createBoard({
         variables: {
           createBoardInput: {
@@ -119,6 +118,7 @@ export default function PortFolio() {
           },
         },
       });
+      router.push(`/homeworkQuery/${result.data.createBoard._id}`);
       console.log(result);
       console.log(router);
     }
