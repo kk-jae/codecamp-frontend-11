@@ -19,3 +19,4 @@ export default function App({ Component, pageProps }) {
 }
 
 //모든 페이지의 공통 설정들을 정리하는 곳 입니다.
+//06-01 index.js의 부모입니다.
