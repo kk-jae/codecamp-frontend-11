@@ -6,6 +6,8 @@ import { CREATE_BOARD } from "../Create/BoardsWrite.queries";
 
 export default function PortFolioCreateBoards() {
   //여기는 자바스크립트 쓰는 곳
+  const [isActive, setIsActive] = useState(false);
+
   const [createBoard] = useMutation(CREATE_BOARD);
 
   const [writer, setWriter] = useState("");
@@ -25,6 +27,10 @@ export default function PortFolioCreateBoards() {
     setWriter(event.target.value);
     if (writer) {
       setWriterError("");
+      setIsActive(false);
+    }
+    if (event.target.value && password && title && contents) {
+      setIsActive(true);
     }
   }
 
@@ -32,6 +38,11 @@ export default function PortFolioCreateBoards() {
     setPassword(event.target.value);
     if (password) {
       setPasswordError("");
+      setIsActive(false);
+    }
+
+    if (writer && event.target.value && title && contents) {
+      setIsActive(true);
     }
   }
 
@@ -39,6 +50,11 @@ export default function PortFolioCreateBoards() {
     setTitle(event.target.value);
     if (title) {
       setTitleError("");
+      setIsActive(false);
+    }
+
+    if (writer && password && event.target.value && contents) {
+      setIsActive(true);
     }
   }
 
@@ -46,6 +62,11 @@ export default function PortFolioCreateBoards() {
     setContents(event.target.value);
     if (contents) {
       setContentsError("");
+      setIsActive(false);
+    }
+
+    if (writer && password && title && event.target.value) {
+      setIsActive(true);
     }
   }
   function onChangeYoutubeUrl(event) {
@@ -84,9 +105,8 @@ export default function PortFolioCreateBoards() {
           },
         },
       });
+
       router.push(`/homeworkQuery/${result.data.createBoard._id}`);
-      console.log(result);
-      console.log(router);
     }
   };
 
@@ -103,6 +123,7 @@ export default function PortFolioCreateBoards() {
       passwordError={passwordError}
       titleError={titleError}
       contentsError={contentsError}
+      isActive={isActive}
     />
   );
 }

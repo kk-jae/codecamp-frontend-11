@@ -86,6 +86,7 @@ export const ContentInputN = styled.textarea`
   padding-left: 10px;
   height: 480px;
   margin-top: 10px;
+  padding-top: 10px;
   border: 1px solid #bdbdbd;
 `;
 
@@ -141,10 +142,11 @@ export const ContentInp = styled.input`
 export const LastBtn = styled.button`
   width: 179px;
   height: 52px;
-  background: #ffd600;
+  /* background: #ffd600; */
   border: none;
   font-size: 16px;
   font-weight: 500;
   margin-bottom: 80px;
   cursor: pointer;
+  background-color: ${(props) => (props.isActive ? "#FFD600" : "")};
 `;

@@ -2,9 +2,9 @@
 // import { useState } from "react";
 // import { useRouter } from "next/router";
 
-import ProductWrite from "../../../../src/components/units/product/06-writer/Create/ProductWrite.container";
+import ProductWrite from "../../../../src/components/units/product/07-writer/Create/ProductWrite.container";
 
-export default function ProductContainerPresenter() {
+export default function ProductActiveBtn() {
   return <ProductWrite />;
 }
 

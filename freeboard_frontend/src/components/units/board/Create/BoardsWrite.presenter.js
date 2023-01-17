@@ -112,7 +112,9 @@ export default function PortFolioCreateBoardsUI(props) {
           사진
         </Content>
       </Title>
-      <LastBtn onClick={props.onClickContents}>등록하기</LastBtn>
+      <LastBtn onClick={props.onClickContents} isActive={props.isActive}>
+        등록하기
+      </LastBtn>
     </Container>
   );
 }
