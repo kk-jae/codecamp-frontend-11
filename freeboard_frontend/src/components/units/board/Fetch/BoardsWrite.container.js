@@ -7,7 +7,7 @@ export default function PortFolioQueryContainer() {
   const router = useRouter();
 
   const { data } = useQuery(FETCH_BOARD, {
-    variables: { boardId: router.query._id },
+    variables: { boardId: router.query.boardId },
   });
   // console.log(data);
   console.log(router);

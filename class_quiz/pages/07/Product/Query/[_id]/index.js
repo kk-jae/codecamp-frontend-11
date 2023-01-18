@@ -2,7 +2,7 @@
 // import { useRouter } from "next/router";
 import ProductQuery from "../../../../../src/components/units/product/07-writer/Fetch/ProductWrite.container";
 
-export default function ProductQueryQuiz() {
+export default function ProductQueryPatten() {
   return <ProductQuery />;
 }
 

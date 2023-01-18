@@ -27,7 +27,7 @@ export default function StaticRoutingMovedPage() {
   const [deleteBoard] = useMutation(DELETE_BOARD);
 
   // console.log(data)
-  console.log(data?.fetchBoards);
+  // console.log(data?.fetchBoards);
   //받아오는 숫자(length)는 백엔드에서 조정할 수 있습니다.
 
   // CSS 적용방법 시작
@@ -37,6 +37,7 @@ export default function StaticRoutingMovedPage() {
   // CSS 적용방법 종료
 
   const onClickDelete = (event) => {
+    // console.log(event);
     deleteBoard({
       variables: { number: Number(event.target.id) }, //삭제 버튼 클릭시 삭제 (새로고침해야 적용됨)
       refetchQueries: [{ query: FETCH_BOARDS }], //삭제 버튼 클릭시 화면에 바로 적용해줄 수 있습니다.

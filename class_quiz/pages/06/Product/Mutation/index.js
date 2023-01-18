@@ -4,7 +4,7 @@
 
 import ProductWrite from "../../../../src/components/units/product/06-writer/Create/ProductWrite.container";
 
-export default function ProductContainerPresenter() {
+export default function CreateProductContainerPresenter() {
   return <ProductWrite />;
 }
 

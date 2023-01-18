@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 export default function StaticRoutingPage() {
   const router = useRouter();
 
+  console.log(router);
   const onClickMove1 = () => {
     router.push("/section05/05-02-static-routing-board-moved/1");
     //localhost:3000 생략

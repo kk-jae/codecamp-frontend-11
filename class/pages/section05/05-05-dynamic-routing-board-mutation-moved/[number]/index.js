@@ -15,7 +15,7 @@ const FETCH_BOARD = gql`
 export default function StaticRoutingMovedPage() {
   const router = useRouter();
   // console.log(router);
-  // router.query.qqq 값 확인
+  // router.query.number 값 확인
 
   const { data } = useQuery(FETCH_BOARD, {
     variables: { number: Number(router.query.number) },

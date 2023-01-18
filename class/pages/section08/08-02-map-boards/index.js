@@ -17,7 +17,7 @@ const FETCH_BOARDS = gql`
 export default function StaticRoutingMovedPage() {
   const { data } = useQuery(FETCH_BOARDS);
 
-  // console.log(data)
+  // console.log(data);
   console.log(data?.fetchBoards);
   //받아오는 숫자(length)는 백엔드에서 조정할 수 있습니다.
 

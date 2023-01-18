@@ -24,6 +24,7 @@ export default function BoardWrite(props) {
   };
   const onChangeWriter = (event) => {
     setWriter(event.target.value);
+
     // 변경 전 if (writer && title && contents) {
     if (event.target.value && title && contents) {
       setIsActive(true);

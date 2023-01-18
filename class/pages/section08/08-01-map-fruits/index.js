@@ -22,6 +22,7 @@ export default function MapFruitsPage() {
   ];
 
   //2. 실무 백엔드 데이터 예제
+  // const bbb = FRUITS.map((el) => (<div>{el.number} {el.title}</div>));
   const bbb = FRUITS.map((el) => (
     <div>
       {el.number} {el.title}

@@ -1,3 +1,5 @@
+// filter와 map 사용 연습
+
 let classmates = [
   { name: "철수", age: 10, school: "토끼초등학교" },
   { name: "영희", age: 13, school: "다람쥐초등학교" },

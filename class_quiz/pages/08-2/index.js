@@ -1,3 +1,5 @@
+// filter와 map 사용 연습
+
 const fruits = [
   { number: 1, title: "레드향" },
   { number: 2, title: "샤인머스켓" },

@@ -27,8 +27,8 @@ export default function GraphqlMutationPage() {
           contents: "반갑습니다",
         },
       });
-      console.log(result);
-      console.log(result.data.createBoard.number);
+      // console.log(result);
+      // console.log(result.data.createBoard.number);
 
       // router.push(
       //   "/section05/05-05-dynamic-routing-board-mutation-moved/" + result.data.createBoard.number
