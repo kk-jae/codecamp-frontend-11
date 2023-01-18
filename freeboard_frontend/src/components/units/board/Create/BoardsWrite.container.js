@@ -2,13 +2,14 @@ import { useMutation } from "@apollo/client";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import PortFolioCreateBoardsUI from "../Create/BoardsWrite.presenter";
-import { CREATE_BOARD } from "../Create/BoardsWrite.queries";
+import { CREATE_BOARD, UPDATE_BOARD } from "../Create/BoardsWrite.queries";
 
-export default function PortFolioCreateBoards() {
+export default function PortFolioCreateBoards(props) {
   //여기는 자바스크립트 쓰는 곳
   const [isActive, setIsActive] = useState(false);
 
   const [createBoard] = useMutation(CREATE_BOARD);
+  const [updateBoard] = useMutation(UPDATE_BOARD);
 
   const [writer, setWriter] = useState("");
   const [password, setPassword] = useState("");
@@ -106,8 +107,41 @@ export default function PortFolioCreateBoards() {
         },
       });
 
-      router.push(`/homeworkQuery/${result.data.createBoard._id}`);
+      router.push(`/homework/${result.data.createBoard._id}`);
     }
+  };
+
+  const onClickUpdateBoard = async () => {
+    if (!writer) {
+      setWriterError("이름을 입력해주세요.");
+    }
+
+    if (!password) {
+      setPasswordError("비밀번호를 입력해주세요");
+    }
+
+    if (!title) {
+      setTitleError("제목을 입력해주세요");
+    }
+
+    if (!contents) {
+      setContentsError("내용을 입력해주세요");
+    }
+    if (writer && password && title && contents) {
+      const result = await updateBoard({
+        variables: {
+          updateBoardInput: {
+            title,
+            contents,
+            youtubeUrl,
+          },
+          password: password,
+          boardId: router.query.boardId,
+        },
+      });
+    }
+    // console.log(router);
+    router.push(`/homework/${router.query.boardId}`);
   };
 
   return (
@@ -124,6 +158,8 @@ export default function PortFolioCreateBoards() {
       titleError={titleError}
       contentsError={contentsError}
       isActive={isActive}
+      onClickUpdateBoard={onClickUpdateBoard}
+      isEdit={props.isEdit}
     />
   );
 }

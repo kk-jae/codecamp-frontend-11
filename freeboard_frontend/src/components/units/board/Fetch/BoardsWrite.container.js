@@ -1,6 +1,6 @@
-import { useMutation, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { DELETE_BOARD, FETCH_BOARD } from "./BoardsWrite.queries";
+import { FETCH_BOARD } from "../Fetch/BoardsWrite.queries";
 import PortFolioQueryUI from "../Fetch/BoardsWrite.presenter";
 
 export default function PortFolioQueryContainer() {
@@ -10,20 +10,17 @@ export default function PortFolioQueryContainer() {
     variables: { boardId: router.query.boardId },
   });
   // console.log(data);
-  console.log(router);
+  // console.log(router);
 
-  const [deleteBoard] = useMutation(DELETE_BOARD);
-
-  const onClickDelete = () => {
-    deleteBoard({
-      variables: { boardId: router.query._id },
-      refetchQueries: [{ query: DELETE_BOARD }],
-    });
+  const onClickContents = async () => {
+    console.log(router);
+    router.push(`/homework/${router.query.boardId}/edit`);
   };
+
   return (
     <PortFolioQueryUI
       data={data}
-      onClickDelete={onClickDelete}
+      onClickContents={onClickContents}
       // _id={data}
       // writer={data}
       // title={data}

@@ -119,10 +119,10 @@ export default function PortFolioQueryUI(props) {
         <Body>
           <Body_Btn>
             <Body_Btn_List>목록으로</Body_Btn_List>
-            <Body_Btn_update>수정하기</Body_Btn_update>
-            <Body_Btn_delete onClick={props.onClickDelete}>
-              삭제하기
-            </Body_Btn_delete>
+            <Body_Btn_update onClick={props.onClickContents}>
+              수정하기
+            </Body_Btn_update>
+            <Body_Btn_delete>삭제하기</Body_Btn_delete>
           </Body_Btn>
         </Body>
         <Footer>

@@ -27,7 +27,7 @@ import {
 export default function PortFolioCreateBoardsUI(props) {
   return (
     <Container>
-      <Head>게시물 등록</Head>
+      <Head>게시물 {props.isEdit ? "수정" : "등록"}</Head>
       <Title>
         <FirstContent>
           <FirstContentItem1>
@@ -112,8 +112,13 @@ export default function PortFolioCreateBoardsUI(props) {
           사진
         </Content>
       </Title>
-      <LastBtn onClick={props.onClickContents} isActive={props.isActive}>
-        등록하기
+      <LastBtn
+        onClick={
+          props.isEdit ? props.onClickUpdateBoard : props.onClickContents
+        }
+        isActive={props.isActive}
+      >
+        {props.isEdit ? "수정" : "등록"}하기
       </LastBtn>
     </Container>
   );
