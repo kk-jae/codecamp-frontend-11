@@ -26,10 +26,6 @@ export default function StaticRoutingMovedPage() {
 
   const [deleteBoard] = useMutation(DELETE_BOARD);
 
-  // console.log(data)
-  // console.log(data?.fetchBoards);
-  //받아오는 숫자(length)는 백엔드에서 조정할 수 있습니다.
-
   // CSS 적용방법 시작
   // const myStyles = {
   //   margin : "10px",

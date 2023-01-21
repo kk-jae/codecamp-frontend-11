@@ -1,13 +1,7 @@
 import { RedInput, BlueButton } from "./BoardWrite.styles";
+import { IBoardWriteUIProps } from "./BoardWrite.types";
 
-export default function BoardWriteUI(props) {
-  // props = {
-  //   aaa=onClickSubmit,
-  //   bbb=onChangeWriter,
-  //   ccc=onChangeTitle,
-  //   ddd=onChangeContents,
-  //presenter.js
-
+export default function BoardWriteUI(props: IBoardWriteUIProps) {
   const qqq = 3;
   return (
     <div>
