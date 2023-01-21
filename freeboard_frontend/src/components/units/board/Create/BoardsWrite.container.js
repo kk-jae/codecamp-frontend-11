@@ -11,24 +11,23 @@ export default function PortFolioCreateBoards(props) {
   const [createBoard] = useMutation(CREATE_BOARD);
   const [updateBoard] = useMutation(UPDATE_BOARD);
 
-  const [writer, setWriter] = useState("");
-  const [password, setPassword] = useState("");
-  const [title, setTitle] = useState("");
-  const [contents, setContents] = useState("");
-  const [youtubeUrl, setYoutubeUrl] = useState("");
+  const [writer, setWriter] = useState();
+  const [password, setPassword] = useState();
+  const [title, setTitle] = useState();
+  const [contents, setContents] = useState();
+  const [youtubeUrl, setYoutubeUrl] = useState();
 
-  const [writerError, setWriterError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
-  const [titleError, setTitleError] = useState("");
-  const [contentsError, setContentsError] = useState("");
+  const [writerError, setWriterError] = useState();
+  const [passwordError, setPasswordError] = useState();
+  const [titleError, setTitleError] = useState();
+  const [contentsError, setContentsError] = useState();
 
   const router = useRouter();
 
   function onChangeWriter(event) {
     setWriter(event.target.value);
-    if (writer) {
+    if (event.target.value) {
       setWriterError("");
-      setIsActive(false);
     }
     if (event.target.value && password && title && contents) {
       setIsActive(true);
@@ -37,9 +36,8 @@ export default function PortFolioCreateBoards(props) {
 
   function onChangePassword(event) {
     setPassword(event.target.value);
-    if (password) {
+    if (event.target.value) {
       setPasswordError("");
-      setIsActive(false);
     }
 
     if (writer && event.target.value && title && contents) {
@@ -49,19 +47,18 @@ export default function PortFolioCreateBoards(props) {
 
   function onChangeTitle(event) {
     setTitle(event.target.value);
-    if (title) {
+    if (event.target.value) {
       setTitleError("");
-      setIsActive(false);
     }
 
     if (writer && password && event.target.value && contents) {
-      setIsActive(true);
+      setIsActive(true); //색상 노란색으로 변경
     }
   }
 
   function onChangeContents(event) {
     setContents(event.target.value);
-    if (contents) {
+    if (event.target.value) {
       setContentsError("");
       setIsActive(false);
     }
@@ -93,7 +90,7 @@ export default function PortFolioCreateBoards(props) {
     }
 
     if (writer && password && title && contents) {
-      alert("회원가입을 축하합니다.");
+      alert("게시글 등록이 완료되었습니다.");
       const result = await createBoard({
         variables: {
           createBoardInput: {
@@ -112,36 +109,38 @@ export default function PortFolioCreateBoards(props) {
   };
 
   const onClickUpdateBoard = async () => {
-    if (!writer) {
-      setWriterError("이름을 입력해주세요.");
-    }
+    const myVariables = {
+      boardId: router.query.boardId,
+      password: password,
+      updateBoardInput: {
+        title,
+        contents,
+        youtubeUrl,
+      },
+    };
+    if (title) myVariables.title = title;
+    // if (title !== "") {
+    //   myVariables.title = title;
+    // }
+    if (contents) myVariables.title = contents;
+    const result = await updateBoard({
+      variables: myVariables,
+    });
 
-    if (!password) {
-      setPasswordError("비밀번호를 입력해주세요");
-    }
+    // const result = await updateBoard({
+    //   variables: {
+    //     updateBoardInput: {
+    //       title,
+    //       contents,
+    //       youtubeUrl,
+    //     },
+    //     password: password,
+    //     boardId: router.query.boardId,
+    //   },
+    // });
+    // console.log(result);
 
-    if (!title) {
-      setTitleError("제목을 입력해주세요");
-    }
-
-    if (!contents) {
-      setContentsError("내용을 입력해주세요");
-    }
-    if (writer && password && title && contents) {
-      const result = await updateBoard({
-        variables: {
-          updateBoardInput: {
-            title,
-            contents,
-            youtubeUrl,
-          },
-          password: password,
-          boardId: router.query.boardId,
-        },
-      });
-    }
-    // console.log(router);
-    router.push(`/homework/${router.query.boardId}`);
+    router.push(`/homework/${result.data.updateBoard._id}`);
   };
 
   return (
@@ -160,6 +159,7 @@ export default function PortFolioCreateBoards(props) {
       isActive={isActive}
       onClickUpdateBoard={onClickUpdateBoard}
       isEdit={props.isEdit}
+      data={props.data}
     />
   );
 }

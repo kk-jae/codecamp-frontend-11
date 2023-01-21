@@ -1,6 +1,6 @@
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
-import { FETCH_BOARD } from "../Fetch/BoardsWrite.queries";
+import { DELETE_BOARD, FETCH_BOARD } from "../Fetch/BoardsWrite.queries";
 import PortFolioQueryUI from "../Fetch/BoardsWrite.presenter";
 
 export default function PortFolioQueryContainer() {
@@ -12,15 +12,30 @@ export default function PortFolioQueryContainer() {
   // console.log(data);
   // console.log(router);
 
+  const [deleteBoard] = useMutation(DELETE_BOARD);
+
   const onClickContents = async () => {
-    console.log(router);
     router.push(`/homework/${router.query.boardId}/edit`);
+  };
+
+  const onClickNewCreateBoard = async () => {
+    router.push("/homework/list");
+  };
+
+  const onClickDeleteBoard = async () => {
+    deleteBoard({
+      variables: { boardId: data.fetchBoard._id },
+    });
+    router.push("/homework/list");
+    alert("게시글이 삭제되었습니다.");
   };
 
   return (
     <PortFolioQueryUI
       data={data}
       onClickContents={onClickContents}
+      onClickNewCreateBoard={onClickNewCreateBoard}
+      onClickDeleteBoard={onClickDeleteBoard}
       // _id={data}
       // writer={data}
       // title={data}
