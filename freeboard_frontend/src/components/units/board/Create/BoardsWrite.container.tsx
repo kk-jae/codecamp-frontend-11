@@ -1,40 +1,50 @@
 import { useMutation } from "@apollo/client";
-import { useState } from "react";
+import { useState, ChangeEvent } from "react";
 import { useRouter } from "next/router";
-import PortFolioCreateBoardsUI from "../Create/BoardsWrite.presenter";
-import { CREATE_BOARD, UPDATE_BOARD } from "../Create/BoardsWrite.queries";
+import PortFolioCreateBoardsUI from "./BoardsWrite.presenter";
+import { CREATE_BOARD, UPDATE_BOARD } from "./BoardsWrite.queries";
 
-export default function PortFolioCreateBoards(props) {
+interface PortFolioCreateBoardsProps {
+  isEdit: boolean;
+  data?: any;
+}
+
+export default function PortFolioCreateBoards(
+  props: PortFolioCreateBoardsProps
+) {
   //여기는 자바스크립트 쓰는 곳
+
   const [isActive, setIsActive] = useState(false);
 
   const [createBoard] = useMutation(CREATE_BOARD);
   const [updateBoard] = useMutation(UPDATE_BOARD);
 
-  const [writer, setWriter] = useState();
-  const [password, setPassword] = useState();
-  const [title, setTitle] = useState();
-  const [contents, setContents] = useState();
-  const [youtubeUrl, setYoutubeUrl] = useState();
+  const [writer, setWriter] = useState("");
+  const [password, setPassword] = useState("");
+  const [title, setTitle] = useState("");
+  const [contents, setContents] = useState("");
+  const [youtubeUrl, setYoutubeUrl] = useState("");
 
-  const [writerError, setWriterError] = useState();
-  const [passwordError, setPasswordError] = useState();
-  const [titleError, setTitleError] = useState();
-  const [contentsError, setContentsError] = useState();
+  const [writerError, setWriterError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [titleError, setTitleError] = useState("");
+  const [contentsError, setContentsError] = useState("");
 
   const router = useRouter();
 
-  function onChangeWriter(event) {
+  const onChangeWriter = (event: ChangeEvent<HTMLInputElement>) => {
     setWriter(event.target.value);
     if (event.target.value) {
       setWriterError("");
     }
     if (event.target.value && password && title && contents) {
       setIsActive(true);
+    } else {
+      setIsActive(false);
     }
-  }
+  };
 
-  function onChangePassword(event) {
+  const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
     if (event.target.value) {
       setPasswordError("");
@@ -42,10 +52,12 @@ export default function PortFolioCreateBoards(props) {
 
     if (writer && event.target.value && title && contents) {
       setIsActive(true);
+    } else {
+      setIsActive(false);
     }
-  }
+  };
 
-  function onChangeTitle(event) {
+  const onChangeTitle = (event: ChangeEvent<HTMLInputElement>) => {
     setTitle(event.target.value);
     if (event.target.value) {
       setTitleError("");
@@ -53,23 +65,28 @@ export default function PortFolioCreateBoards(props) {
 
     if (writer && password && event.target.value && contents) {
       setIsActive(true); //색상 노란색으로 변경
+    } else {
+      setIsActive(false);
     }
-  }
+  };
 
-  function onChangeContents(event) {
+  const onChangeContents = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setContents(event.target.value);
     if (event.target.value) {
       setContentsError("");
+    } else {
       setIsActive(false);
     }
 
     if (writer && password && title && event.target.value) {
       setIsActive(true);
+    } else {
+      setIsActive(false);
     }
-  }
-  function onChangeYoutubeUrl(event) {
+  };
+  const onChangeYoutubeUrl = (event: ChangeEvent<HTMLInputElement>) => {
     setYoutubeUrl(event.target.value);
-  }
+  };
 
   // if문을 분리해서 다시 진행
   const onClickContents = async () => {
@@ -108,8 +125,20 @@ export default function PortFolioCreateBoards(props) {
     }
   };
 
+  interface IMyVariables {
+    boardId: any;
+    password: string;
+    updateBoardInput: IUpdateBoardInput;
+  }
+
+  interface IUpdateBoardInput {
+    title?: string;
+    contents?: string;
+    youtubeUrl?: string;
+  }
+
   const onClickUpdateBoard = async () => {
-    const myVariables = {
+    const myVariables: IMyVariables = {
       boardId: router.query.boardId,
       password: password,
       updateBoardInput: {
@@ -118,11 +147,12 @@ export default function PortFolioCreateBoards(props) {
         youtubeUrl,
       },
     };
-    if (title) myVariables.title = title;
+    if (title) myVariables.updateBoardInput.title = title;
     // if (title !== "") {
     //   myVariables.title = title;
     // }
-    if (contents) myVariables.title = contents;
+    if (contents) myVariables.updateBoardInput.contents = contents;
+
     const result = await updateBoard({
       variables: myVariables,
     });
@@ -146,7 +176,6 @@ export default function PortFolioCreateBoards(props) {
   return (
     <PortFolioCreateBoardsUI
       onChangeWriter={onChangeWriter}
-      //onChangeWriter 함수를 왼쪽에 할당함
       onChangePassword={onChangePassword}
       onChangeTitle={onChangeTitle}
       onChangeContents={onChangeContents}

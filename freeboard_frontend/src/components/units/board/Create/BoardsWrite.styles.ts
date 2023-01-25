@@ -88,6 +88,7 @@ export const ContentInputN = styled.textarea`
   margin-top: 10px;
   padding-top: 10px;
   border: 1px solid #bdbdbd;
+  vertical-align: top;
 `;
 
 export const AdrTop = styled.div``;
@@ -139,6 +140,11 @@ export const ContentInp = styled.input`
   accent-color: #ffd600;
 `;
 
+
+interface IProps {
+  isActive:boolean;
+}
+
 export const LastBtn = styled.button`
   width: 179px;
   height: 52px;
@@ -148,5 +154,5 @@ export const LastBtn = styled.button`
   font-weight: 500;
   margin-bottom: 80px;
   cursor: pointer;
-  background-color: ${(props) => (props.isActive ? "#FFD600" : "")};
+  background-color: ${(props: IProps) => (props.isActive ? "#FFD600" : "")};
 `;

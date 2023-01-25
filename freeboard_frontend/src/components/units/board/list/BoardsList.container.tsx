@@ -1,9 +1,9 @@
-import { FETCH_BOARDS } from "../list/BoardsList.queries";
+import { FETCH_BOARDS } from "./BoardsList.queries";
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import BoardsListContainerUI from "../list/BoardsList.presenter";
+import BoardsListContainerUI from "./BoardsList.presenter";
 
-export default function BoardsListContainer(props) {
+export default function BoardsListContainer() {
   const router = useRouter();
 
   const { data } = useQuery(FETCH_BOARDS);
@@ -13,7 +13,7 @@ export default function BoardsListContainer(props) {
     router.push("/homework/new");
   };
 
-  const onClickMovedBoard = async (event) => {
+  const onClickMovedBoard = async (event: any) => {
     console.log(event.target.id);
     router.push(`/homework/${event.target.id}`);
   };

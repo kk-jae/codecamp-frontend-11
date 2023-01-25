@@ -38,25 +38,10 @@ export default function BoardWrite(props: IBoardWriteProps) {
   };
 
   const onClickUpdate = async () => {
-    const myVariables: IMyVariables = {
-      number: Number(router.query.number),
-    };
-    // 위와 동일 코드 myVariables.number = Number(router.query.number);
-    // myVariables = {number : Number(router.query.number)}
+    const myVariables: IMyVariables = { number: Number(router.query.number) };
     if (writer) myVariables.writer = writer;
     if (title) myVariables.title = title;
     if (contents) myVariables.contents = contents;
-    // 위와 동일
-    // if (writer !== "") {
-    //   myVariables.writer= writer;
-    // }
-    //
-    // if (title !== "") {
-    //   myVariables.title = title;
-    // }
-    // if (contents !== "") {
-    //   myVariables.title = contents;
-    // }
 
     const result = await updateBoard({
       variables: myVariables,

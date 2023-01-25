@@ -1,7 +1,26 @@
-import * as S from "../Create/BoardsWrite.styles";
+import * as S from "./BoardsWrite.styles";
+import { ChangeEvent, MouseEvent } from "react";
 
-//과제
-export default function PortFolioCreateBoardsUI(props) {
+interface IPortFolioCreateBoardsUIProps {
+  onChangeWriter: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeTitle: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeContents: (event: ChangeEvent<HTMLTextAreaElement>) => void;
+  onChangeYoutubeUrl: (event: ChangeEvent<HTMLInputElement>) => void;
+  onClickContents: (event: MouseEvent<HTMLButtonElement>) => void;
+  writerError: string;
+  passwordError: string;
+  titleError: string;
+  contentsError: string;
+  onClickUpdateBoard: (event: MouseEvent<HTMLButtonElement>) => void;
+  isEdit: boolean;
+  isActive: boolean;
+  data?: any;
+}
+
+export default function PortFolioCreateBoardsUI(
+  props: IPortFolioCreateBoardsUIProps
+) {
   return (
     <S.Container>
       <S.Head>게시물 {props.isEdit ? "수정" : "등록"}</S.Head>

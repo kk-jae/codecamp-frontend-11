@@ -123,7 +123,9 @@ export const Body_img = styled.img`
   object-fit: cover;
 `;
 
-export const Body_detail = styled.div``;
+export const Body_detail = styled.div`
+background-color:red;
+`;
 
 export const Body_youtube = styled.iframe`
   width: 40%;

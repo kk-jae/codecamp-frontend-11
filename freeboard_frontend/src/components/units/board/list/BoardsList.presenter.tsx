@@ -1,7 +1,16 @@
-import * as S from "../list/BoardsList.styles";
+import * as S from "./BoardsList.styles";
 import { getDate } from "../../../../commons/libraries/utils";
+import { MouseEvent } from "react";
 
-export default function BoardsListContainerUI(props) {
+interface IBoardsListContainerUIProps {
+  data: any;
+  onClickNewCreateBoard: (event: MouseEvent<HTMLButtonElement>) => void;
+  onClickMovedBoard: (event: MouseEvent<HTMLDivElement>) => void;
+}
+
+export default function BoardsListContainerUI(
+  props: IBoardsListContainerUIProps
+) {
   return (
     <S.Container>
       <S.Wrapper>
@@ -11,7 +20,7 @@ export default function BoardsListContainerUI(props) {
           <S.Title_writer>작성자</S.Title_writer>
           <S.Title_createdAt>날짜</S.Title_createdAt>
         </S.Wrapper_title>
-        {props.data?.fetchBoards.map((el) => (
+        {props.data?.fetchBoards.map((el: any) => (
           <S.Wrapper_list key={el._id}>
             <S.List_number>
               {String(el._id).slice(-4).toUpperCase()}

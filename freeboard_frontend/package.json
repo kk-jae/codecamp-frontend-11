@@ -1,21 +1,31 @@
 {
-  "name": "feeboard_frontend",
+  "name": "codecamp",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generated": "graphql-codegen"
   },
   "dependencies": {
     "@apollo/client": "^3.7.3",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "antd": "^5.1.4",
+    "axios": "^1.2.2",
     "graphql": "^16.6.0",
     "next": "12.1.0",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "ts-node": "^10.9.1"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^2.16.4",
+    "@graphql-codegen/typescript": "^2.8.7",
+    "@types/node": "17.0.2",
+    "@types/react": "17.0.2",
+    "typescript": "^4.9.4"
   }
 }
