@@ -1,6 +1,7 @@
-//설치한 emotion을 사용하기 위해 import로 불러와야합니다.
 import styled from "@emotion/styled";
-//과제
+import { IProps } from "./BoardsWrite.type";
+
+
 export const Container = styled.div`
   box-sizing: board-box;
   margin: 0;
@@ -140,10 +141,6 @@ export const ContentInp = styled.input`
   accent-color: #ffd600;
 `;
 
-
-interface IProps {
-  isActive:boolean;
-}
 
 export const LastBtn = styled.button`
   width: 179px;

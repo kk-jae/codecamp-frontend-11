@@ -124,7 +124,9 @@ export const Body_img = styled.img`
 `;
 
 export const Body_detail = styled.div`
-background-color:red;
+/* background-color:red; */
+width:100%;
+word-wrap: break-word;
 `;
 
 export const Body_youtube = styled.iframe`

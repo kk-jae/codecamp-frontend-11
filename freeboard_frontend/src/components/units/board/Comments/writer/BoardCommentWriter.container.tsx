@@ -3,8 +3,8 @@ import { useRouter } from "next/router";
 import {
   CREATE_BOARD_COMMENT,
   FETCH_BOARD_COMMENTS
-} from "./BoardsWrite.queries";
-import PortFolioQueryUI from "./BoardsWrite.presenter";
+} from "./BoardCommentWriter.queries";
+import PortFolioQueryUI from "./BoardCommentWriter.presenter";
 import { useState, ChangeEvent } from "react";
 
 export default function CreateBoardCommentWriter(props: any) {

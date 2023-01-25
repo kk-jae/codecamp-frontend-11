@@ -1,11 +1,7 @@
-import * as S from "./BoardsWrite.styles";
-import { ChangeEvent, MouseEvent } from "react";
+import * as S from "./BoardCommentList.styles";
 import { getDate } from "../../../../../commons/libraries/utils";
+import { IProtFolioQueryUI } from "../list/BoardCommentList.type";
 
-interface IProtFolioQueryUI {
-  onClickDeleteComment: any;
-  data?: any;
-}
 
 export default function PortFolioQueryUI(props: IProtFolioQueryUI) {
   return (

@@ -3,11 +3,15 @@ import { useState, ChangeEvent } from "react";
 import { useRouter } from "next/router";
 import PortFolioCreateBoardsUI from "./BoardsWrite.presenter";
 import { CREATE_BOARD, UPDATE_BOARD } from "./BoardsWrite.queries";
+import {
+  IMutation,
+  IMutationCreateBoardArgs,
+  IMutationUpdateBoardArgs,
+} from "../../../../commons/types/generated/types";
+import { IQuery } from "../../../../commons/types/generated/types";
+import { IMyVariables, PortFolioCreateBoardsProps } from "../Create/BoardsWrite.type";
 
-interface PortFolioCreateBoardsProps {
-  isEdit: boolean;
-  data?: any;
-}
+
 
 export default function PortFolioCreateBoards(
   props: PortFolioCreateBoardsProps
@@ -16,8 +20,15 @@ export default function PortFolioCreateBoards(
 
   const [isActive, setIsActive] = useState(false);
 
-  const [createBoard] = useMutation(CREATE_BOARD);
-  const [updateBoard] = useMutation(UPDATE_BOARD);
+  const [createBoard] = useMutation<
+  Pick<IMutation, "createBoard">,
+  IMutationCreateBoardArgs
+>(CREATE_BOARD);
+
+  const [updateBoard] = useMutation<
+  Pick<IMutation, "updateBoard">,
+  IMutationUpdateBoardArgs
+>(UPDATE_BOARD);
 
   const [writer, setWriter] = useState("");
   const [password, setPassword] = useState("");
@@ -64,7 +75,7 @@ export default function PortFolioCreateBoards(
     }
 
     if (writer && password && event.target.value && contents) {
-      setIsActive(true); //색상 노란색으로 변경
+      setIsActive(true); 
     } else {
       setIsActive(false);
     }
@@ -90,72 +101,79 @@ export default function PortFolioCreateBoards(
 
   // if문을 분리해서 다시 진행
   const onClickContents = async () => {
-    if (!writer) {
-      setWriterError("이름을 입력해주세요.");
-    }
-
-    if (!password) {
-      setPasswordError("비밀번호를 입력해주세요");
-    }
-
-    if (!title) {
+      
+      if (!writer) {
+        setWriterError("이름을 입력해주세요.");
+      }
+      
+      if (!password) {
+        setPasswordError("비밀번호를 입력해주세요");
+      }
+      
+      if (!title) {
       setTitleError("제목을 입력해주세요");
     }
-
+    
     if (!contents) {
       setContentsError("내용을 입력해주세요");
     }
-
+    
     if (writer && password && title && contents) {
-      alert("게시글 등록이 완료되었습니다.");
-      const result = await createBoard({
-        variables: {
-          createBoardInput: {
-            writer: writer,
-            password, //value 생략 가능
-            title, //value 생략 가능
-            contents,
-            //키와 value가 동일하면 value 생략 가능합니다. (shorthand-property)
-            youtubeUrl,
+      try{
+
+        alert("게시글 등록이 완료되었습니다.");
+        const result = await createBoard({
+          variables: {
+            createBoardInput: {
+              writer: writer,
+              password, //value 생략 가능
+              title, //value 생략 가능
+              contents,
+              //키와 value가 동일하면 value 생략 가능합니다. (shorthand-property)
+              youtubeUrl,
+            },
           },
-        },
-      });
-
-      router.push(`/homework/${result.data.createBoard._id}`);
+        });
+        router.push(`/homework/${result.data?.createBoard._id}`);
+      } catch(error) {
+        if (error instanceof Error) alert(error.message);
+      }
     }
-  };
-
-  interface IMyVariables {
-    boardId: any;
-    password: string;
-    updateBoardInput: IUpdateBoardInput;
-  }
-
-  interface IUpdateBoardInput {
-    title?: string;
-    contents?: string;
-    youtubeUrl?: string;
   }
 
   const onClickUpdateBoard = async () => {
-    const myVariables: IMyVariables = {
-      boardId: router.query.boardId,
-      password: password,
-      updateBoardInput: {
-        title,
-        contents,
-        youtubeUrl,
-      },
-    };
-    if (title) myVariables.updateBoardInput.title = title;
-    // if (title !== "") {
-    //   myVariables.title = title;
-    // }
-    if (contents) myVariables.updateBoardInput.contents = contents;
+    try {
+      const myVariables: IMyVariables = {
+        boardId: router.query.boardId,
+        password: password,
+        updateBoardInput: {
+          title,
+          contents,
+          youtubeUrl,
+        },
+      };
+      if (title) myVariables.updateBoardInput.title = title;
+      // if (title !== "") {
+        //   myVariables.title = title;
+        // }
 
-    const result = await updateBoard({
-      variables: myVariables,
-    });
+
+
+      if (contents) myVariables.updateBoardInput.contents = contents;
+      
+      const result = await updateBoard({
+        variables: myVariables,
+      });
+      
+      router.push(`/homework/${result.data?.updateBoard._id}`);
+    }catch(error) {
+      if(error instanceof Error) alert(error.message);
+            // error가 Error의 인스턴스면 true를 반환합니다.
+      // true 일경우 error.message를 반환합니다.
+      // *인스턴스 : 함수의 기능(new Date() or Error 등)을 할당받은 변수
+      // ex) let data = new Date() : data 는 new Date의 인스턴스입니다.
+    }
+  };
 
     // const result = await updateBoard({
     //   variables: {
@@ -170,9 +188,8 @@ export default function PortFolioCreateBoards(
     // });
     // console.log(result);
 
-    router.push(`/homework/${result.data.updateBoard._id}`);
-  };
 
+    
   return (
     <PortFolioCreateBoardsUI
       onChangeWriter={onChangeWriter}

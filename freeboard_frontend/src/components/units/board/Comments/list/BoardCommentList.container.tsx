@@ -3,8 +3,8 @@ import { useRouter } from "next/router";
 import {
   FETCH_BOARD_COMMENTS,
   DELETE_BOARD_COMMENT,
-} from "./BoardsWrite.queries";
-import PortFolioQueryUI from "./BoardsWrite.presenter";
+} from "./BoardCommentList.queries";
+import PortFolioQueryUI from "./BoardCommentList.presenter";
 import { ChangeEvent} from "react";
 
 export default function CreateBoardCommentList() {
@@ -27,6 +27,7 @@ export default function CreateBoardCommentList() {
         password: password,
         boardCommentId: event.target.id,
       },
+
       refetchQueries: [{ 
         query: FETCH_BOARD_COMMENTS, 
         variables:{boardId:router.query.boardId}, 

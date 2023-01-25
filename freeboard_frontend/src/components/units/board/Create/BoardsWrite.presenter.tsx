@@ -1,22 +1,7 @@
 import * as S from "./BoardsWrite.styles";
-import { ChangeEvent, MouseEvent } from "react";
+import {IPortFolioCreateBoardsUIProps } from "../Create/BoardsWrite.type"
 
-interface IPortFolioCreateBoardsUIProps {
-  onChangeWriter: (event: ChangeEvent<HTMLInputElement>) => void;
-  onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void;
-  onChangeTitle: (event: ChangeEvent<HTMLInputElement>) => void;
-  onChangeContents: (event: ChangeEvent<HTMLTextAreaElement>) => void;
-  onChangeYoutubeUrl: (event: ChangeEvent<HTMLInputElement>) => void;
-  onClickContents: (event: MouseEvent<HTMLButtonElement>) => void;
-  writerError: string;
-  passwordError: string;
-  titleError: string;
-  contentsError: string;
-  onClickUpdateBoard: (event: MouseEvent<HTMLButtonElement>) => void;
-  isEdit: boolean;
-  isActive: boolean;
-  data?: any;
-}
+
 
 export default function PortFolioCreateBoardsUI(
   props: IPortFolioCreateBoardsUIProps
@@ -35,8 +20,11 @@ export default function PortFolioCreateBoardsUI(
               onChange={props.onChangeWriter}
               type="text"
               placeholder="이름을 입력하세요"
-              defaultValue={props.data?.fetchBoard.writer}
-              // disabled={props.isEdit ? true : false}
+              defaultValue={props.data?.fetchBoard.writer ?? ""}
+              // null 이나 undefined 빈문자열 ""을 넣어줍니다.
+              readOnly={!!props.isEdit ? true : false}
+            // 1번 방법 : readOnly={Boolean(props.data?.fetchBoard.writer)}
+            // 2번 방법 : !"철수" === false , !!"철수" === true
             />
           </S.FirstContentItem1>
           <S.FirstContentItem1>
@@ -48,7 +36,6 @@ export default function PortFolioCreateBoardsUI(
               onChange={props.onChangePassword}
               type="password"
               placeholder="비밀번호를 입력하세요"
-              defaultValue={props.data?.fetchBoard.password}
             />
           </S.FirstContentItem1>
         </S.FirstContent>

@@ -1,5 +1,5 @@
-import CreateBoardCommentList from "../../../src/components/units/board/Comments/list/BoardsWrite.container";
-import CreateBoardCommentWriter from "../../../src/components/units/board/Comments/writer/BoardsWrite.container";
+import CreateBoardCommentList from "../../../src/components/units/board/Comments/list/BoardCommentList.container";
+import CreateBoardCommentWriter from "../../../src/components/units/board/Comments/writer/BoardCommentWriter.container";
 
 
 export default function PortFolioMovedComments() {

@@ -7,7 +7,6 @@ export const PAGE = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-top: 2%;
 `;
 
 export const Container = styled.div`
@@ -41,7 +40,7 @@ export const Footer_Head_text = styled.div`
 export const Footer_Body = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: -50px;
+  margin-bottom: -60px;
 `;
 export const Footer_Body_Header = styled.div`
   display: flex;

@@ -1,15 +1,7 @@
-import * as S from "./BoardsWrite.styles";
-import { ChangeEvent, MouseEvent } from "react";
+import * as S from "./BoardCommentWriter.styles";
+import { IProtFolioQueryUI } from "../writer/BoardCommentWriter.type";
 
-interface IProtFolioQueryUI {
-  onChangeWriter: (event: ChangeEvent<HTMLInputElement>) => void;
-  onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void;
-  onChangeContents: (event: ChangeEvent<HTMLTextAreaElement>) => void;
-  onClickCreateBoardComment: (event: MouseEvent<HTMLButtonElement>) => void;
-  writer:string;
-  password:string;
-  contents:string;
-}
+
 
 export default function PortFolioQueryUI(props: IProtFolioQueryUI) {
   return (
@@ -31,6 +23,7 @@ export default function PortFolioQueryUI(props: IProtFolioQueryUI) {
                 onChange={props.onChangePassword}
                 placeholder="비밀번호"
                 value={props.password}
+                type="password"
               />
               <S.Review_Rating>☆ ☆ ☆ ☆ ☆</S.Review_Rating>
             </S.Footer_Body_Header>
