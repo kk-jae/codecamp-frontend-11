@@ -127,6 +127,7 @@ export const Body_detail = styled.div`
 /* background-color:red; */
 width:100%;
 word-wrap: break-word;
+white-space:pre-wrap;
 `;
 
 export const Body_youtube = styled.iframe`

@@ -156,9 +156,6 @@ export default function PortFolioCreateBoards(
       // if (title !== "") {
         //   myVariables.title = title;
         // }
-
-
-
       if (contents) myVariables.updateBoardInput.contents = contents;
       
       const result = await updateBoard({
