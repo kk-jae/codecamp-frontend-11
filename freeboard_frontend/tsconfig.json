@@ -20,6 +20,6 @@
     "**/*.ts",
     "**/*.tsx",
     "src/components/units/board/Create/BoardsWrite.presenter.js"
-  ],
+, "src/components/units/board/Create/BoardsWrite.container.tsx"  ],
   "exclude": ["node_modules"]
 }

@@ -9,7 +9,9 @@ import {
   IMutationUpdateBoardArgs,
 } from "../../../../commons/types/generated/types";
 import { IQuery } from "../../../../commons/types/generated/types";
-import { IMyVariables, PortFolioCreateBoardsProps } from "../Create/BoardsWrite.type";
+import { IMyVariables, PortFolioCreateBoardsProps } from "./BoardsWrite.type";
+
+
 
 
 
@@ -42,6 +44,11 @@ export default function PortFolioCreateBoards(
   const [contentsError, setContentsError] = useState("");
 
   const router = useRouter();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [address, setAddress] =useState("");
+  const [addressDetail, setAddressDetail] = useState("")
+  const [addressZoneCode, setAddressZoneCode] = useState("")
 
   const onChangeWriter = (event: ChangeEvent<HTMLInputElement>) => {
     setWriter(event.target.value);
@@ -142,36 +149,38 @@ export default function PortFolioCreateBoards(
   }
 
   const onClickUpdateBoard = async () => {
-    try {
+    if (!title && !contents) {
+      alert("수정한 내용이 없습니다.");
+      return;
+    }
+
       const myVariables: IMyVariables = {
         boardId: router.query.boardId,
-        password: password,
+        password:password,
         updateBoardInput: {
           title,
           contents,
           youtubeUrl,
         },
       };
+      const result = await updateBoard({
+        variables: myVariables,
+      });
+      console.log(result);
       if (title) myVariables.updateBoardInput.title = title;
       // if (title !== "") {
         //   myVariables.title = title;
         // }
       if (contents) myVariables.updateBoardInput.contents = contents;
-      
-      const result = await updateBoard({
-        variables: myVariables,
-      });
-      
+    
       router.push(`/homework/${result.data?.updateBoard._id}`);
-    }catch(error) {
-      if(error instanceof Error) alert(error.message);
+    
             // error가 Error의 인스턴스면 true를 반환합니다.
       // true 일경우 error.message를 반환합니다.
       // *인스턴스 : 함수의 기능(new Date() or Error 등)을 할당받은 변수
       // ex) let data = new Date() : data 는 new Date의 인스턴스입니다.
     }
-  };
-
+  
     // const result = await updateBoard({
     //   variables: {
     //     updateBoardInput: {
@@ -185,7 +194,17 @@ export default function PortFolioCreateBoards(
     // });
     // console.log(result);
 
+    const onClickAddress = () => {
+      setIsModalOpen((prev) =>!prev);
+    }
 
+    const handleComplete = (data:any) => {
+      onClickAddress();
+      // isModalOpen(false);
+      setAddress(data.address)
+      setAddressDetail(data.address) // 주소
+      setAddressZoneCode(data.zonecode) // 우편번호
+    }
     
   return (
     <PortFolioCreateBoardsUI
@@ -195,12 +214,18 @@ export default function PortFolioCreateBoards(
       onChangeContents={onChangeContents}
       onChangeYoutubeUrl={onChangeYoutubeUrl}
       onClickContents={onClickContents}
+      onClickUpdateBoard={onClickUpdateBoard}
+      onClickAddress={onClickAddress}
       writerError={writerError}
       passwordError={passwordError}
       titleError={titleError}
       contentsError={contentsError}
+      address={address}
+      addressDetail={addressDetail}
+      addressZoneCode={addressZoneCode}
+      handleComplete={handleComplete}
+      isModalOpen={isModalOpen}
       isActive={isActive}
-      onClickUpdateBoard={onClickUpdateBoard}
       isEdit={props.isEdit}
       data={props.data}
     />

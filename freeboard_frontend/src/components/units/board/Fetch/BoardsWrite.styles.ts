@@ -150,7 +150,10 @@ export const Like_left = styled.div`
   flex-direction: column;
   align-items: center;
 `;
-export const Like_left_img = styled.img``;
+export const Like_left_img = styled.img`
+  cursor: pointer;
+`;
+
 export const Like_left_count = styled.div`
   color: #ffd600;
 `;
@@ -162,6 +165,7 @@ export const Like_right = styled.div`
 `;
 export const Like_right_img = styled.img``;
 export const Like_right_count = styled.div`
+  cursor: pointer;
   color: #828282;
 `;
 

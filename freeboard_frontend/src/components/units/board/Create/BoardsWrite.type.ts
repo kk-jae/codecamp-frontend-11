@@ -17,6 +17,7 @@ export interface IMyVariables {
   boardId: any;
   password: string;
   updateBoardInput: IUpdateBoardInput;
+  title?:string;
 }
 
 export interface IPortFolioCreateBoardsUIProps {
@@ -25,12 +26,18 @@ export interface IPortFolioCreateBoardsUIProps {
   onChangeTitle: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeContents: (event: ChangeEvent<HTMLTextAreaElement>) => void;
   onChangeYoutubeUrl: (event: ChangeEvent<HTMLInputElement>) => void;
-  onClickContents: (event: MouseEvent<HTMLButtonElement>) => void;
+  onClickContents: () => void
+  onClickUpdateBoard:  () => void
+  onClickAddress:  () => void
+  handleComplete:any,
+  isModalOpen:any,
+  address: string;
+  addressDetail:string;
+  addressZoneCode:string;
   writerError: string;
   passwordError: string;
   titleError: string;
   contentsError: string;
-  onClickUpdateBoard: (event: MouseEvent<HTMLButtonElement>) => void;
   isEdit: boolean;
   isActive: boolean;
   data?: Pick<IQuery, "fetchBoard">;
@@ -38,4 +45,5 @@ export interface IPortFolioCreateBoardsUIProps {
 
 export interface IProps {
   isActive:boolean;
+  // isEdit:boolean;
 }

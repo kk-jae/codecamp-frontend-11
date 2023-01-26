@@ -51,15 +51,16 @@ export default function PortFolioQueryUI(props: IProtFolioQueryUI) {
               {/* <S.Body_youtube src="https://www.youtube.com/embed/5pRIDXQJxzw"></S.Body_youtube> */}
               <S.Body_Like>
                 <S.Like_left>
-                  <S.Like_left_img src="../BoardPage/like.png" alt="좋아요" />
-                  <S.Like_left_count>1920</S.Like_left_count>
+                  <S.Like_left_img onClick={props.onClickLikeCounter} src="../BoardPage/like.png" alt="좋아요" />
+                  <S.Like_left_count>{props.likeCounter}</S.Like_left_count>
                 </S.Like_left>
                 <S.Like_right>
                   <S.Like_right_img
                     src="../BoardPage/dislike.png"
                     alt="싫어요"
+                    onClick={props.onClickDisLikeCounter}
                   />
-                  <S.Like_right_count>1920</S.Like_right_count>
+                  <S.Like_right_count>{props.dislikeCounter}</S.Like_right_count>
                 </S.Like_right>
               </S.Body_Like>
             </S.Head_body_center>

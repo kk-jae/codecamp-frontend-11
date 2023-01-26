@@ -20,6 +20,8 @@ export default function PortFolioQueryContainer() {
   const [writer, setWriter] = useState("");
   const [password, setPassword] = useState("");
   const [contents, setContents] = useState("");
+  const [likeCounter, setLikeCounter] = useState(0);
+  const [dislikeCounter, setDisLikeCounter] = useState(0);
 
   const onChangeWriter = (event: ChangeEvent<HTMLInputElement>) => {
     setWriter(event.target.value);
@@ -76,6 +78,13 @@ export default function PortFolioQueryContainer() {
     alert("게시글이 삭제되었습니다.");
   };
 
+  const onClickLikeCounter = ( ) => {
+    setLikeCounter(likeCounter+1)
+  }
+  const onClickDisLikeCounter = ( ) => {
+    setDisLikeCounter(dislikeCounter+1)
+  }
+
   return (
     <PortFolioQueryUI
       data={data}
@@ -86,6 +95,11 @@ export default function PortFolioQueryContainer() {
       onChangePassword={onChangePassword}
       onChangeContents={onChangeContents}
       onClickCreateBoardComment={onClickCreateBoardComment}
+      onClickLikeCounter={onClickLikeCounter}
+      onClickDisLikeCounter={onClickDisLikeCounter}
+      likeCounter={likeCounter}
+      dislikeCounter={dislikeCounter}
+
       // _id={data}
       // writer={data}
       // title={data}

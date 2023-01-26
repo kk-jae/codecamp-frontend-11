@@ -79,6 +79,12 @@ export const ContentInput = styled.input`
   height: 52px;
   margin-top: 10px;
   border: 1px solid #bdbdbd;
+  font-size:16px;
+  font-weight:400;
+
+  ::placeholder {
+  color: ${(props) => (props.readOnly ? "black" : "gray")}
+  }
 `;
 
 export const ContentInputN = styled.textarea`
@@ -100,6 +106,13 @@ export const AdrTopInput = styled.input`
   text-align: center;
   margin-right: 10px;
   border: 1px solid #bdbdbd;
+  font-size:16px;
+  font-weight:400;
+
+  ::placeholder {
+  color: ${(props) => (props.readOnly ? "black" : "gray")}
+  /* background-color: ${(props: IProps) => (props.isActive ? "#FFD600" : "")}; */
+}
 `;
 export const AdrTopBtn = styled.button`
   background-color: black;
@@ -152,4 +165,5 @@ export const LastBtn = styled.button`
   margin-bottom: 80px;
   cursor: pointer;
   background-color: ${(props: IProps) => (props.isActive ? "#FFD600" : "")};
+
 `;

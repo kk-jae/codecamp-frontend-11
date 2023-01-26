@@ -12,4 +12,9 @@ export interface IProtFolioQueryUI {
   onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeContents: (event: ChangeEvent<HTMLInputElement>) => void;
   onClickCreateBoardComment: (event: MouseEvent<HTMLButtonElement>) => void;
+  onClickLikeCounter:
+  onClickDisLikeCounter :
+  dislikeCounter :
+  likeCounter:
+
 }

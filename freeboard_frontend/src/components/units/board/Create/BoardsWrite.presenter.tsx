@@ -1,5 +1,7 @@
 import * as S from "./BoardsWrite.styles";
 import {IPortFolioCreateBoardsUIProps } from "../Create/BoardsWrite.type"
+import { Modal } from 'antd';
+import DaumPostcodeEmbed from 'react-daum-postcode';
 
 
 
@@ -22,7 +24,7 @@ export default function PortFolioCreateBoardsUI(
               placeholder="이름을 입력하세요"
               defaultValue={props.data?.fetchBoard.writer ?? ""}
               // null 이나 undefined 빈문자열 ""을 넣어줍니다.
-              readOnly={!!props.isEdit ? true : false}
+              readOnly={!!props.data?.fetchBoard.writer}
             // 1번 방법 : readOnly={Boolean(props.data?.fetchBoard.writer)}
             // 2번 방법 : !"철수" === false , !!"철수" === true
             />
@@ -63,12 +65,24 @@ export default function PortFolioCreateBoardsUI(
         <S.Content>
           <S.ContentHead>주소</S.ContentHead>
           <S.AdrTop>
-            <S.AdrTopInput placeholder="07250" />
-            <S.AdrTopBtn>우편번호 검색</S.AdrTopBtn>
+            <S.AdrTopInput 
+            placeholder={props.addressZoneCode ? props.addressZoneCode : "07250"}
+            readOnly={props.addressZoneCode}
+            />
+            <S.AdrTopBtn onClick={props.onClickAddress}>
+              우편번호 검색
+              </S.AdrTopBtn>
+              {props.isModalOpen &&
+                <Modal open={props.isModalOpen} onOk={props.onClickAddress} onCancel={props.onClickAddress}>
+                    <DaumPostcodeEmbed onComplete={props.handleComplete}></DaumPostcodeEmbed>
+                </Modal>}
           </S.AdrTop>
           <S.AdrBot>
-            <S.ContentInput></S.ContentInput>
-            <S.ContentInput></S.ContentInput>
+            <S.ContentInput 
+            placeholder={props.addressDetail ? props.addressDetail : "주소를 입력해주세요"}
+            readOnly={props.addressDetail}
+            />
+            <S.ContentInput placeholder="상세주소를 입력하세요."/>
           </S.AdrBot>
         </S.Content>
         <S.Content>
