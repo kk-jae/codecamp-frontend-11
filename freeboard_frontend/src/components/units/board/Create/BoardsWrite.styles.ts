@@ -2,11 +2,12 @@ import styled from "@emotion/styled";
 import { IProps } from "./BoardsWrite.type";
 
 export const Container = styled.div`
-  box-sizing: board-box;
+  /* box-sizing: board-box;
   margin: 0;
-  padding: 0;
+  padding: 0; */
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   width: 1200px;
   background-color: white;

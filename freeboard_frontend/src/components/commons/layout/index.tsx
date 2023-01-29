@@ -4,6 +4,7 @@ import LayoutNavigation from "./navigation";
 import LayoutFooter from "./footer";
 import LayoutBody from "./body";
 import styled from "@emotion/styled";
+import { floatButtonPrefixCls } from "antd/es/float-button/FloatButton";
 
 const Body_Navigation = styled.div`
   display: flex;

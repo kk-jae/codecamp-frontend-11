@@ -63,14 +63,7 @@ export default function PortFolioCreateBoardsUI(
         <S.Content>
           <S.ContentHead>주소</S.ContentHead>
           <S.AdrTop>
-            <S.AdrTopInput
-              placeholder="07250"
-              value={
-                props.addressZipCode !== ""
-                  ? props.addressZipCode
-                  : props.data?.fetchBoard.boardAddress?.zipcode ?? ""
-              }
-            />
+            <S.AdrTopInput placeholder="07250" value={props.addressZipCode} />
             <S.AdrTopBtn onClick={props.AddressShowModal}>
               우편번호 검색
               {props.addressIsModalOpen && (
