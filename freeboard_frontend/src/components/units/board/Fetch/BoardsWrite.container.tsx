@@ -4,6 +4,8 @@ import {
   DELETE_BOARD,
   FETCH_BOARD,
   CREATE_BOARD_COMMENT,
+  LIKE_BOARD,
+  DIS_LIKE_BOARD,
 } from "./BoardsWrite.queries";
 import PortFolioQueryUI from "./BoardsWrite.presenter";
 import {
@@ -11,17 +13,19 @@ import {
   IQueryFetchBoardArgs,
 } from "../../../../commons/types/generated/types";
 import { useState, ChangeEvent } from "react";
+import { Modal } from "antd";
 
 export default function PortFolioQueryContainer() {
   const router = useRouter();
-  // console.log(router);
   const [createBoardComment] = useMutation(CREATE_BOARD_COMMENT);
+  const [likeBoard] = useMutation(LIKE_BOARD);
+  const [dislikeBoard] = useMutation(DIS_LIKE_BOARD);
 
   const [writer, setWriter] = useState("");
   const [password, setPassword] = useState("");
   const [contents, setContents] = useState("");
-  const [likeCounter, setLikeCounter] = useState(0);
-  const [dislikeCounter, setDisLikeCounter] = useState(0);
+  const [likeCount, setLikeCount] = useState(0);
+  const [dislikeCount, setDisLikeCount] = useState(0);
 
   const onChangeWriter = (event: ChangeEvent<HTMLInputElement>) => {
     setWriter(event.target.value);
@@ -33,7 +37,6 @@ export default function PortFolioQueryContainer() {
 
   const onChangeContents = (event: ChangeEvent<HTMLInputElement>) => {
     setContents(event.target.value);
-    // console.log(event.target.value.length);
   };
 
   const onClickCreateBoardComment = async () => {
@@ -48,7 +51,6 @@ export default function PortFolioQueryContainer() {
         boardId: router.query.boardId,
       },
     });
-    console.log(result);
   };
 
   const { data } = useQuery<Pick<IQuery, "fetchBoard">, IQueryFetchBoardArgs>(
@@ -57,8 +59,6 @@ export default function PortFolioQueryContainer() {
       variables: { boardId: String(router.query.boardId) },
     }
   );
-  // console.log(data);
-  // console.log(router);
 
   const [deleteBoard] = useMutation(DELETE_BOARD);
 
@@ -75,15 +75,37 @@ export default function PortFolioQueryContainer() {
       variables: { boardId: data?.fetchBoard._id },
     });
     router.push("/homework/list");
-    alert("게시글이 삭제되었습니다.");
+    Modal.success({
+      content: "게시물이 삭제되었습니다",
+    });
+    // alert("게시글이 삭제되었습니다.");
   };
 
-  const onClickLikeCounter = ( ) => {
-    setLikeCounter(likeCounter+1)
-  }
-  const onClickDisLikeCounter = ( ) => {
-    setDisLikeCounter(dislikeCounter+1)
-  }
+  const onClickLikeBoard = async () => {
+    likeBoard({
+      variables: { boardId: data?.fetchBoard._id },
+      refetchQueries: [
+        {
+          query: FETCH_BOARD,
+          variables: { boardId: router.query.boardId },
+        },
+      ],
+    });
+    setLikeCount(Number(data?.fetchBoard.likeCount) + 1);
+  };
+
+  const onClickDisLikeBoard = async () => {
+    dislikeBoard({
+      variables: { boardId: data?.fetchBoard._id },
+      refetchQueries: [
+        {
+          query: FETCH_BOARD,
+          variables: { boardId: router.query.boardId },
+        },
+      ],
+    });
+    setDisLikeCount(Number(data?.fetchBoard.dislikeCount) + 1);
+  };
 
   return (
     <PortFolioQueryUI
@@ -95,10 +117,8 @@ export default function PortFolioQueryContainer() {
       onChangePassword={onChangePassword}
       onChangeContents={onChangeContents}
       onClickCreateBoardComment={onClickCreateBoardComment}
-      onClickLikeCounter={onClickLikeCounter}
-      onClickDisLikeCounter={onClickDisLikeCounter}
-      likeCounter={likeCounter}
-      dislikeCounter={dislikeCounter}
+      onClickLikeBoard={onClickLikeBoard}
+      onClickDisLikeBoard={onClickDisLikeBoard}
 
       // _id={data}
       // writer={data}

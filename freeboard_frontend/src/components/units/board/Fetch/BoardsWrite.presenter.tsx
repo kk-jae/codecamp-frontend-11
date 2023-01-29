@@ -1,10 +1,9 @@
 import * as S from "./BoardsWrite.styles";
 import { getDate } from "../../../../commons/libraries/utils";
-// import { ChangeEvent, MouseEvent } from "react";
-// import { 
-//   IQuery,   
-// } from "../../../../commons/types/generated/types";
 import { IProtFolioQueryUI } from "./BoardWrite.type";
+import React from "react";
+import ReactPlayer from "react-player";
+import { Tooltip } from "antd";
 
 export default function PortFolioQueryUI(props: IProtFolioQueryUI) {
   return (
@@ -12,12 +11,7 @@ export default function PortFolioQueryUI(props: IProtFolioQueryUI) {
       <S.Container>
         <S.Head>
           <S.Head_header>
-            <S.Header_right>
-              <S.GpsImp>
-                서울특별시 영등포구 양산로 200 <br />
-                (영등포동5가, 영등포시장역) 영등포 타임스퀘어 2층
-              </S.GpsImp>
-            </S.Header_right>
+            <S.Header_right></S.Header_right>
             <S.Header_left>
               <S.WriterImp>
                 <S.WriterImp_left>
@@ -33,7 +27,17 @@ export default function PortFolioQueryUI(props: IProtFolioQueryUI) {
                 </S.WriterImp_left>
                 <S.WriterImp_right>
                   <S.Right_file src="../BoardPage/FILE.png" alt="파일" />
-                  <S.Right_Gps src="../BoardPage/GPS.png" alt="위치" />
+                  <Tooltip
+                    placement="topRight"
+                    title={`${
+                      props.data?.fetchBoard.boardAddress?.address ?? ""
+                    } 
+                    ${
+                      props.data?.fetchBoard.boardAddress?.addressDetail ?? ""
+                    }`}
+                  >
+                    <S.Right_Gps src="../BoardPage/GPS.png" alt="위치" />
+                  </Tooltip>
                 </S.WriterImp_right>
               </S.WriterImp>
             </S.Header_left>
@@ -45,22 +49,28 @@ export default function PortFolioQueryUI(props: IProtFolioQueryUI) {
               <S.Body_detail>{props.data?.fetchBoard?.contents}</S.Body_detail>
             </S.Head_body_left>
             <S.Head_body_center>
-              <S.Body_youtube
-                src={props.data?.fetchBoard?.youtubeUrl}
-              ></S.Body_youtube>
-              {/* <S.Body_youtube src="https://www.youtube.com/embed/5pRIDXQJxzw"></S.Body_youtube> */}
+              <S.Body_youtube>
+                <ReactPlayer
+                  url={props.data?.fetchBoard?.youtubeUrl}
+                  width="100%"
+                  height="100%"
+                />
+              </S.Body_youtube>
               <S.Body_Like>
-                <S.Like_left>
-                  <S.Like_left_img onClick={props.onClickLikeCounter} src="../BoardPage/like.png" alt="좋아요" />
-                  <S.Like_left_count>{props.likeCounter}</S.Like_left_count>
+                <S.Like_left onClick={props.onClickLikeBoard}>
+                  <S.Like_left_img src="../BoardPage/like.png" alt="좋아요" />
+                  <S.Like_left_count>
+                    {props.data?.fetchBoard.likeCount}
+                  </S.Like_left_count>
                 </S.Like_left>
-                <S.Like_right>
+                <S.Like_right onClick={props.onClickDisLikeBoard}>
                   <S.Like_right_img
                     src="../BoardPage/dislike.png"
                     alt="싫어요"
-                    onClick={props.onClickDisLikeCounter}
                   />
-                  <S.Like_right_count>{props.dislikeCounter}</S.Like_right_count>
+                  <S.Like_right_count>
+                    {props.data?.fetchBoard.dislikeCount}
+                  </S.Like_right_count>
                 </S.Like_right>
               </S.Body_Like>
             </S.Head_body_center>

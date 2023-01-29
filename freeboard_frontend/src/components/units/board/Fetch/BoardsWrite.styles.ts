@@ -40,10 +40,12 @@ export const Header_right = styled.div`
 `;
 export const GpsImp = styled.div`
   background-color: gray;
+  margin-top: 20px;
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 500;
   color: white;
   padding: 8px;
+  text-align: right;
 `;
 
 export const Header_left = styled.div`
@@ -55,6 +57,7 @@ export const Header_left = styled.div`
 export const Writer_Name_Date = styled.div``;
 export const WriterImp = styled.div`
   width: 100%;
+  padding-top: 80px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -124,13 +127,13 @@ export const Body_img = styled.img`
 `;
 
 export const Body_detail = styled.div`
-/* background-color:red; */
-width:100%;
-word-wrap: break-word;
-white-space:pre-wrap;
+  /* background-color:red; */
+  width: 100%;
+  word-wrap: break-word;
+  white-space: pre-wrap;
 `;
 
-export const Body_youtube = styled.iframe`
+export const Body_youtube = styled.div`
   width: 40%;
   height: 240px;
   text-align: center;
@@ -141,31 +144,43 @@ export const Body_Like = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  align-items: center;
   margin-bottom: 60px;
-  width: 15%;
+  width: 10%;
 `;
 
-export const Like_left = styled.div`
+export const Like_left = styled.button`
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: white;
+  border: none;
+  cursor: pointer;
 `;
 export const Like_left_img = styled.img`
-  cursor: pointer;
+  margin-bottom: 10px;
+  width: 20px;
+  height: 20px;
 `;
 
 export const Like_left_count = styled.div`
   color: #ffd600;
 `;
 
-export const Like_right = styled.div`
+export const Like_right = styled.button`
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
-export const Like_right_img = styled.img``;
-export const Like_right_count = styled.div`
+  background-color: white;
+  border: none;
   cursor: pointer;
+`;
+export const Like_right_img = styled.img`
+  margin-bottom: 10px;
+  width: 20px;
+  height: 20px;
+`;
+export const Like_right_count = styled.div`
   color: #828282;
 `;
 

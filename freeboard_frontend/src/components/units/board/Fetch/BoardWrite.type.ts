@@ -1,6 +1,4 @@
-import { 
-  IQuery,   
-} from "../../../../commons/types/generated/types";
+import { IQuery } from "../../../../commons/types/generated/types";
 import { ChangeEvent, MouseEvent } from "react";
 
 export interface IProtFolioQueryUI {
@@ -12,9 +10,6 @@ export interface IProtFolioQueryUI {
   onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeContents: (event: ChangeEvent<HTMLInputElement>) => void;
   onClickCreateBoardComment: (event: MouseEvent<HTMLButtonElement>) => void;
-  onClickLikeCounter:
-  onClickDisLikeCounter :
-  dislikeCounter :
-  likeCounter:
-
+  onClickLikeBoard: (event: MouseEvent<HTMLButtonElement>) => void;
+  onClickDisLikeBoard: (event: MouseEvent<HTMLButtonElement>) => void;
 }

@@ -35,7 +35,7 @@ export default function LibraryModal () {
     {isModalOpen &&
       <Modal open={isModalOpen} onOk={onClickShowModal} onCancel={onClickShowModal}>
         <DaumPostcodeEmbed onComplete={handleComplete}></DaumPostcodeEmbed>
-    </Modal>
+      </Modal>
 }     
       <p>{address}</p>  
 

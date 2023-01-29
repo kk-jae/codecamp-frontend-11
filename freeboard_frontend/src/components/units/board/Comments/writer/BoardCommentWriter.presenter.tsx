@@ -1,7 +1,6 @@
 import * as S from "./BoardCommentWriter.styles";
 import { IProtFolioQueryUI } from "../writer/BoardCommentWriter.type";
-
-
+import { Rate } from "antd";
 
 export default function PortFolioQueryUI(props: IProtFolioQueryUI) {
   return (
@@ -25,7 +24,11 @@ export default function PortFolioQueryUI(props: IProtFolioQueryUI) {
                 value={props.password}
                 type="password"
               />
-              <S.Review_Rating>☆ ☆ ☆ ☆ ☆</S.Review_Rating>
+              <S.Review_Rating>
+                <span>
+                  <Rate onChange={props.setRate} value={props.rate} />
+                </span>
+              </S.Review_Rating>
             </S.Footer_Body_Header>
             <S.Footer_Contents>
               <S.Footer_Body_Contents
@@ -35,7 +38,7 @@ export default function PortFolioQueryUI(props: IProtFolioQueryUI) {
               />
               <S.Footer_Body_Contents_number_click>
                 <S.Footer_Body_Contents_number>
-                {props.contents.length}/100 
+                  {props.contents.length}/100
                 </S.Footer_Body_Contents_number>
                 <S.Footer_Body_Contents_click
                   onClick={props.onClickCreateBoardComment}

@@ -1,9 +1,7 @@
 import * as S from "./BoardsWrite.styles";
-import {IPortFolioCreateBoardsUIProps } from "../Create/BoardsWrite.type"
-import { Modal } from 'antd';
-import DaumPostcodeEmbed from 'react-daum-postcode';
-
-
+import { IPortFolioCreateBoardsUIProps } from "../Create/BoardsWrite.type";
+import DaumPostcodeEmbed from "react-daum-postcode";
+import { Modal } from "antd";
 
 export default function PortFolioCreateBoardsUI(
   props: IPortFolioCreateBoardsUIProps
@@ -25,8 +23,8 @@ export default function PortFolioCreateBoardsUI(
               defaultValue={props.data?.fetchBoard.writer ?? ""}
               // null 이나 undefined 빈문자열 ""을 넣어줍니다.
               readOnly={!!props.data?.fetchBoard.writer}
-            // 1번 방법 : readOnly={Boolean(props.data?.fetchBoard.writer)}
-            // 2번 방법 : !"철수" === false , !!"철수" === true
+              // 1번 방법 : readOnly={Boolean(props.data?.fetchBoard.writer)}
+              // 2번 방법 : !"철수" === false , !!"철수" === true
             />
           </S.FirstContentItem1>
           <S.FirstContentItem1>
@@ -65,31 +63,42 @@ export default function PortFolioCreateBoardsUI(
         <S.Content>
           <S.ContentHead>주소</S.ContentHead>
           <S.AdrTop>
-            <S.AdrTopInput 
-            placeholder={props.addressZoneCode ? props.addressZoneCode : "07250"}
-            readOnly={props.addressZoneCode}
+            <S.AdrTopInput
+              placeholder="07250"
+              value={
+                props.addressZipCode !== ""
+                  ? props.addressZipCode
+                  : props.data?.fetchBoard.boardAddress?.zipcode ?? ""
+              }
             />
-            <S.AdrTopBtn onClick={props.onClickAddress}>
+            <S.AdrTopBtn onClick={props.AddressShowModal}>
               우편번호 검색
-              </S.AdrTopBtn>
-              {props.isModalOpen &&
-                <Modal open={props.isModalOpen} onOk={props.onClickAddress} onCancel={props.onClickAddress}>
-                    <DaumPostcodeEmbed onComplete={props.handleComplete}></DaumPostcodeEmbed>
-                </Modal>}
+              {props.addressIsModalOpen && (
+                <Modal
+                  // open={props.AddressShowModal}
+                  open={true}
+                  onOk={props.AddressHandleOk}
+                  onCancel={props.AddressHandleCancel}
+                >
+                  <DaumPostcodeEmbed onComplete={props.AddressHandleComplete} />
+                </Modal>
+              )}
+            </S.AdrTopBtn>
           </S.AdrTop>
           <S.AdrBot>
-            <S.ContentInput 
-            placeholder={props.addressDetail ? props.addressDetail : "주소를 입력해주세요"}
-            readOnly={props.addressDetail}
-            />
-            <S.ContentInput placeholder="상세주소를 입력하세요."/>
+            <S.ContentInput value={props.address} />
+            <S.ContentInput onChange={props.onChangeAddressDetail} />
           </S.AdrBot>
         </S.Content>
         <S.Content>
           <S.ContentHead onChange={props.onChangeYoutubeUrl}>
             유튜브
           </S.ContentHead>
-          <S.ContentInput placeholder="링크를 복사해주세요" />
+          <S.ContentInput
+            placeholder="링크를 복사해주세요"
+            onChange={props.onChangeYoutubeUrl}
+            defaultValue={props.data?.fetchBoard.youtubeUrl}
+          />
         </S.Content>
         <S.ContentPhoto>
           <S.ContentHead>사진첨부</S.ContentHead>

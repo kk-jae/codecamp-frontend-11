@@ -1,10 +1,9 @@
 import { ChangeEvent, MouseEvent } from "react";
 import { IQuery } from "../../../../commons/types/generated/types";
 
-
 export interface PortFolioCreateBoardsProps {
   isEdit: boolean;
-  data?:Pick<IQuery, "fetchBoard">;
+  data?: Pick<IQuery, "fetchBoard">;
 }
 
 export interface IUpdateBoardInput {
@@ -13,27 +12,16 @@ export interface IUpdateBoardInput {
   youtubeUrl?: string;
 }
 
-export interface IMyVariables {
-  boardId: any;
-  password: string;
-  updateBoardInput: IUpdateBoardInput;
-  title?:string;
-}
-
 export interface IPortFolioCreateBoardsUIProps {
   onChangeWriter: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeTitle: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeContents: (event: ChangeEvent<HTMLTextAreaElement>) => void;
   onChangeYoutubeUrl: (event: ChangeEvent<HTMLInputElement>) => void;
-  onClickContents: () => void
-  onClickUpdateBoard:  () => void
-  onClickAddress:  () => void
-  handleComplete:any,
-  isModalOpen:any,
-  address: string;
-  addressDetail:string;
-  addressZoneCode:string;
+  onChangeAddressDetail: (event: ChangeEvent<HTMLInputElement>) => void;
+  onClickContents: () => void;
+  onClickUpdateBoard: () => void;
+  AddressHandleComplete: any;
   writerError: string;
   passwordError: string;
   titleError: string;
@@ -41,9 +29,15 @@ export interface IPortFolioCreateBoardsUIProps {
   isEdit: boolean;
   isActive: boolean;
   data?: Pick<IQuery, "fetchBoard">;
+  addressZipCode: string;
+  address: string;
+  addressIsModalOpen: any;
+  AddressHandleOk: any;
+  AddressHandleCancel: any;
+  AddressShowModal: (event: MouseEvent<HTMLButtonElement>) => void;
 }
 
 export interface IProps {
-  isActive:boolean;
+  isActive: boolean;
   // isEdit:boolean;
 }

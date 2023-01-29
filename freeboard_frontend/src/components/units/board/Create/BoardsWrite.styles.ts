@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import { IProps } from "./BoardsWrite.type";
 
-
 export const Container = styled.div`
   box-sizing: board-box;
   margin: 0;
@@ -79,11 +78,11 @@ export const ContentInput = styled.input`
   height: 52px;
   margin-top: 10px;
   border: 1px solid #bdbdbd;
-  font-size:16px;
-  font-weight:400;
+  font-size: 16px;
+  font-weight: 400;
 
   ::placeholder {
-  color: ${(props) => (props.readOnly ? "black" : "gray")}
+    color: ${(props) => (props.readOnly ? "black" : "gray")};
   }
 `;
 
@@ -106,13 +105,14 @@ export const AdrTopInput = styled.input`
   text-align: center;
   margin-right: 10px;
   border: 1px solid #bdbdbd;
-  font-size:16px;
-  font-weight:400;
+  font-size: 16px;
+  font-weight: 400;
 
   ::placeholder {
-  color: ${(props) => (props.readOnly ? "black" : "gray")}
-  /* background-color: ${(props: IProps) => (props.isActive ? "#FFD600" : "")}; */
-}
+    color: ${(props) => (props.readOnly ? "black" : "gray")};
+    /* background-color: ${(props: IProps) =>
+      props.isActive ? "#FFD600" : ""}; */
+  }
 `;
 export const AdrTopBtn = styled.button`
   background-color: black;
@@ -154,7 +154,6 @@ export const ContentInp = styled.input`
   accent-color: #ffd600;
 `;
 
-
 export const LastBtn = styled.button`
   width: 179px;
   height: 52px;
@@ -165,5 +164,4 @@ export const LastBtn = styled.button`
   margin-bottom: 80px;
   cursor: pointer;
   background-color: ${(props: IProps) => (props.isActive ? "#FFD600" : "")};
-
 `;

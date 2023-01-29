@@ -8,12 +8,9 @@ import {
   IMutationCreateBoardArgs,
   IMutationUpdateBoardArgs,
 } from "../../../../commons/types/generated/types";
-import { IQuery } from "../../../../commons/types/generated/types";
-import { IMyVariables, PortFolioCreateBoardsProps } from "./BoardsWrite.type";
-
-
-
-
+import { PortFolioCreateBoardsProps } from "./BoardsWrite.type";
+import { IUpdateBoardInput } from "../../../../commons/types/generated/types";
+import { Modal } from "antd";
 
 export default function PortFolioCreateBoards(
   props: PortFolioCreateBoardsProps
@@ -23,14 +20,14 @@ export default function PortFolioCreateBoards(
   const [isActive, setIsActive] = useState(false);
 
   const [createBoard] = useMutation<
-  Pick<IMutation, "createBoard">,
-  IMutationCreateBoardArgs
->(CREATE_BOARD);
+    Pick<IMutation, "createBoard">,
+    IMutationCreateBoardArgs
+  >(CREATE_BOARD);
 
   const [updateBoard] = useMutation<
-  Pick<IMutation, "updateBoard">,
-  IMutationUpdateBoardArgs
->(UPDATE_BOARD);
+    Pick<IMutation, "updateBoard">,
+    IMutationUpdateBoardArgs
+  >(UPDATE_BOARD);
 
   const [writer, setWriter] = useState("");
   const [password, setPassword] = useState("");
@@ -45,10 +42,9 @@ export default function PortFolioCreateBoards(
 
   const router = useRouter();
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [address, setAddress] =useState("");
-  const [addressDetail, setAddressDetail] = useState("")
-  const [addressZoneCode, setAddressZoneCode] = useState("")
+  const [address, setAddress] = useState("");
+  const [addressZipCode, setAddressZipCode] = useState("");
+  const [addressDetail, setAddressDetail] = useState("");
 
   const onChangeWriter = (event: ChangeEvent<HTMLInputElement>) => {
     setWriter(event.target.value);
@@ -82,7 +78,7 @@ export default function PortFolioCreateBoards(
     }
 
     if (writer && password && event.target.value && contents) {
-      setIsActive(true); 
+      setIsActive(true);
     } else {
       setIsActive(false);
     }
@@ -108,27 +104,28 @@ export default function PortFolioCreateBoards(
 
   // if문을 분리해서 다시 진행
   const onClickContents = async () => {
-      
-      if (!writer) {
-        setWriterError("이름을 입력해주세요.");
-      }
-      
-      if (!password) {
-        setPasswordError("비밀번호를 입력해주세요");
-      }
-      
-      if (!title) {
+    if (!writer) {
+      setWriterError("이름을 입력해주세요.");
+    }
+
+    if (!password) {
+      setPasswordError("비밀번호를 입력해주세요");
+    }
+
+    if (!title) {
       setTitleError("제목을 입력해주세요");
     }
-    
+
     if (!contents) {
       setContentsError("내용을 입력해주세요");
     }
-    
-    if (writer && password && title && contents) {
-      try{
 
-        alert("게시글 등록이 완료되었습니다.");
+    if (writer && password && title && contents) {
+      try {
+        // alert("게시글 등록이 완료되었습니다.");
+        Modal.success({
+          content: "게시물이 등록되었습니다.",
+        });
         const result = await createBoard({
           variables: {
             createBoardInput: {
@@ -138,74 +135,91 @@ export default function PortFolioCreateBoards(
               contents,
               //키와 value가 동일하면 value 생략 가능합니다. (shorthand-property)
               youtubeUrl,
+              boardAddress: {
+                zipcode: addressZipCode,
+                address: address,
+                addressDetail: addressDetail,
+              },
             },
           },
         });
         router.push(`/homework/${result.data?.createBoard._id}`);
-      } catch(error) {
-        if (error instanceof Error) alert(error.message);
+      } catch (error) {
+        if (error instanceof Error)
+          Modal.error({
+            content: error.message,
+          });
       }
     }
-  }
+  };
 
   const onClickUpdateBoard = async () => {
-    if (!title && !contents) {
-      alert("수정한 내용이 없습니다.");
-      return;
-    }
+    try {
+      const updateBoardInput: IUpdateBoardInput = {};
+      if (title) updateBoardInput.title = title;
+      if (contents) updateBoardInput.contents = contents;
 
-      const myVariables: IMyVariables = {
-        boardId: router.query.boardId,
-        password:password,
-        updateBoardInput: {
-          title,
-          contents,
-          youtubeUrl,
-        },
-      };
       const result = await updateBoard({
-        variables: myVariables,
+        variables: {
+          boardId: router.query.boardId,
+          password,
+          updateBoardInput: updateBoardInput,
+        },
       });
-      console.log(result);
-      if (title) myVariables.updateBoardInput.title = title;
+
       // if (title !== "") {
-        //   myVariables.title = title;
-        // }
-      if (contents) myVariables.updateBoardInput.contents = contents;
-    
+      //   myVariables.title = title;
+      // }
+
       router.push(`/homework/${result.data?.updateBoard._id}`);
-    
-            // error가 Error의 인스턴스면 true를 반환합니다.
-      // true 일경우 error.message를 반환합니다.
-      // *인스턴스 : 함수의 기능(new Date() or Error 등)을 할당받은 변수
-      // ex) let data = new Date() : data 는 new Date의 인스턴스입니다.
-    }
-  
-    // const result = await updateBoard({
-    //   variables: {
-    //     updateBoardInput: {
-    //       title,
-    //       contents,
-    //       youtubeUrl,
-    //     },
-    //     password: password,
-    //     boardId: router.query.boardId,
-    //   },
-    // });
-    // console.log(result);
-
-    const onClickAddress = () => {
-      setIsModalOpen((prev) =>!prev);
+    } catch (error) {
+      if (error instanceof Error)
+        Modal.error({
+          content: error.message,
+        });
     }
 
-    const handleComplete = (data:any) => {
-      onClickAddress();
-      // isModalOpen(false);
-      setAddress(data.address)
-      setAddressDetail(data.address) // 주소
-      setAddressZoneCode(data.zonecode) // 우편번호
-    }
-    
+    // error가 Error의 인스턴스면 true를 반환합니다.
+    // true 일경우 error.message를 반환합니다.
+    // *인스턴스 : 함수의 기능(new Date() or Error 등)을 할당받은 변수
+    // ex) let data = new Date() : data 는 new Date의 인스턴스입니다.
+  };
+
+  const [addressIsModalOpen, setAddressIsModalOpen] = useState(false);
+
+  // const [address, setAddress] = useState("");
+  // const [addressZipCode, setAddressZipCode] = useState("");
+  // const [addressDetail, setAddressDetail] = useState("");
+
+  // 주소 입력창 시작
+  const AddressHandleComplete = (data: any) => {
+    setAddressIsModalOpen(false);
+    setAddressZipCode(data?.zonecode);
+    setAddress(data?.address);
+  };
+
+  const onChangeAddressDetail = (event: ChangeEvent<HTMLInputElement>) => {
+    setAddressDetail(event.target.value);
+  };
+  // 주소 입력창 종료
+
+  // 주소 입력창 모달 시작
+
+  const AddressShowModal = () => {
+    setAddressIsModalOpen(true);
+    // console.log(addressIsModalOpen);
+  };
+
+  const AddressHandleOk = () => {
+    setAddressIsModalOpen(false);
+  };
+
+  const AddressHandleCancel = () => {
+    setAddressIsModalOpen(false);
+  };
+
+  // 주소 입력창 모달 종료
+
   return (
     <PortFolioCreateBoardsUI
       onChangeWriter={onChangeWriter}
@@ -215,19 +229,24 @@ export default function PortFolioCreateBoards(
       onChangeYoutubeUrl={onChangeYoutubeUrl}
       onClickContents={onClickContents}
       onClickUpdateBoard={onClickUpdateBoard}
-      onClickAddress={onClickAddress}
       writerError={writerError}
       passwordError={passwordError}
       titleError={titleError}
       contentsError={contentsError}
-      address={address}
-      addressDetail={addressDetail}
-      addressZoneCode={addressZoneCode}
-      handleComplete={handleComplete}
-      isModalOpen={isModalOpen}
       isActive={isActive}
       isEdit={props.isEdit}
       data={props.data}
+      // 주소 입력창 시작
+      AddressHandleComplete={AddressHandleComplete}
+      AddressShowModal={AddressShowModal}
+      AddressHandleOk={AddressHandleOk}
+      AddressHandleCancel={AddressHandleCancel}
+      addressIsModalOpen={addressIsModalOpen}
+      address={address}
+      addressZipCode={addressZipCode}
+      addressDetail={addressDetail}
+      onChangeAddressDetail={onChangeAddressDetail}
+      //주소 입력창 종료
     />
   );
 }

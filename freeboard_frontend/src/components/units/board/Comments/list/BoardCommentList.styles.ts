@@ -168,8 +168,13 @@ export const Footer_Review_update_delete = styled.div`
   right: 0;
 `;
 
-export const Footer_Review_update = styled.img``;
+export const Footer_Review_update = styled.img`
+  width: 15px;
+  height: 15px;
+`;
 export const Footer_Review_delete = styled.img`
-  margin-left: 13px;
+  width: 15px;
+  height: 15px;
+  margin-left: 8px;
   cursor: pointer;
 `;

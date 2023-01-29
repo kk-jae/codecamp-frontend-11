@@ -9,6 +9,14 @@ export const FETCH_BOARD = gql`
       contents
       youtubeUrl
       createdAt
+      likeCount
+      dislikeCount
+      boardAddress {
+        _id
+        zipcode
+        address
+        addressDetail
+      }
     }
   }
 `;
@@ -34,5 +42,17 @@ export const CREATE_BOARD_COMMENT = gql`
       rating
       createdAt
     }
+  }
+`;
+
+export const LIKE_BOARD = gql`
+  mutation likeBoard($boardId: ID!) {
+    likeBoard(boardId: $boardId)
+  }
+`;
+
+export const DIS_LIKE_BOARD = gql`
+  mutation dislikeBoard($boardId: ID!) {
+    dislikeBoard(boardId: $boardId)
   }
 `;

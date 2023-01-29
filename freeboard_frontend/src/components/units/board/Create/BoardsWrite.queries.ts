@@ -24,6 +24,12 @@ export const UPDATE_BOARD = gql`
       title
       contents
       youtubeUrl
+      boardAddress {
+        _id
+        zipcode
+        address
+        addressDetail
+      }
     }
   }
 `;
