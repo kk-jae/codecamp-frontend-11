@@ -32,8 +32,8 @@ export interface IPortFolioCreateBoardsUIProps {
   addressZipCode: string;
   address: string;
   addressIsModalOpen: any;
-  AddressHandleOk: any;
-  AddressHandleCancel: any;
+  AddressHandleOk: () => void;
+  AddressHandleCancel: () => void;
   AddressShowModal: (event: MouseEvent<HTMLButtonElement>) => void;
 }
 

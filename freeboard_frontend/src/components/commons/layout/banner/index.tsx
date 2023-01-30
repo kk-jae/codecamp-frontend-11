@@ -37,7 +37,7 @@ export default function LayoutBanner(props): JSX.Element {
             <IMG src="/bannerBox.png" />
           </H3>
         </div>
-        <div>
+        {/* <div>
           <H3>
             <IMG src="/bannerBox.png" />
           </H3>
@@ -46,7 +46,7 @@ export default function LayoutBanner(props): JSX.Element {
           <H3>
             <IMG src="/bannerBox.png" />
           </H3>
-        </div>
+        </div> */}
       </Slider>
     </Wrapper>
   );

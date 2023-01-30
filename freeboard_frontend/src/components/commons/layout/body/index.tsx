@@ -5,7 +5,7 @@ const Wrapper = styled.div`
   flex-direction: row;
   justify-content: center;
   height: 70%;
-  width: 50%;
+  width: 100%;
 `;
 
 export default function LayoutBody(props): JSX.Element {

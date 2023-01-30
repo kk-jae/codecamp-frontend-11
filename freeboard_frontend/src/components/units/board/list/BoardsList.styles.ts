@@ -3,8 +3,12 @@ import styled from "@emotion/styled";
 export const Container = styled.div`
   margin: 0;
   padding: 0;
+  width: 1200px;
+  /* background-color: red; */
 `;
-export const Wrapper = styled.div``;
+export const Wrapper = styled.div`
+  width: 100%;
+`;
 export const Wrapper_list = styled.div`
   display: flex;
   border-bottom: 1px solid #bdbdbd;
@@ -68,7 +72,9 @@ export const Wrapper_footer = styled.div`
   align-items: flex-end;
   height: 80px;
   border-top: 1px solid black;
+  /* background-color: red; */
 `;
+export const PageNation = styled.div``;
 
 export const CreateNewBoard = styled.button`
   width: 171px;

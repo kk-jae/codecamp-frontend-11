@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
 const Wrapper = styled.div`
-  height: 200px;
+  height: 10%;
   background-color: pink;
   padding: 0px 35% 0px 35%;
 `;
@@ -15,7 +15,9 @@ const H3 = styled.div`
   justify-content: center;
 `;
 
-const IMG = styled.img``;
+const IMG = styled.img`
+  object-fit: cover;
+`;
 
 export default function LayoutBanner(): JSX.Element {
   const settings = {
@@ -35,27 +37,7 @@ export default function LayoutBanner(): JSX.Element {
       <Slider {...settings}>
         <div>
           <H3>
-            <IMG src="/dog.jpeg" />
-          </H3>
-        </div>
-        <div>
-          <H3>
-            <IMG src="/dog.jpeg" />
-          </H3>
-        </div>
-        <div>
-          <H3>
-            <IMG src="/dog.jpeg" />
-          </H3>
-        </div>
-        <div>
-          <H3>
-            <IMG src="/dog.jpeg" />
-          </H3>
-        </div>
-        <div>
-          <H3>
-            <IMG src="/dog.jpeg" />
+            <IMG src="/배경" />
           </H3>
         </div>
         <div>

@@ -7,6 +7,11 @@ interface IBoardsListContainerUIProps {
   data: Pick<IQuery, "fetchBoards">;
   onClickNewCreateBoard: (event: MouseEvent<HTMLButtonElement>) => void;
   onClickMovedBoard: (event: MouseEvent<HTMLDivElement>) => void;
+  lastPage: number;
+  startPage: number;
+  onClickBoards: () => void;
+  onClickPrevPage: () => void;
+  onClickNextPage: () => void;
 }
 
 export default function BoardsListContainerUI(
@@ -21,7 +26,7 @@ export default function BoardsListContainerUI(
           <S.Title_writer>작성자</S.Title_writer>
           <S.Title_createdAt>날짜</S.Title_createdAt>
         </S.Wrapper_title>
-        {props.data?.fetchBoards.map((el:any) => (
+        {props.data?.fetchBoards.map((el: any) => (
           <S.Wrapper_list key={el._id}>
             <S.List_number>
               {String(el._id).slice(-4).toUpperCase()}
@@ -34,6 +39,35 @@ export default function BoardsListContainerUI(
           </S.Wrapper_list>
         ))}
         <S.Wrapper_footer>
+          <S.PageNation>
+            <button
+              onClick={props.onClickPrevPage}
+              disabled={props.startPage === 1 ? true : false}
+            >
+              ◀
+            </button>
+            {new Array(10).fill(1).map(
+              (el, index) =>
+                index + props.startPage <= props.lastPage && (
+                  <button
+                    key={index + props.startPage}
+                    style={{
+                      margin: "5px",
+                    }}
+                    onClick={props.onClickBoards}
+                    id={String(index + props.startPage)}
+                  >
+                    {index + props.startPage}
+                  </button>
+                )
+            )}
+            <button
+              onClick={props.onClickNextPage}
+              disabled={props.startPage + 10 <= props.lastPage ? false : true}
+            >
+              ▶
+            </button>
+          </S.PageNation>
           <S.CreateNewBoard onClick={props.onClickNewCreateBoard}>
             <img alt="게시글등록" src="../BoardPage/List_newBoard.png"></img>
             게시물 등록하기

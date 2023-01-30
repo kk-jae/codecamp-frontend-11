@@ -157,7 +157,11 @@ export default function PortFolioCreateBoards(
     try {
       const updateBoardInput: IUpdateBoardInput = {};
       if (title) updateBoardInput.title = title;
+      // if (title !== "") {
+      //   myVariables.title = title;
+      // }
       if (contents) updateBoardInput.contents = contents;
+      if (youtubeUrl) updateBoardInput.youtubeUrl = youtubeUrl;
 
       const result = await updateBoard({
         variables: {
@@ -166,10 +170,6 @@ export default function PortFolioCreateBoards(
           updateBoardInput: updateBoardInput,
         },
       });
-
-      // if (title !== "") {
-      //   myVariables.title = title;
-      // }
 
       router.push(`/homework/${result.data?.updateBoard._id}`);
     } catch (error) {
@@ -206,7 +206,9 @@ export default function PortFolioCreateBoards(
   // 주소 입력창 모달 시작
 
   const AddressShowModal = () => {
-    setAddressIsModalOpen(true);
+    setAddressIsModalOpen((prev) => !prev);
+    console.log(addressIsModalOpen);
+
     // console.log(addressIsModalOpen);
   };
 
@@ -216,6 +218,7 @@ export default function PortFolioCreateBoards(
 
   const AddressHandleCancel = () => {
     setAddressIsModalOpen(false);
+    console.log(addressIsModalOpen);
   };
 
   // 주소 입력창 모달 종료
@@ -246,6 +249,7 @@ export default function PortFolioCreateBoards(
       addressZipCode={addressZipCode}
       addressDetail={addressDetail}
       onChangeAddressDetail={onChangeAddressDetail}
+      setAddressIsModalOpen={setAddressIsModalOpen}
       //주소 입력창 종료
     />
   );
