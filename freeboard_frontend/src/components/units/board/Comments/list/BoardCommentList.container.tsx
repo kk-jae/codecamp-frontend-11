@@ -1,3 +1,7 @@
+// 무한 스크롤
+// yarn add react-infinite-scroller
+// yarn add --dev @types/react-infinite-scroller
+
 import { useQuery, useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import {
@@ -13,7 +17,7 @@ export default function CreateBoardCommentList() {
 
   const [deleteBoardComment] = useMutation(DELETE_BOARD_COMMENT);
 
-  const { data } = useQuery(FETCH_BOARD_COMMENTS, {
+  const { data, fetchMore } = useQuery(FETCH_BOARD_COMMENTS, {
     variables: { boardId: router.query.boardId },
   });
 
@@ -59,6 +63,29 @@ export default function CreateBoardCommentList() {
     setIsModalOpen(false);
   };
 
+  const loadFunc = (): void => {
+    if (data === undefined) return;
+    void fetchMore({
+      variables: {
+        page: Math.ceil((data?.fetchBoardComments.length ?? 10) / 10) + 1,
+      },
+      updateQuery: (prev, { fetchMoreResult }) => {
+        console.log(fetchMoreResult);
+        if (fetchMoreResult.fetchBoardComments === undefined) {
+          return {
+            fetchBoardComments: [...prev.fetchBoardComments],
+          };
+        }
+        return {
+          fetchBoardComments: [
+            ...prev.fetchBoardComments,
+            ...fetchMoreResult.fetchBoardComments,
+          ],
+        };
+      },
+    });
+  };
+
   return (
     <PortFolioQueryUI
       data={data}
@@ -67,6 +94,7 @@ export default function CreateBoardCommentList() {
       isModalOpen={isModalOpen}
       showModal={showModal}
       onChangeCommentPassword={onChangeCommentPassword}
+      loadFunc={loadFunc}
     />
   );
 }

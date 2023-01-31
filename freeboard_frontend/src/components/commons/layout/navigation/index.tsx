@@ -1,8 +1,7 @@
 import styled from "@emotion/styled";
 
 const Wrapper = styled.div`
-  height: 70%;
-  width: 30%;
+  width: 100%;
   background-color: tomato;
 `;
 

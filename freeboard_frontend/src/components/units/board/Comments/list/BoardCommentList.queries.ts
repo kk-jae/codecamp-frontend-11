@@ -12,13 +12,11 @@ export const FETCH_BOARD = gql`
     }
   }
 `;
-
 export const DELETE_BOARD = gql`
   mutation deleteBoard($boardId: ID!) {
     deleteBoard(boardId: $boardId)
   }
 `;
-
 export const CREATE_BOARD_COMMENT = gql`
   mutation createBoardComment(
     $createBoardCommentInput: CreateBoardCommentInput!
@@ -36,10 +34,9 @@ export const CREATE_BOARD_COMMENT = gql`
     }
   }
 `;
-
 export const FETCH_BOARD_COMMENTS = gql`
-  query fetchBoardComments($boardId: ID!) {
-    fetchBoardComments(boardId: $boardId) {
+  query fetchBoardComments($boardId: ID!, $page: Int) {
+    fetchBoardComments(boardId: $boardId, page: $page) {
       _id
       writer
       contents
@@ -48,7 +45,6 @@ export const FETCH_BOARD_COMMENTS = gql`
     }
   }
 `;
-
 export const DELETE_BOARD_COMMENT = gql`
   mutation deleteBoardComment($password: String, $boardCommentId: ID!) {
     deleteBoardComment(password: $password, boardCommentId: $boardCommentId)

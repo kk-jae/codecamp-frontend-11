@@ -74,7 +74,6 @@ export const Wrapper_footer = styled.div`
   border-top: 1px solid black;
   /* background-color: red; */
 `;
-export const PageNation = styled.div``;
 
 export const CreateNewBoard = styled.button`
   width: 171px;

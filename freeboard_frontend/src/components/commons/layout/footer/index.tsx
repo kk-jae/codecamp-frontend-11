@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 const Wrapper = styled.div`
-  height: 10%;
+  width: 100%;
   background-color: pink;
 `;
 

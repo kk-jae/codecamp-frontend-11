@@ -4,13 +4,20 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
 const Wrapper = styled.div`
-  /* height: 200px; */
+  width: 100%;
 `;
 
+const Wrapper_Banner = styled.div`
+  width: 100%;
+`;
 const H3 = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+`;
+const IMG = styled.img`
+  width: 100%;
+  object-fit: cover;
 `;
 
 export default function LayoutBanner(props): JSX.Element {
@@ -26,17 +33,14 @@ export default function LayoutBanner(props): JSX.Element {
     // centerPadding: "0px",
   };
 
-  const IMG = styled.img``;
-
   return (
     <Wrapper>
-      {/* <h2> Single Item</h2> */}
       <Slider {...settings}>
-        <div>
+        <Wrapper_Banner>
           <H3>
-            <IMG src="/bannerBox.png" />
+            <IMG src="/image 02.png" />
           </H3>
-        </div>
+        </Wrapper_Banner>
         {/* <div>
           <H3>
             <IMG src="/bannerBox.png" />

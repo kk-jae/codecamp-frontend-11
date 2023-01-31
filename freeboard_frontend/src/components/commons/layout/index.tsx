@@ -5,24 +5,22 @@ import LayoutFooter from "./footer";
 import LayoutBody from "./body";
 import styled from "@emotion/styled";
 
-const Body_Navigation = styled.div`
+const DIV = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export default function Layout(props) {
   return (
-    <div>
+    <DIV>
       <LayoutHeader />
       <LayoutBanner />
-      <Body_Navigation>
-        {/* <LayoutNavigation /> */}
-        <LayoutBody>
-          <div>{props.children}</div>
-        </LayoutBody>
-      </Body_Navigation>
+      <LayoutNavigation />
+      <LayoutBody>
+        <div>{props.children}</div>
+      </LayoutBody>
       <LayoutFooter />
-    </div>
+    </DIV>
   );
 }

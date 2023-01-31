@@ -49,13 +49,6 @@ export default function BoardWrite(props) {
     // if (writer !== "") {
     //   myVariables.writer= writer;
     // }
-    //
-    // if (title !== "") {
-    //   myVariables.title = title;
-    // }
-    // if (contents !== "") {
-    //   myVariables.title = contents;
-    // }
 
     const result = await updateBoard({
       variables: myVariables,

@@ -10,4 +10,7 @@ export interface IProtFolioQueryUI {
   isModalOpen: any;
   handleOk: any;
   handleCancel: any;
+  loadFunc: () => void;
+  showModal: any;
+  onChangeCommentPassword: any;
 }
