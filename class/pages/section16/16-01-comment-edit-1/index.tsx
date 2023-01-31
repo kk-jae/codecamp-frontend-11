@@ -28,6 +28,7 @@ export default function StaticRoutingMovedPage(): JSX.Element {
 
   const onClickEdit = (event: MouseEvent<HTMLButtonElement>): void => {
     setMyIndex(Number(event?.currentTarget.id));
+    console.log(Number(event?.currentTarget.id));
   };
 
   return (
