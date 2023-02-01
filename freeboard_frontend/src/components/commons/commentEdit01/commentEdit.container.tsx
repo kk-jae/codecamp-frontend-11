@@ -46,7 +46,9 @@ export default function CommentEditPage(props) {
 
   const [updateCommentPassword, setUpdateCommentPassword] = useState("");
   const [updateCommentContents, setUpdateCommentContents] = useState("");
-  const [updateCommentRating, setUpdateCommentRating] = useState(0);
+  const [updateCommentRating, setUpdateCommentRating] = useState(
+    props.el.rating
+  );
 
   // const {date} = useQuery(FETCH_BOARD_COMMENTS)
 
@@ -58,9 +60,10 @@ export default function CommentEditPage(props) {
     setUpdateCommentContents(event?.target.value);
   };
 
-  const onChangeUpdateCommentRating = (event) => {
-    setUpdateCommentRating(event?.target.value);
-  };
+  // const onChangeUpdateCommentRating = (event) => {
+  //   console.log(props.el.rating);
+  //   // setUpdateCommentRating(Number(event?.target.value));
+  // };
 
   // if (props.el.contents !== "")
   //   myVariables.updateBoardCommentInput.contents = props.el.contents;
@@ -72,8 +75,16 @@ export default function CommentEditPage(props) {
   const onClickUpdateBoardComment = async (event) => {
     const updateBoardCommentInput = {
       contents: updateCommentContents,
-      rating: 1,
+      rating: updateCommentRating,
     };
+
+    if (updateCommentContents == "") {
+      updateBoardCommentInput.contents = props.el.contents;
+    }
+    if (updateCommentRating == "") {
+      updateBoardCommentInput.rating = props.el.rating;
+    }
+
     const result = await updateBoardComment({
       variables: {
         boardCommentId: props.el._id,
@@ -90,13 +101,19 @@ export default function CommentEditPage(props) {
     props.setMyIndex(-1);
   };
 
+  const onClickCencel = () => {
+    props.setMyIndex(true);
+  };
+
   return (
     <div>
       <CommentEditUI
         onClickUpdateBoardComment={onClickUpdateBoardComment}
         onChangeUpdateCommentPassword={onChangeUpdateCommentPassword}
         onChangeUpdateCommentContents={onChangeUpdateCommentContents}
-        onChangeUpdateCommentRating={onChangeUpdateCommentRating}
+        // onChangeUpdateCommentRating={onChangeUpdateCommentRating}
+        setUpdateCommentRating={setUpdateCommentRating}
+        onClickCencel={onClickCencel}
         el={props.el}
         myIndex={props.myIndex}
       />

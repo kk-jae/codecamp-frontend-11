@@ -106,6 +106,7 @@ export const Footer_Body_Contents_click = styled.button`
   background-color: black;
   color: white;
   font-size: 16px;
+  margin-left: 10px;
   cursor: pointer;
 `;
 

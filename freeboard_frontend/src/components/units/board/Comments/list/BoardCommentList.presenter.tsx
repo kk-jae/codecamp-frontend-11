@@ -74,7 +74,7 @@ export default function PortFolioQueryUI(props: IProtFolioQueryUI) {
                     </S.Footer_Review>
                   ) : (
                     // ====================버튼 눌렸을때 ==================
-                    <div>
+                    <div key={el._id}>
                       <CommentEditPage
                         data={props.data}
                         el={el}

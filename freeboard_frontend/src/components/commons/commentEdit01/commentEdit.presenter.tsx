@@ -23,8 +23,8 @@ export default function CommentEditUI(props: IProtFolioQueryUI) {
               <S.Review_Rating>
                 <span>
                   <Rate
-                  // onChange={props.onChangeUpdateCommentRating}
-                  // value={props.rate}
+                    onChange={props.setUpdateCommentRating}
+                    defaultValue={props.el.rating}
                   />
                 </span>
               </S.Review_Rating>
@@ -32,10 +32,13 @@ export default function CommentEditUI(props: IProtFolioQueryUI) {
             <S.Footer_Contents>
               <S.Footer_Body_Contents
                 onChange={props.onChangeUpdateCommentContents}
-                placeholder={props.el.contents}
+                defaultValue={props.el.contents}
               />
               <S.Footer_Body_Contents_number_click>
                 <S.Footer_Body_Contents_number></S.Footer_Body_Contents_number>
+                <S.Footer_Body_Contents_click onClick={props.onClickCencel}>
+                  취소하기
+                </S.Footer_Body_Contents_click>
                 <S.Footer_Body_Contents_click
                   onClick={props.onClickUpdateBoardComment}
                 >
