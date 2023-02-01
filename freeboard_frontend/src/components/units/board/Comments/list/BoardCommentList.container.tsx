@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import {
   FETCH_BOARD_COMMENTS,
   DELETE_BOARD_COMMENT,
+  UPDATE_BOARD_COMMENT,
 } from "./BoardCommentList.queries";
 import PortFolioQueryUI from "./BoardCommentList.presenter";
 import { ChangeEvent, useState } from "react";
@@ -15,6 +16,7 @@ import { Modal } from "antd";
 export default function CreateBoardCommentList() {
   const router = useRouter();
 
+  const [updateBoardComment] = useMutation(UPDATE_BOARD_COMMENT);
   const [deleteBoardComment] = useMutation(DELETE_BOARD_COMMENT);
 
   const { data, fetchMore } = useQuery(FETCH_BOARD_COMMENTS, {
@@ -24,6 +26,7 @@ export default function CreateBoardCommentList() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [boardCommentId, setBoardCommentId] = useState("");
   const [CommentPassword, setCommentPassword] = useState("");
+  const [updateCommentPassword, setUpdateCommentPassword] = useState("");
 
   const showModal = (event: ChangeEvent<HTMLImageElement>) => {
     setIsModalOpen(true);
@@ -70,7 +73,6 @@ export default function CreateBoardCommentList() {
         page: Math.ceil((data?.fetchBoardComments.length ?? 10) / 10) + 1,
       },
       updateQuery: (prev, { fetchMoreResult }) => {
-        console.log(fetchMoreResult);
         if (fetchMoreResult.fetchBoardComments === undefined) {
           return {
             fetchBoardComments: [...prev.fetchBoardComments],
@@ -86,6 +88,35 @@ export default function CreateBoardCommentList() {
     });
   };
 
+  // 댓글 수정하기 버튼 함수 시작
+
+  // Edit GQL 시작
+  const onClickUpdateBoardComment = async (event) => {
+    const myVariables = {
+      updateBoardCommentInput: {},
+      boardCommentId: event.target.id,
+      password: updateCommentPassword,
+    };
+
+    if (el.writer) myVariables.updateBoardCommentInput.writer = writer;
+
+    const result = await updateBoardComment({
+      variables: myVariables,
+    });
+  };
+  // Edit GQL 끝
+
+  // Input 입력창 띄우기 시작
+  const [myIndex, setMyIndex] = useState(-1);
+
+  const onClickUpdateBoardCommentInputs = (event) => {
+    setMyIndex(Number(event?.currentTarget.id));
+  };
+
+  // Input 입력창 띄우기 끝
+
+  // 댓글 수정하기 버튼 함수 끝
+
   return (
     <PortFolioQueryUI
       data={data}
@@ -95,6 +126,11 @@ export default function CreateBoardCommentList() {
       showModal={showModal}
       onChangeCommentPassword={onChangeCommentPassword}
       loadFunc={loadFunc}
+      onClickUpdateBoardComment={onClickUpdateBoardComment}
+      onClickUpdateBoardCommentInputs={onClickUpdateBoardCommentInputs}
+      boardCommentId={boardCommentId}
+      myIndex={myIndex}
+      setMyIndex={setMyIndex}
     />
   );
 }

@@ -33,7 +33,7 @@ export default function PortFolioCreateBoards(
   const [password, setPassword] = useState("");
   const [title, setTitle] = useState("");
   const [contents, setContents] = useState("");
-  const [youtubeUrl, setYoutubeUrl] = useState("");
+  const [youtubeUrl, setYoutubeUrl] = useState(" ");
 
   const [writerError, setWriterError] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -171,7 +171,7 @@ export default function PortFolioCreateBoards(
         },
       });
 
-      // router.push(`/homework/${result.data?.updateBoard._id}`);
+      router.push(`/homework/${result.data?.updateBoard._id}`);
     } catch (error) {
       if (error instanceof Error)
         Modal.error({

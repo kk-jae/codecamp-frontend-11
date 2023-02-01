@@ -171,6 +171,7 @@ export const Footer_Review_update_delete = styled.div`
 export const Footer_Review_update = styled.img`
   width: 15px;
   height: 15px;
+  cursor: pointer;
 `;
 export const Footer_Review_delete = styled.img`
   width: 15px;

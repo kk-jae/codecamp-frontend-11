@@ -9,19 +9,21 @@ export const PageNationBtn = styled.button`
   background-color: white;
   border: none;
   font-size: 20px;
-`;
+  cursor: pointer;
 
+  :hover {
+    font-weight: bold;
+  }
+`;
+interface IPageProps {
+  isActive?: boolean;
+}
 export const PageNationBtnNumber = styled.button`
   border: none;
   font-size: 20px;
   width: 8%;
   background-color: white;
-
-  :focus {
-    font-weight: 1000;
-  }
-
-  :hover {
-    font-weight: 800;
-  }
+  color: ${(props: IPageProps) => (props.isActive ? "red" : "black")};
+  font-weight: ${(props: IPageProps) => (props.isActive ? "bold" : "normal")};
+  cursor: ${(props: IPageProps) => (props.isActive ? "none" : "pointer")};
 `;

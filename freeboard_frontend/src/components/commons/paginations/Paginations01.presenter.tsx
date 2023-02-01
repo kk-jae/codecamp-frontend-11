@@ -16,6 +16,7 @@ export default function Paginations01UI(props) {
               key={index + props.startPage}
               onClick={props.onClickBoards}
               id={String(index + props.startPage)}
+              isActive={props.startPage + index === props.activedPage}
             >
               {index + props.startPage}
             </S.PageNationBtnNumber>

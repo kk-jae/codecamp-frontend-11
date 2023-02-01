@@ -10,6 +10,8 @@ const FETCH_BOARDS = gql`
     fetchBoards(page: $page) {
       writer
       title
+      _id
+      createdAt
     }
   }
 `;
@@ -46,11 +48,11 @@ export default function () {
         useWindow={false}
       >
         {data?.fetchBoards.map((el) => (
-          <div>
+          <div key={el._id}>
             <span style={{ margin: "10px" }}>{el.writer}</span>
             <span style={{ margin: "10px" }}>{el.title}</span>
           </div>
-        )) ?? <div></div>}
+        )) ?? <></>}
       </InfiniteScroll>
     </div>
   );
