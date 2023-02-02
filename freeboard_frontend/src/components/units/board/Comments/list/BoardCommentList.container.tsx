@@ -91,19 +91,7 @@ export default function CreateBoardCommentList() {
   // 댓글 수정하기 버튼 함수 시작
 
   // Edit GQL 시작
-  const onClickUpdateBoardComment = async (event) => {
-    const myVariables = {
-      updateBoardCommentInput: {},
-      boardCommentId: event.target.id,
-      password: updateCommentPassword,
-    };
-
-    if (el.writer) myVariables.updateBoardCommentInput.writer = writer;
-
-    const result = await updateBoardComment({
-      variables: myVariables,
-    });
-  };
+  const onClickUpdateBoardComment = async () => {};
   // Edit GQL 끝
 
   // Input 입력창 띄우기 시작

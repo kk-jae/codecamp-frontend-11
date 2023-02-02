@@ -2,36 +2,11 @@ import { useQuery, useMutation, gql } from "@apollo/client";
 import { useRouter } from "next/router";
 import CommentEditUI from "./commentEdit.presenter";
 import { useState } from "react";
-
-export const FETCH_BOARD_COMMENTS = gql`
-  query fetchBoardComments($boardId: ID!, $page: Int) {
-    fetchBoardComments(boardId: $boardId, page: $page) {
-      _id
-      writer
-      contents
-      rating
-      createdAt
-    }
-  }
-`;
-
-export const UPDATE_BOARD_COMMENT = gql`
-  mutation updateBoardComment(
-    $updateBoardCommentInput: UpdateBoardCommentInput!
-    $password: String
-    $boardCommentId: ID!
-  ) {
-    updateBoardComment(
-      updateBoardCommentInput: $updateBoardCommentInput
-      password: $password
-      boardCommentId: $boardCommentId
-    ) {
-      writer
-      contents
-      rating
-    }
-  }
-`;
+import {
+  FETCH_BOARD_COMMENTS,
+  UPDATE_BOARD_COMMENT,
+} from "./commentEdit.queries";
+import { Modal } from "antd";
 
 export default function CommentEditPage(props) {
   const router = useRouter();
@@ -72,33 +47,40 @@ export default function CommentEditPage(props) {
   //   myVariables.title = title;
   // }
 
-  const onClickUpdateBoardComment = async (event) => {
-    const updateBoardCommentInput = {
-      contents: updateCommentContents,
-      rating: updateCommentRating,
-    };
+  const onClickUpdateBoardComment = async () => {
+    try {
+      const updateBoardCommentInput = {
+        contents: updateCommentContents,
+        rating: updateCommentRating,
+      };
 
-    if (updateCommentContents == "") {
-      updateBoardCommentInput.contents = props.el.contents;
-    }
-    if (updateCommentRating == "") {
-      updateBoardCommentInput.rating = props.el.rating;
-    }
+      if (updateCommentContents == "") {
+        updateBoardCommentInput.contents = props.el.contents;
+      }
+      if (updateCommentRating == "") {
+        updateBoardCommentInput.rating = props.el.rating;
+      }
 
-    const result = await updateBoardComment({
-      variables: {
-        boardCommentId: props.el._id,
-        password: updateCommentPassword,
-        updateBoardCommentInput: updateBoardCommentInput,
-      },
-      refetchQueries: [
-        {
-          query: FETCH_BOARD_COMMENTS,
-          variables: { boardId: router.query.boardId },
+      const result = await updateBoardComment({
+        variables: {
+          boardCommentId: props.el._id,
+          password: updateCommentPassword,
+          updateBoardCommentInput: updateBoardCommentInput,
         },
-      ],
-    });
-    props.setMyIndex(-1);
+        refetchQueries: [
+          {
+            query: FETCH_BOARD_COMMENTS,
+            variables: { boardId: router.query.boardId },
+          },
+        ],
+      });
+      props.setMyIndex(-1);
+    } catch (error) {
+      if (error instanceof Error)
+        Modal.error({
+          content: error.message,
+        });
+    }
   };
 
   const onClickCencel = () => {

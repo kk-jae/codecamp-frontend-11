@@ -5,6 +5,7 @@ import Slider from "react-slick";
 
 const Wrapper = styled.div`
   width: 100%;
+  margin-bottom: 50px;
 `;
 
 const Wrapper_Banner = styled.div`
@@ -41,7 +42,7 @@ export default function LayoutBanner(props): JSX.Element {
             <IMG src="/image 02.png" />
           </H3>
         </Wrapper_Banner>
-        {/* <div>
+        <div>
           <H3>
             <IMG src="/bannerBox.png" />
           </H3>
@@ -50,7 +51,7 @@ export default function LayoutBanner(props): JSX.Element {
           <H3>
             <IMG src="/bannerBox.png" />
           </H3>
-        </div> */}
+        </div>
       </Slider>
     </Wrapper>
   );

@@ -17,6 +17,7 @@ export default function RestGetPage(): JSX.Element {
   return (
     <div>
       <img src={dog} />
+
       {/* <button onClick={onClickSync}>REST-API(동기) 요청하기</button> */}
     </div>
   );

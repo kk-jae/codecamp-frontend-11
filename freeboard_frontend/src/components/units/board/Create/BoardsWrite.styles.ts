@@ -164,5 +164,6 @@ export const LastBtn = styled.button`
   font-weight: 500;
   margin-bottom: 80px;
   cursor: pointer;
-  background-color: ${(props: IProps) => (props.isActive ? "#FFD600" : "")};
+  background-color: ${(props: IProps) =>
+    props.isActive || props.isEdit ? "#FFD600" : ""};
 `;

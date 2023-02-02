@@ -122,6 +122,7 @@ export default function PortFolioCreateBoardsUI(
           props.isEdit ? props.onClickUpdateBoard : props.onClickContents
         }
         isActive={props.isActive}
+        isEdit={props.isEdit}
       >
         {props.isEdit ? "수정" : "등록"}하기
       </S.LastBtn>
