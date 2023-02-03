@@ -5,7 +5,8 @@ import Slider from "react-slick";
 
 const Wrapper = styled.div`
   width: 100%;
-  margin-bottom: 50px;
+  height: 50vh;
+  background-color: yellow;
 `;
 
 const Wrapper_Banner = styled.div`
