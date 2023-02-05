@@ -4,8 +4,10 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import Layout from "../src/components/commons/layout";
 import { globalStyles } from "../src/commons/styles/globalStyles";
 import { Global } from "@emotion/react";
+
 import { useEffect } from "react";
 import { useRouter } from "next/router";
+// import {MainPage}
 
 // graphql API를 위한 초기 설치
 // InMemoryCache는 cache 저장을 위한 코드입니다

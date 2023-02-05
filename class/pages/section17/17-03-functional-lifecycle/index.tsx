@@ -16,7 +16,6 @@ export default function FunctionalCounterPage() {
   useEffect(() => {
     console.log("그려지고 나서 실행!!");
   }, []);
-
   // 의존성 배열 (dependency-array)
   // 배열안에 아무것도 없으니, 초기에 한번만 실행되고 실행되지 않음
 

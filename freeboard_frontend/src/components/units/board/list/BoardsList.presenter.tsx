@@ -24,24 +24,35 @@ export default function BoardsListContainerUI(
   return (
     <S.Container>
       <S.Wrapper>
-        <S.Wrapper_title>
+        {/* <S.Wrapper_title>
           <S.Title_number>번호</S.Title_number>
           <S.Title_title>제목</S.Title_title>
           <S.Title_writer>작성자</S.Title_writer>
           <S.Title_createdAt>날짜</S.Title_createdAt>
-        </S.Wrapper_title>
-        {props.data?.fetchBoards.map((el) => (
-          <S.Wrapper_list key={el._id}>
-            <S.List_number>
-              {String(el._id).slice(-4).toUpperCase()}
-            </S.List_number>
-            <S.List_title id={el._id} onClick={props.onClickMovedBoard}>
-              {el.title}
-            </S.List_title>
-            <S.List_writer>{el.writer}</S.List_writer>
-            <S.List_createdAt>{getDate(el.createdAt)}</S.List_createdAt>
-          </S.Wrapper_list>
-        ))}
+        </S.Wrapper_title> */}
+        <S.List_Container>
+          {props.data?.fetchBoards.map((el) => (
+            <S.Wrapper_list key={el._id}>
+              <S.List_img_Text>
+                <S.List_img src="/image 02.png" />
+                {/* <S.List_number>
+                {String(el._id).slice(-4).toUpperCase()}
+              </S.List_number> */}
+                <S.List_Title_Writer_likeCount>
+                  <S.List_writer>{el.writer}</S.List_writer>
+                  <S.List_title id={el._id} onClick={props.onClickMovedBoard}>
+                    {el.title}
+                  </S.List_title>
+                  <S.Like_Count>
+                    <S.Count_img src="/BoardPage/like.png" />
+                    <S.Count_num>{el.likeCount}</S.Count_num>
+                  </S.Like_Count>
+                </S.List_Title_Writer_likeCount>
+                {/* <S.List_createdAt>{getDate(el.createdAt)}</S.List_createdAt> */}
+              </S.List_img_Text>
+            </S.Wrapper_list>
+          ))}
+        </S.List_Container>
         <S.Wrapper_footer>
           {/* 페이지 네이션 시작 */}
           <Paginations01 refetch={props.refetch} count={props.count} />

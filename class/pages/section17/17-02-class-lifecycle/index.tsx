@@ -20,7 +20,7 @@ export default class ClassCounterPage extends Component {
   componentWillUnmount(): void {
     // Component 의 기능
     console.log("사라지기전에 실행");
-    // 예시) 채팅방 나가기 API
+    // 예시) 채팅방 나가기 API, 나가기전에 마지막으로 할 것들
   }
 
   onClickCountUp = (): void => {

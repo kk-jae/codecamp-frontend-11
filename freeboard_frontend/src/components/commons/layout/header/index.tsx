@@ -1,5 +1,5 @@
-import HeaderWrapper from "./container";
+import HeaderContainer from "./container";
 
 export default function LayoutHeader(): JSX.Element {
-  return <HeaderWrapper />;
+  return <HeaderContainer />;
 }
