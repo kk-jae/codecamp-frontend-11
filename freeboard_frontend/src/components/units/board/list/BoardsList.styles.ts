@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
   width: 80%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
 `;
 
@@ -28,16 +28,16 @@ export const List_Container = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  /* background-color: blue; */
+  justify-content: space-between;
 `;
+export const WrapperHead = styled.div``;
 
 export const Wrapper_list = styled.div`
   display: flex;
   flex-direction: column;
-  width: 17%;
-  height: 270px;
-  border: 1px solid #ffd600;
-  box-shadow: 1px 1px 5px #ffd600;
+  width: 18%;
+  height: 300px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   overflow: hidden;
   margin: 10px;
@@ -83,11 +83,11 @@ export const Like_Count = styled.div`
   width: 20%;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   position: absolute;
-  right: 0;
-  bottom: 10px;
+  right: 8px;
+  bottom: 8px;
   font-size: 10px;
 `;
 
@@ -96,20 +96,25 @@ export const Count_num = styled.div``;
 
 // 페이지네이션
 export const Wrapper_footer = styled.div`
-  width: 80%;
+  width: 100%;
   display: flex;
   flex-direction: row;
+  justify-content: center;
   align-items: center;
-  justify-content: flex-end;
   margin-top: 15px;
+  position: relative;
 `;
 
 export const CreateNewBoard = styled.button`
-  width: 171px;
-  height: 52px;
+  position: absolute;
+  right: 10px;
+  width: 150px;
+  height: 45px;
   background-color: white;
-  border: 1px solid #f2f2f2;
-  border-radius: 10px;
+  border: 1px solid #ffd600;
+  box-shadow: 1px 1px 4px #ffd600;
+  /* border: 1px solid #f2f2f2; */
+  /* border-radius: 10px; */
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;

@@ -7,6 +7,10 @@ import {
 } from "../../../../commons/types/generated/types";
 import Paginations01 from "../../../commons/paginations/Paginations01.container";
 import { ApolloQueryResult } from "@apollo/client";
+import React from "react";
+import { DownOutlined } from "@ant-design/icons";
+import type { MenuProps } from "antd";
+import { Dropdown, Space, Typography } from "antd";
 
 interface IBoardsListContainerUIProps {
   data: Pick<IQuery, "fetchBoards">;
@@ -30,6 +34,7 @@ export default function BoardsListContainerUI(
           <S.Title_writer>작성자</S.Title_writer>
           <S.Title_createdAt>날짜</S.Title_createdAt>
         </S.Wrapper_title> */}
+        <S.WrapperHead>조회수</S.WrapperHead>
         <S.List_Container>
           {props.data?.fetchBoards.map((el) => (
             <S.Wrapper_list key={el._id}>

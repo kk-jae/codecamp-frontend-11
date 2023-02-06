@@ -9,7 +9,7 @@ export default function Layout(props) {
     // <LayoutContainer>
     <>
       {/* <LayoutHeader /> */}
-      {/* { !isHiddenHeader && <LayoutHeader/>}  */}
+      {/* {!isHiddenHeader && <LayoutHeader />} */}
       {/* <LayoutNavigation /> */}
       {/* <LayoutBanner /> */}
       <LayoutBody>

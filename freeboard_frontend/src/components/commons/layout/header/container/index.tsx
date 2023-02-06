@@ -6,13 +6,17 @@ export default function HeaderContainer() {
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
 
+  const [weather, setWeather] = useState("");
+
   // useEffect(() => {
   const onClickWeather = async (): Promise<void> => {
     const result = await axios.get(
       `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&&appid=f233f712a0fe764e01ec4207d619afcb`
     );
 
-    console.log(result);
+    // console.log(result.data.weather[0].main);
+    setWeather(result.data.weather[0].main);
+    console.log(weather);
   };
   // }, []),
   useEffect(() => {
@@ -30,8 +34,8 @@ export default function HeaderContainer() {
   });
   return (
     <>
-      <HeaderUI />
-      <button onClick={onClickWeather}> 날씨 불러오기</button>
+      <HeaderUI weather={weather} />
+      <button onClick={onClickWeather}>날씨 불러오기</button>
     </>
   );
 }

@@ -23,7 +23,8 @@ export const PageNationBtnNumber = styled.button`
   font-size: 20px;
   width: 8%;
   background-color: white;
-  color: ${(props: IPageProps) => (props.isActive ? "red" : "black")};
+  color: ${(props: IPageProps) =>
+    props.isActive ? "black" : "rgb(48, 52, 65)"};
   font-weight: ${(props: IPageProps) => (props.isActive ? "bold" : "normal")};
   cursor: ${(props: IPageProps) => (props.isActive ? "none" : "pointer")};
 `;
