@@ -1,85 +1,60 @@
 import styled from "@emotion/styled";
 
-export const HeaderWrapper = styled.div`
+export const Container = styled.div`
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 2.2vh 0 2.2vh 0;
-  /* background-color: #ffd600; */
-  background-color: #ffffff;
-`;
-
-export const WrapperHeader = styled.div`
-  width: 100%;
-  padding: 0px 50px 0px 50px;
+  height: 140px;
+  position: fixed;
+  z-index: 9999;
+  color: white;
+  background-color: #000000;
+  /* opacity: 0.8; */
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
-  font-size: 2.6vh;
-  font-weight: 700;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-  /* animation: titleText 1s ease-in-out;
-
-  @keyframes titleText {
-    0% {
-      transform: translateY(30px);
-      opacity: 0;
-    }
-    92% {
-      transform: translateY(-5px);
-    }
-    100% {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  } */
+  padding: 0px 8% 0px 8%;
+  opacity: 0.8;
 `;
 
-export const HeaderLeft = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
-`;
-export const HeaderImg = styled.div`
-  margin-right: 10px;
-`;
-export const HeaderName = styled.div``;
-export const HeaderRight = styled.div`
-  /* width: 40%; */
+export const Wrapper = styled.div`
+  font-size: 25px;
+  font-weight: 500;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: space-between;
+`;
+
+export const Left_Container = styled.div`
+  /* width: 100%; */
+  height: 100%;
+  display: flex;
+  flex-direction: row;
   align-items: center;
 `;
 
-export const HeaderRightSearch = styled.div`
+export const Left_Container_Logo = styled.img`
+  width: 100px;
+  height: 80%;
+  cursor: pointer;
+
+  object-fit: cover;
+`;
+
+export const Right_Container = styled.div`
   display: flex;
   flex-direction: row;
-  margin-right: 2vh;
-  position: relative;
-`;
-export const SearchInput = styled.input`
-  width: 250px;
-  height: 30px;
-  border-radius: 20px;
-  border: 1px solid #ffd600;
-  padding-left: 11px;
-`;
-export const SearchImg = styled.img`
-  position: absolute;
-  height: 30px;
-  right: 8px;
-  scale: 0.5;
+  justify-content: flex-end;
 `;
 
-export const HeaderRightItem = styled.div`
+export const Right_Container_Button = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+export const Button_Item = styled.span`
+  padding-left: 20px;
   cursor: pointer;
-  padding: 0px 10px 0px 10px;
 `;
-
-export const HeaderRightWeather = styled.div``;

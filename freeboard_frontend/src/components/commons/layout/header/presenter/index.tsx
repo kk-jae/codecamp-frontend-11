@@ -1,38 +1,35 @@
 import * as S from "../styled/index";
 import { Avatar, Space } from "antd";
 
-export default function HeaderUI(props) {
-  const HeaderRight = [
-    { name: "소개" },
-    { name: "로그인" },
-    { name: "회원가입" },
-  ];
+const HeaderRight = [
+  { name: "소개" },
+  { name: "목록보기", url: "/homepage/list" },
+  { name: "로그인" },
+  { name: "회원가입" },
+  { name: "마이페이지" },
+];
 
+export default function HeaderUI(props) {
   return (
-    <S.HeaderWrapper>
-      <S.WrapperHeader>
-        <S.HeaderLeft>
-          <S.HeaderImg>
-            <Space size={10} wrap>
-              <Avatar src={<img src="/favicon.ico" alt="avatar" />} />
-            </Space>
-          </S.HeaderImg>
-          <S.HeaderName>권현재</S.HeaderName>
-        </S.HeaderLeft>
-        <S.HeaderRight>
-          <S.HeaderRightSearch>
-            <S.SearchInput placeholder="게시물을 검색하세요" />
-            <S.SearchImg src="/BoardPage/List_newBoard.png" alt="돋보기" />
-          </S.HeaderRightSearch>
-          {HeaderRight.map((el, index) => (
-            <S.HeaderRightItem key={index}>{el.name}</S.HeaderRightItem>
-          ))}
-          {/* <S.HeaderRightItem>소개</S.HeaderRightItem>
-          <S.HeaderRightItem>포트폴리오</S.HeaderRightItem>
-          <S.HeaderRightItem>마무리</S.HeaderRightItem> */}
-          <S.HeaderRightWeather>{props.weather}</S.HeaderRightWeather>
-        </S.HeaderRight>
-      </S.WrapperHeader>
-    </S.HeaderWrapper>
+    <S.Container>
+      <S.Wrapper>
+        <S.Left_Container>
+          <S.Left_Container_Logo
+            src="/skipjack/logo.jpg"
+            alt="??"
+            onClick={props.onClickLogo}
+          />
+        </S.Left_Container>
+        <S.Right_Container>
+          <S.Right_Container_Button>
+            {HeaderRight.map((el) => (
+              <S.Button_Item onClick={props.onClickMovePage} id={el.url}>
+                {el.name}
+              </S.Button_Item>
+            ))}
+          </S.Right_Container_Button>
+        </S.Right_Container>
+      </S.Wrapper>
+    </S.Container>
   );
 }

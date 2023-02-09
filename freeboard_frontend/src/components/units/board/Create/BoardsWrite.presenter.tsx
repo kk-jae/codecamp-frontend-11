@@ -95,18 +95,36 @@ export default function PortFolioCreateBoardsUI(
         <S.ContentPhoto>
           <S.ContentHead>사진첨부</S.ContentHead>
           <S.PhotoHead>
-            <S.ContentPhotoPic>
+            <S.ContentPhotoPic1 onClick={props.onClickImage1}>
+              <input
+                type="file"
+                ref={props.uploadImg1}
+                style={{ display: "none" }}
+                onChange={props.onChangeUploadImage1}
+              />
               <S.Pic>+</S.Pic>
               <S.Pic>Upload</S.Pic>
-            </S.ContentPhotoPic>
-            <S.ContentPhotoPic>
+            </S.ContentPhotoPic1>
+            <S.ContentPhotoPic2 onClick={props.onClickImage2}>
+              <input
+                type="file"
+                ref={props.uploadImg2}
+                style={{ display: "none" }}
+                onChange={props.onChangeUploadImage2}
+              />
               <S.Pic>+</S.Pic>
               <S.Pic>Upload</S.Pic>
-            </S.ContentPhotoPic>
-            <S.ContentPhotoPic>
+            </S.ContentPhotoPic2>
+            <S.ContentPhotoPic3 onClick={props.onClickImage3}>
+              <input
+                type="file"
+                ref={props.uploadImg3}
+                style={{ display: "none" }}
+                onChange={props.onChangeUploadImage3}
+              />
               <S.Pic>+</S.Pic>
               <S.Pic>Upload</S.Pic>
-            </S.ContentPhotoPic>
+            </S.ContentPhotoPic3>
           </S.PhotoHead>
         </S.ContentPhoto>
         <S.Content>

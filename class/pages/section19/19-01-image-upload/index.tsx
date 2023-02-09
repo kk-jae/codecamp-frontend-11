@@ -10,7 +10,7 @@ import type {
 // 이미지 업로드를 위한 셋팅 필요
 // 1. appollo setting 으로 이동
 // 2. apollo-upload-client 설치 (yarn add apollo-upload-client)
-// 3. apollo-upload-client 타입 설치 (yarn dev @types/apollo-upload-client)
+// 3. apollo-upload-client 타입 설치 (yarn add @types/apollo-upload-client)
 
 const UPLOAD_FILE = gql`
   mutation uploadFile($file: Upload!) {

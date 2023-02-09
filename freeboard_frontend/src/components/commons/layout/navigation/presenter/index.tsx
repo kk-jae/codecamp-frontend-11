@@ -1,7 +1,9 @@
+import * as S from "../stlyed/index";
+
 export default function NavigationUI() {
   return (
-    <>
-      <div>네비게이션입니다.</div>
-    </>
+    <S.Container>
+      <S.Wrapper></S.Wrapper>
+    </S.Container>
   );
 }

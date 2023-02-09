@@ -1,6 +1,8 @@
 import { ChangeEvent, useRef, useState } from "react";
 import { gql, useMutation } from "@apollo/client";
 import { LikeOutlined } from "@ant-design/icons";
+import type { IMutation } from "../../src/commons/types/generated/types";
+import type { IMutationUploadFileArgs } from "../../src/commons/types/generated/types";
 
 const UPLOAD_IMAGE = gql`
   mutation uploadFile($file: Upload!) {
@@ -18,11 +20,14 @@ const CREATE_BOARD = gql`
   }
 `;
 
-export default function ImageUploadPage() {
+export default function ImageUploadPage(): JSX.Element {
   const [imgUrl, setImgUrl] = useState("");
-  const qqq = useRef(null);
+  const qqq = useRef<HTMLInputElement>(null);
 
-  const [uploadImg] = useMutation(UPLOAD_IMAGE);
+  const [uploadImg] = useMutation<
+    Pick<IMutation, "uploadFile">,
+    IMutationUploadFileArgs
+  >(UPLOAD_IMAGE);
   const [createBoard] = useMutation(CREATE_BOARD);
 
   const [writer, setWriter] = useState("");
@@ -30,7 +35,7 @@ export default function ImageUploadPage() {
   const [title, setTitle] = useState("");
   const [contents, setContents] = useState("");
 
-  const onClickUseRef = () => {
+  const onClickUseRef = (): void => {
     qqq.current?.click();
   };
 

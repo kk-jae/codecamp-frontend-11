@@ -1,8 +1,8 @@
 import { useMutation } from "@apollo/client";
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useRef } from "react";
 import { useRouter } from "next/router";
 import PortFolioCreateBoardsUI from "./BoardsWrite.presenter";
-import { CREATE_BOARD, UPDATE_BOARD } from "./BoardsWrite.queries";
+import { CREATE_BOARD, UPDATE_BOARD, UPLOAD_FILE } from "./BoardsWrite.queries";
 import {
   IMutation,
   IMutationCreateBoardArgs,
@@ -40,11 +40,62 @@ export default function PortFolioCreateBoards(
   const [titleError, setTitleError] = useState("");
   const [contentsError, setContentsError] = useState("");
 
-  const router = useRouter();
-
   const [address, setAddress] = useState("");
   const [addressZipCode, setAddressZipCode] = useState("");
   const [addressDetail, setAddressDetail] = useState("");
+
+  const router = useRouter();
+  const uploadImg1 = useRef<HTMLInputElement>(null);
+  const uploadImg2 = useRef<HTMLInputElement>(null);
+  const uploadImg3 = useRef<HTMLInputElement>(null);
+
+  const [uploadFile] = useMutation(UPLOAD_FILE);
+
+  const [image1, setImage1] = useState("");
+  const [image2, setImage2] = useState("");
+  const [image3, setImage3] = useState("");
+  const [imageSuccess1, setImageSuccess1] = useState(false);
+  const [imageSuccess2, setImageSuccess2] = useState(false);
+  const [imageSuccess3, setImageSuccess3] = useState(false);
+
+  const onClickImage1 = () => {
+    uploadImg1.current?.click();
+  };
+  const onClickImage2 = () => {
+    uploadImg1.current?.click();
+  };
+  const onClickImage3 = () => {
+    uploadImg1.current?.click();
+  };
+
+  const onChangeUploadImage1 = async (event: ChangeEvent<HTMLInputElement>) => {
+    // console.log(event.target.files?.[0]);
+    const file = event.target.files?.[0];
+
+    const result = await uploadFile({ variables: { file } });
+    console.log(result.data?.uploadFile.url);
+
+    setImage1(result.data?.uploadFile.url);
+    setImageSuccess1(true);
+  };
+  const onChangeUploadImage2 = async (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+
+    const result = await uploadFile({ variables: { file } });
+    console.log(result.data?.uploadFile.url);
+
+    setImage2(result.data?.uploadFile.url);
+    setImageSuccess2(true);
+  };
+  const onChangeUploadImage3 = async (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+
+    const result = await uploadFile({ variables: { file } });
+    console.log(result.data?.uploadFile.url);
+
+    setImage3(result.data?.uploadFile.url);
+    setImageSuccess3(true);
+  };
 
   const onChangeWriter = (event: ChangeEvent<HTMLInputElement>) => {
     setWriter(event.target.value);
@@ -251,6 +302,18 @@ export default function PortFolioCreateBoards(
       onChangeAddressDetail={onChangeAddressDetail}
       setAddressIsModalOpen={setAddressIsModalOpen}
       //주소 입력창 종료
+      onClickImage1={onClickImage1}
+      onClickImage2={onClickImage2}
+      onClickImage3={onClickImage3}
+      uploadImg1={uploadImg1}
+      uploadImg2={uploadImg2}
+      uploadImg3={uploadImg3}
+      onChangeUploadImage1={onChangeUploadImage1}
+      onChangeUploadImage2={onChangeUploadImage2}
+      onChangeUploadImage3={onChangeUploadImage3}
+      imageSuccess1={imageSuccess1}
+      imageSuccess2={imageSuccess2}
+      imageSuccess3={imageSuccess3}
     />
   );
 }

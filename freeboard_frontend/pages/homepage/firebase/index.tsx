@@ -21,6 +21,7 @@ export default function FirebasePage(): JSX.Element {
   const [writer, setWriter] = useState("");
   const [title, setTitle] = useState("");
   const [contents, setContents] = useState("");
+  const [date, setDate] = useState("");
 
   const [datas, setDatas] = useState("");
 
@@ -41,11 +42,13 @@ export default function FirebasePage(): JSX.Element {
       writer,
       title,
       contents,
+      date,
     });
 
     setWriter("");
     setTitle("");
     setContents("");
+    setDate("");
   };
 
   const onClickFetch = async (): Promise<void> => {
@@ -85,13 +88,13 @@ export default function FirebasePage(): JSX.Element {
       <button onClick={onClickFetch}>조회하기</button>
       {/* <button onClick={onClickDelete}>삭제하기</button> */}
       <div>===========조회 목록===========</div>
-      {datas.map((el) => (
-        <div>
-          <div>작성자 :{el.writer}</div>
-          <div>제목 :{el.title}</div>
-          <div>내용 :{el.contents}</div>
-        </div>
-      ))}
+      {/* {datas.map((el) => ( */}
+      {/* <div> */}
+      {/* <div>작성자 :{el.writer}</div> */}
+      {/* <div>제목 :{el.title}</div> */}
+      {/* <div>내용 :{el.contents}</div> */}
+      {/* </div> */}
+      {/* ))} */}
     </>
   );
 }
