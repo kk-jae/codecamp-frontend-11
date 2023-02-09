@@ -23,11 +23,12 @@ export default function BoardsListContainer(): JSX.Element {
   >(FETCH_BOARDS_COUNT);
 
   const onClickNewCreateBoard = (): void => {
-    void router.push("/homework/new");
+    void router.push("/homepage/new");
   };
 
   const onClickMovedBoard = (event: MouseEvent<HTMLDivElement>): void => {
-    void router.push(`/homework/${event.target.id}`);
+    void router.push(`/homepage/${event.currentTarget.id}`);
+    // console.log(event.currentTarget.id);
   };
 
   return (

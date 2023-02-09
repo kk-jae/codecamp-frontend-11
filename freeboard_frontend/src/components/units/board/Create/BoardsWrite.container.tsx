@@ -194,7 +194,7 @@ export default function PortFolioCreateBoards(
             },
           },
         });
-        router.push(`/homework/${result.data?.createBoard._id}`);
+        router.push(`/homepage/${result.data?.createBoard._id}`);
       } catch (error) {
         if (error instanceof Error)
           Modal.error({
@@ -222,7 +222,7 @@ export default function PortFolioCreateBoards(
         },
       });
 
-      router.push(`/homework/${result.data?.updateBoard._id}`);
+      router.push(`/homepage/${result.data?.updateBoard._id}`);
     } catch (error) {
       if (error instanceof Error)
         Modal.error({

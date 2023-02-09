@@ -27,6 +27,7 @@ export const Head = styled.div`
 `;
 
 export const Head_header = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   border-bottom: 1px solid #bdbdbd;
@@ -38,23 +39,28 @@ export const Header_right = styled.div`
   flex-direction: row;
   justify-content: flex-end;
 `;
-export const GpsImp = styled.div`
-  background-color: gray;
-  margin-top: 20px;
-  font-size: 16px;
-  font-weight: 500;
-  color: white;
-  padding: 8px;
-  text-align: right;
-`;
+
+// export const GpsImp = styled.div`
+//   background-color: gray;
+//   width: 100%;
+//   margin-top: 20px;
+//   font-size: 16px;
+//   font-weight: 500;
+//   color: white;
+//   padding: 8px;
+//   text-align: right;
+// `;
 
 export const Header_left = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
 `;
 
-export const Writer_Name_Date = styled.div``;
+export const Writer_Name_Date = styled.div`
+  width: 50%;
+`;
 export const WriterImp = styled.div`
   width: 100%;
   padding-top: 80px;
@@ -69,13 +75,17 @@ export const Writer_Img = styled.img`
 
 export const WriterImp_left = styled.div`
   display: flex;
-
+  width: 90%;
   flex-direction: row;
   align-items: center;
 `;
 export const Writer_Name = styled.div`
+  width: 100%;
   font-size: 24px;
   font-weight: 500;
+  /* background-color: red; */
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 export const Writer_Date = styled.div`
   font-size: 16px;

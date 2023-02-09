@@ -51,7 +51,7 @@ export default function BoardsListContainerUI(
           <S.Contents>
             <S.List_Container>
               {props.data?.fetchBoards.map((el) => (
-                <S.List_Item>
+                <S.List_Item onClick={props.onClickMovedBoard} id={el._id}>
                   <S.Item_left>
                     <S.Left_img src="/skipjack/logo.jpg" alt="이미지" />
                   </S.Item_left>

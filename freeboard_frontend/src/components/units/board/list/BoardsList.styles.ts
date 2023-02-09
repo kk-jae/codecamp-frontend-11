@@ -115,6 +115,7 @@ export const Top_Text = styled.div`
   border-radius: 20px;
 `;
 export const Top_name = styled.div`
+  width: 100%;
   font-size: 53px;
   font-weight: 600;
 `;
@@ -147,7 +148,7 @@ export const List_Item = styled.div`
   align-items: center;
   margin-bottom: 25px;
   transition: transform 0.3s ease-in-out;
-
+  overflow: hidden;
   :hover {
     transform: scale(1.02);
   }
@@ -167,7 +168,6 @@ export const Left_img = styled.img`
 export const Item_right = styled.div`
   width: 80%;
   height: 100%;
-  /* background-color: red; */
   color: white;
   padding: 30px;
 `;
@@ -175,15 +175,20 @@ export const Item_right = styled.div`
 export const Right_left = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 0px 50px 0px 0px;
 `;
 export const Right_writer = styled.div`
   font-size: 30px;
   font-weight: 500;
+  /* overflow: auto; */
+  /* text-overflow: ellipsis; */
 `;
 
 export const Right_title = styled.div`
+  width: 100%;
   font-size: 50px;
   font-weight: 700;
+  /* overflow: hidden; */
 `;
 export const Right_right = styled.div``;
 

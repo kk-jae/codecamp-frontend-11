@@ -63,18 +63,18 @@ export default function PortFolioQueryContainer() {
   const [deleteBoard] = useMutation(DELETE_BOARD);
 
   const onClickContents = async () => {
-    router.push(`/homework/${router.query.boardId}/edit`);
+    router.push(`/homepage/${router.query.boardId}/edit`);
   };
 
   const onClickNewCreateBoard = async () => {
-    router.push("/homework/list");
+    router.push("/homepage/list");
   };
 
   const onClickDeleteBoard = async () => {
     deleteBoard({
       variables: { boardId: data?.fetchBoard._id },
     });
-    router.push("/homework/list");
+    router.push("/homepage/list");
     Modal.success({
       content: "게시물이 삭제되었습니다",
     });

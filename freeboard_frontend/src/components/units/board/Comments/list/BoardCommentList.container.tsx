@@ -26,7 +26,6 @@ export default function CreateBoardCommentList() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [boardCommentId, setBoardCommentId] = useState("");
   const [CommentPassword, setCommentPassword] = useState("");
-  const [updateCommentPassword, setUpdateCommentPassword] = useState("");
 
   const showModal = (event: ChangeEvent<HTMLImageElement>) => {
     setIsModalOpen(true);

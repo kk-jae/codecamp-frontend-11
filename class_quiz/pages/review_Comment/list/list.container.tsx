@@ -40,6 +40,7 @@ export default function CommentListPage() {
 
   const onClickSelectUpdateCreateBoardComment = (event) => {
     setMyIndex(Number(event.currentTarget.id));
+    // console.log(event.currentTarget.id);
   };
 
   const UpdateCancel = () => {
