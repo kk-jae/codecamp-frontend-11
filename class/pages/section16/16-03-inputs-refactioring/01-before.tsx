@@ -21,7 +21,6 @@ export default function GraphqlMutationPage() {
   const onClickSubmit = async () => {
     const result = await 나의함수({
       variables: {
-        // variables가 $ 역할을 합니다.
         writer,
         title,
         contents: content,

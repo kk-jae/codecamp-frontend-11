@@ -127,14 +127,30 @@ export const Head_body_center = styled.div`
   flex-direction: column;
   align-items: center;
 `;
+export const Body_Img_Container = styled.div`
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+`;
 
-export const Body_img = styled.img`
-  width: 100%;
+export const Body_imgWrapper = styled.div`
+  width: 100px;
+`;
+
+export const ImageItem = styled.img`
+  width: 100px;
   height: 480px;
-  background-color: gray;
   margin: 0px 0px 30px 0px;
   object-fit: cover;
 `;
+
+// export const Body_img = styled.img`
+//   width: 100%;
+//   height: 480px;
+//   background-color: gray;
+//   margin: 0px 0px 30px 0px;
+//   object-fit: cover;
+// `;
 
 export const Body_detail = styled.div`
   /* background-color:red; */

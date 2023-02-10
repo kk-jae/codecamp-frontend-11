@@ -39,7 +39,7 @@ export default function ImageUploadPage(): JSX.Element {
 
     const result = await uploadFile({
       variables: {
-        file: file,
+        file,
       },
     });
 

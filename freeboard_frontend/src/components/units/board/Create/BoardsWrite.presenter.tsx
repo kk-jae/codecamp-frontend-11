@@ -2,6 +2,8 @@ import * as S from "./BoardsWrite.styles";
 import { IPortFolioCreateBoardsUIProps } from "../Create/BoardsWrite.type";
 import DaumPostcodeEmbed from "react-daum-postcode";
 import { Modal } from "antd";
+import Upload01Container from "../../../../commons/upload/01/container";
+import { uuidv4 } from "@firebase/util";
 
 export default function PortFolioCreateBoardsUI(
   props: IPortFolioCreateBoardsUIProps
@@ -95,7 +97,18 @@ export default function PortFolioCreateBoardsUI(
         <S.ContentPhoto>
           <S.ContentHead>사진첨부</S.ContentHead>
           <S.PhotoHead>
-            <S.ContentPhotoPic1 onClick={props.onClickImage1}>
+            {/* 이미지 업로드 시작*/}
+            {props.fileUrls.map((el, index) => (
+              <Upload01Container
+                key={uuidv4()}
+                index={index}
+                fileUrl={el}
+                onChangeFileUrls={props.onChangeFileUrls}
+              />
+            ))}
+
+            {/* 이미지 업로드 끝 */}
+            {/* <S.ContentPhotoPic1 onClick={props.onClickImage1}>
               <input
                 type="file"
                 ref={props.uploadImg1}
@@ -124,7 +137,7 @@ export default function PortFolioCreateBoardsUI(
               />
               <S.Pic>+</S.Pic>
               <S.Pic>Upload</S.Pic>
-            </S.ContentPhotoPic3>
+            </S.ContentPhotoPic3> */}
           </S.PhotoHead>
         </S.ContentPhoto>
         <S.Content>

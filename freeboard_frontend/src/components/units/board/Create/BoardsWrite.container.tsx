@@ -28,6 +28,7 @@ export default function PortFolioCreateBoards(
     Pick<IMutation, "updateBoard">,
     IMutationUpdateBoardArgs
   >(UPDATE_BOARD);
+  const router = useRouter();
 
   const [writer, setWriter] = useState("");
   const [password, setPassword] = useState("");
@@ -44,58 +45,7 @@ export default function PortFolioCreateBoards(
   const [addressZipCode, setAddressZipCode] = useState("");
   const [addressDetail, setAddressDetail] = useState("");
 
-  const router = useRouter();
-  const uploadImg1 = useRef<HTMLInputElement>(null);
-  const uploadImg2 = useRef<HTMLInputElement>(null);
-  const uploadImg3 = useRef<HTMLInputElement>(null);
-
-  const [uploadFile] = useMutation(UPLOAD_FILE);
-
-  const [image1, setImage1] = useState("");
-  const [image2, setImage2] = useState("");
-  const [image3, setImage3] = useState("");
-  const [imageSuccess1, setImageSuccess1] = useState(false);
-  const [imageSuccess2, setImageSuccess2] = useState(false);
-  const [imageSuccess3, setImageSuccess3] = useState(false);
-
-  const onClickImage1 = () => {
-    uploadImg1.current?.click();
-  };
-  const onClickImage2 = () => {
-    uploadImg1.current?.click();
-  };
-  const onClickImage3 = () => {
-    uploadImg1.current?.click();
-  };
-
-  const onChangeUploadImage1 = async (event: ChangeEvent<HTMLInputElement>) => {
-    // console.log(event.target.files?.[0]);
-    const file = event.target.files?.[0];
-
-    const result = await uploadFile({ variables: { file } });
-    console.log(result.data?.uploadFile.url);
-
-    setImage1(result.data?.uploadFile.url);
-    setImageSuccess1(true);
-  };
-  const onChangeUploadImage2 = async (event: ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-
-    const result = await uploadFile({ variables: { file } });
-    console.log(result.data?.uploadFile.url);
-
-    setImage2(result.data?.uploadFile.url);
-    setImageSuccess2(true);
-  };
-  const onChangeUploadImage3 = async (event: ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-
-    const result = await uploadFile({ variables: { file } });
-    console.log(result.data?.uploadFile.url);
-
-    setImage3(result.data?.uploadFile.url);
-    setImageSuccess3(true);
-  };
+  const [fileUrls, setFileUrls] = useState(["", "", ""]);
 
   const onChangeWriter = (event: ChangeEvent<HTMLInputElement>) => {
     setWriter(event.target.value);
@@ -153,6 +103,12 @@ export default function PortFolioCreateBoards(
     setYoutubeUrl(event.target.value);
   };
 
+  const onChangeFileUrls = (fileUrl, index) => {
+    const newFileUrls = [...fileUrls];
+    newFileUrls[index] = fileUrl;
+    setFileUrls(newFileUrls);
+  };
+
   // if문을 분리해서 다시 진행
   const onClickContents = async () => {
     if (!writer) {
@@ -191,10 +147,12 @@ export default function PortFolioCreateBoards(
                 address: address,
                 addressDetail: addressDetail,
               },
+              images: [...fileUrls],
             },
           },
         });
-        router.push(`/homepage/${result.data?.createBoard._id}`);
+        // router.push(`/homepage/${result.data?.createBoard._id}`);
+        console.log(result);
       } catch (error) {
         if (error instanceof Error)
           Modal.error({
@@ -258,9 +216,6 @@ export default function PortFolioCreateBoards(
 
   const AddressShowModal = () => {
     setAddressIsModalOpen((prev) => !prev);
-    console.log(addressIsModalOpen);
-
-    // console.log(addressIsModalOpen);
   };
 
   const AddressHandleOk = () => {
@@ -269,7 +224,6 @@ export default function PortFolioCreateBoards(
 
   const AddressHandleCancel = () => {
     setAddressIsModalOpen(false);
-    console.log(addressIsModalOpen);
   };
 
   // 주소 입력창 모달 종료
@@ -302,18 +256,10 @@ export default function PortFolioCreateBoards(
       onChangeAddressDetail={onChangeAddressDetail}
       setAddressIsModalOpen={setAddressIsModalOpen}
       //주소 입력창 종료
-      onClickImage1={onClickImage1}
-      onClickImage2={onClickImage2}
-      onClickImage3={onClickImage3}
-      uploadImg1={uploadImg1}
-      uploadImg2={uploadImg2}
-      uploadImg3={uploadImg3}
-      onChangeUploadImage1={onChangeUploadImage1}
-      onChangeUploadImage2={onChangeUploadImage2}
-      onChangeUploadImage3={onChangeUploadImage3}
-      imageSuccess1={imageSuccess1}
-      imageSuccess2={imageSuccess2}
-      imageSuccess3={imageSuccess3}
+
+      // 이미지 업로드
+      onChangeFileUrls={onChangeFileUrls}
+      fileUrls={fileUrls}
     />
   );
 }

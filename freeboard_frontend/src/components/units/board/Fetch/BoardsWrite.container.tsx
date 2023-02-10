@@ -60,6 +60,7 @@ export default function PortFolioQueryContainer() {
     }
   );
 
+  console.log(data?.fetchBoard.images);
   const [deleteBoard] = useMutation(DELETE_BOARD);
 
   const onClickContents = async () => {
