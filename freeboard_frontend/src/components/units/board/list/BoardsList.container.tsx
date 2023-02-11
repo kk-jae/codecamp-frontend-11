@@ -12,7 +12,7 @@ import { MouseEvent } from "react";
 export default function BoardsListContainer(): JSX.Element {
   const router = useRouter();
 
-  const { data, refetch } = useQuery<
+  const { data, refetch, fetchMore } = useQuery<
     Pick<IQuery, "fetchBoards">,
     IQueryFetchBoardsArgs
   >(FETCH_BOARDS);
@@ -31,6 +31,25 @@ export default function BoardsListContainer(): JSX.Element {
     // console.log(event.currentTarget.id);
   };
 
+  const loadFunc = (): void => {
+    if (data === undefined) return;
+    void fetchMore({
+      variables: {
+        page: Math.ceil((data?.fetchBoards.length ?? 10) / 10) + 1,
+      },
+      updateQuery: (prev, { fetchMoreResult }) => {
+        if (fetchMoreResult.fetchBoards === undefined) {
+          return {
+            fetchBoards: [...prev.fetchBoards],
+          };
+        }
+        return {
+          fetchBoards: [...prev.fetchBoards, ...fetchMoreResult.fetchBoards],
+        };
+      },
+    });
+  };
+
   return (
     <BoardsListContainerUI
       data={data}
@@ -38,6 +57,7 @@ export default function BoardsListContainer(): JSX.Element {
       onClickMovedBoard={onClickMovedBoard}
       refetch={refetch}
       count={dataBoardCount?.fetchBoardsCount}
+      loadFunc={loadFunc}
     />
   );
 }

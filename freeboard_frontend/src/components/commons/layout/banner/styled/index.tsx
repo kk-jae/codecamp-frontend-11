@@ -44,6 +44,18 @@ export const Wrapper_2st = styled.div`
 export const MiddleContainer = styled.div`
   width: 100%;
   height: 100%;
+  position: relative;
+`;
+
+export const MiddleBest3 = styled.div`
+  font-size: 120px;
+  font-weight: 800;
+  color: #fbf251;
+  position: absolute;
+  top: -100px;
+  left: 50px;
+  z-index: 2;
+  transform: rotate(-10deg);
 `;
 
 export const MiddleOne = styled.div`
@@ -65,7 +77,7 @@ export const OneImg = styled.div`
   background-image: url("/skipjack/skipjacksub.jpg");
   background-size: cover;
   border-radius: 50px;
-  transform: rotate(-7deg);
+  /* transform: rotate(-7deg); */
   scale: 0.9;
   transition: all 0.3s ease-in-out;
 

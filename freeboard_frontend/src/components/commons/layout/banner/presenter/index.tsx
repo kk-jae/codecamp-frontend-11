@@ -18,6 +18,7 @@ export default function BannerUI() {
       </S.Wrapper_1st>
       <S.Wrapper_2st>
         <S.MiddleContainer>
+          <S.MiddleBest3>Top 3</S.MiddleBest3>
           <S.MiddleOne>
             <S.One>
               <S.OneImg></S.OneImg>
