@@ -6,7 +6,6 @@ import ReactPlayer from "react-player";
 import { Tooltip } from "antd";
 
 export default function PortFolioQueryUI(props: IProtFolioQueryUI) {
-  console.log(props.data?.fetchBoard.images);
   return (
     <S.PAGE>
       <S.Container>
@@ -48,14 +47,9 @@ export default function PortFolioQueryUI(props: IProtFolioQueryUI) {
               <S.Body_Title>{props.data?.fetchBoard?.title}</S.Body_Title>
               <S.Body_Img_Container>
                 <S.Body_imgWrapper>
-                  {props.data?.fetchBoard.images
-                    ?.filter((el) => el)
-                    .map((el) => (
-                      <S.ImageItem
-                        key={el}
-                        src={`https://storage.googleapis.com/${el}`}
-                      />
-                    ))}
+                  <S.ImageItem
+                    src={`https://storage.googleapis.com/${props.data?.fetchBoard.images[0]}`}
+                  />
                 </S.Body_imgWrapper>
               </S.Body_Img_Container>
               {/* <S.Body_img src="../BoardPage/boardIMG.png" alt="게시글 이미지" /> */}

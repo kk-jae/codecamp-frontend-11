@@ -45,9 +45,11 @@ export const MiddleContainer = styled.div`
   width: 100%;
   height: 100%;
   position: relative;
+  padding: 20px;
+  background-color: black;
 `;
 
-export const MiddleBest3 = styled.div`
+export const MiddleBest3Text = styled.div`
   font-size: 120px;
   font-weight: 800;
   color: #fbf251;
@@ -58,28 +60,30 @@ export const MiddleBest3 = styled.div`
   transform: rotate(-10deg);
 `;
 
+export const ElContainer = styled.div`
+  width: 100%;
+  height: 25%;
+  /* height: 50%; */
+`;
 export const MiddleOne = styled.div`
   width: 100%;
-  height: 33%;
+  height: 100%;
   background-color: black;
 `;
 export const One = styled.div`
-  padding: 40px;
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: row;
 `;
-export const OneImg = styled.div`
+export const OneImg = styled.img`
   width: 25%;
   height: 100%;
-  background-color: red;
-  background-image: url("/skipjack/skipjacksub.jpg");
   background-size: cover;
   border-radius: 50px;
-  /* transform: rotate(-7deg); */
   scale: 0.9;
   transition: all 0.3s ease-in-out;
+  color: white;
 
   :hover {
     scale: 0.95;
@@ -93,7 +97,7 @@ export const OneText = styled.div`
 `;
 
 export const OneText_Name = styled.div`
-  font-size: 55px;
+  font-size: 40px;
   font-weight: 800;
   padding-bottom: 20px;
 `;
@@ -101,13 +105,13 @@ export const OneText_Name = styled.div`
 export const OneText_Name_kr = styled.span``;
 
 export const OneText_Name_en = styled.span`
-  font-size: 35px;
+  font-size: 25px;
   padding-left: 20px;
 `;
 
 export const OneText_Contents = styled.div`
   width: 100%;
-  font-size: 28px;
+  font-size: 23px;
 `;
 
 export const OneImp = styled.div`
@@ -141,6 +145,11 @@ export const OneImp_FaceBook = styled.div`
   :hover {
     scale: 1.2;
   }
+`;
+
+export const OneImp_Like = styled.div`
+  font-size: 30px;
+  color: red;
 `;
 
 export const MiddleTwo = styled.div`

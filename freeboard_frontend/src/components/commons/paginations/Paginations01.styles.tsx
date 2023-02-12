@@ -1,8 +1,7 @@
 import styled from "@emotion/styled";
 
 export const PageNation = styled.div`
-  width: 62%;
-  margin-bottom: 10px;
+  color: white;
 `;
 
 export const PageNationBtn = styled.button`
@@ -21,7 +20,6 @@ interface IPageProps {
 export const PageNationBtnNumber = styled.button`
   border: none;
   font-size: 20px;
-  width: 8%;
   background-color: white;
   color: ${(props: IPageProps) =>
     props.isActive ? "black" : "rgb(48, 52, 65)"};

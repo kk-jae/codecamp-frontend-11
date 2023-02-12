@@ -9,6 +9,7 @@ import Paginations01 from "../../../commons/paginations/Paginations01.container"
 import { ApolloQueryResult } from "@apollo/client";
 import React from "react";
 import InfiniteScroll from "react-infinite-scroller";
+import SearchContentsComponent from "../../../commons/searchContents";
 
 interface IBoardsListContainerUIProps {
   data: Pick<IQuery, "fetchBoards">;
@@ -27,11 +28,14 @@ export default function BoardsListContainerUI(
     <>
       <S.Container>
         <S.Container_top>
-          {/* <S.Top_PageNations> */}
-          {/* 페이지 네이션 시작 */}
-          {/* <Paginations01 refetch={props.refetch} count={props.count} /> */}
-          {/* 페이지 네이션 종료 */}
-          {/* </S.Top_PageNations> */}
+          <S.SearchContents>
+            <S.SearchContents_input onChange={props.onChangeSearchContents} />
+            <S.SearchContents_button>검색</S.SearchContents_button>
+          </S.SearchContents>
+          <S.CreateNewBoard onClick={props.onClickNewCreateBoard}>
+            <img src="../BoardPage/List_newBoard.png" alt="게시글등록"></img>
+            게시물 등록하기
+          </S.CreateNewBoard>
         </S.Container_top>
         <S.Wrapper>
           <S.Contents>
@@ -41,11 +45,15 @@ export default function BoardsListContainerUI(
                   loadMore={props.loadFunc}
                   hasMore={true}
                 > */}
-              {props.data?.fetchBoards.map((el) => (
+              {props.data?.fetchBoards.map((el, index) => (
                 <S.List_Item onClick={props.onClickMovedBoard} id={el._id}>
                   <S.Item_Top>
-                    <S.Top_img src="/pushoff.jpg" alt="이미지" />
+                    <S.Top_img
+                      src={`https://storage.googleapis.com/${el.images[0]}`}
+                      alt="이미지"
+                    />
                   </S.Item_Top>
+
                   <S.Item_Bottom>
                     <S.Right_Bottom>
                       <S.Bottom_writer>{el.writer}</S.Bottom_writer>
@@ -57,18 +65,11 @@ export default function BoardsListContainerUI(
               ))}
               {/* </InfiniteScroll> */}
             </S.List_Container>
-            {/* <S.Wrapper_footer> */}
-            {/* 페이지 네이션 시작 */}
-            {/* <Paginations01 refetch={props.refetch} count={props.count} /> */}
-            {/* 페이지 네이션 종료 */}
-            {/* <S.CreateNewBoard onClick={props.onClickNewCreateBoard}>
-                <img
-                  src="../BoardPage/List_newBoard.png"
-                  alt="게시글등록"
-                ></img>
-                게시물 등록하기
-              </S.CreateNewBoard> */}
-            {/* </S.Wrapper_footer> */}
+            <S.Wrapper_footer>
+              {/* 페이지 네이션 시작 */}
+              <Paginations01 refetch={props.refetch} count={props.count} />
+              {/* 페이지 네이션 종료 */}
+            </S.Wrapper_footer>
           </S.Contents>
         </S.Wrapper>
       </S.Container>

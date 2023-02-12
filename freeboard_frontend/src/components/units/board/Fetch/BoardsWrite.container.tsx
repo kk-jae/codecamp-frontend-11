@@ -14,6 +14,7 @@ import {
 } from "../../../../commons/types/generated/types";
 import { useState, ChangeEvent } from "react";
 import { Modal } from "antd";
+import { ConsoleSqlOutlined } from "@ant-design/icons";
 
 export default function PortFolioQueryContainer() {
   const router = useRouter();
@@ -59,8 +60,8 @@ export default function PortFolioQueryContainer() {
       variables: { boardId: String(router.query.boardId) },
     }
   );
+  console.log(data);
 
-  console.log(data?.fetchBoard.images);
   const [deleteBoard] = useMutation(DELETE_BOARD);
 
   const onClickContents = async () => {

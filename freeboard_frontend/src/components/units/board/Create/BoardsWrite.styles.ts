@@ -133,41 +133,6 @@ export const PhotoHead = styled.div`
   display: flex;
 `;
 
-export const ContentPhotoPic1 = styled.div`
-  width: 78px;
-  height: 78px;
-  margin-right: 20px;
-  /* background-color: #bdbdbd; */
-  background-color: ${(props) => (props.imageSuccess1 ? "yellow" : "#bdbdbd")};
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-`;
-export const ContentPhotoPic2 = styled.div`
-  width: 78px;
-  height: 78px;
-  margin-right: 20px;
-  background-color: ${(props) => (props.imageSuccess2 ? "yellow" : "#bdbdbd")};
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-`;
-export const ContentPhotoPic3 = styled.div`
-  width: 78px;
-  height: 78px;
-  margin-right: 20px;
-  background-color: ${(props) => (props.imageSuccess3 ? "yellow" : "#bdbdbd")};
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-`;
-
 export const Pic = styled.div`
   font-size: 16px;
 `;

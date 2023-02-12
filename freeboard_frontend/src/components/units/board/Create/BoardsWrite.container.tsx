@@ -30,6 +30,8 @@ export default function PortFolioCreateBoards(
   >(UPDATE_BOARD);
   const router = useRouter();
 
+  const [uploadFile] = useMutation(UPLOAD_FILE);
+
   const [writer, setWriter] = useState("");
   const [password, setPassword] = useState("");
   const [title, setTitle] = useState("");
@@ -45,7 +47,7 @@ export default function PortFolioCreateBoards(
   const [addressZipCode, setAddressZipCode] = useState("");
   const [addressDetail, setAddressDetail] = useState("");
 
-  const [fileUrls, setFileUrls] = useState(["", "", ""]);
+  const [imgUrl, setImgUrl] = useState(""); // API 에서 보내주는 url입니다. (googleapis에 적용하면 됩니다.)
 
   const onChangeWriter = (event: ChangeEvent<HTMLInputElement>) => {
     setWriter(event.target.value);
@@ -103,10 +105,19 @@ export default function PortFolioCreateBoards(
     setYoutubeUrl(event.target.value);
   };
 
-  const onChangeFileUrls = (fileUrl, index) => {
-    const newFileUrls = [...fileUrls];
-    newFileUrls[index] = fileUrl;
-    setFileUrls(newFileUrls);
+  const onChangeUploadFile = async (event) => {
+    // console.log(event.target?.files[0]);
+    const file = event.target?.files[0];
+
+    const result = await uploadFile({
+      variables: {
+        file: file,
+      },
+    });
+
+    setImgUrl(result.data?.uploadFile.url);
+    // console.log(imgUrl);
+    // console.log(imgUrl);
   };
 
   // if문을 분리해서 다시 진행
@@ -147,12 +158,11 @@ export default function PortFolioCreateBoards(
                 address: address,
                 addressDetail: addressDetail,
               },
-              images: [...fileUrls],
+              images: [imgUrl],
             },
           },
         });
-        // router.push(`/homepage/${result.data?.createBoard._id}`);
-        console.log(result);
+        router.push(`/homepage/${result.data?.createBoard._id}`);
       } catch (error) {
         if (error instanceof Error)
           Modal.error({
@@ -171,6 +181,7 @@ export default function PortFolioCreateBoards(
       // }
       if (contents) updateBoardInput.contents = contents;
       if (youtubeUrl) updateBoardInput.youtubeUrl = youtubeUrl;
+      if (imgUrl) updateBoardInput.images = [imgUrl];
 
       const result = await updateBoard({
         variables: {
@@ -258,8 +269,9 @@ export default function PortFolioCreateBoards(
       //주소 입력창 종료
 
       // 이미지 업로드
-      onChangeFileUrls={onChangeFileUrls}
-      fileUrls={fileUrls}
+
+      onChangeUploadFile={onChangeUploadFile}
+      imgUrl={imgUrl}
     />
   );
 }

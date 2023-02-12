@@ -98,15 +98,12 @@ export default function PortFolioCreateBoardsUI(
           <S.ContentHead>사진첨부</S.ContentHead>
           <S.PhotoHead>
             {/* 이미지 업로드 시작*/}
-            {props.fileUrls.map((el, index) => (
-              <Upload01Container
-                key={uuidv4()}
-                index={index}
-                fileUrl={el}
-                onChangeFileUrls={props.onChangeFileUrls}
-              />
-            ))}
-
+            <input type="file" onChange={props.onChangeUploadFile} />
+            <img
+              src={`https://storage.googleapis.com/${props.imgUrl}`}
+              style={{ width: "100px", height: "100px" }}
+            />
+            {/* <S.ContentPhotoPic1>+</S.ContentPhotoPic1> */}
             {/* 이미지 업로드 끝 */}
             {/* <S.ContentPhotoPic1 onClick={props.onClickImage1}>
               <input

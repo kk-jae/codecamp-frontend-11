@@ -10,6 +10,8 @@ import {
   deleteField,
 } from "firebase/firestore/lite";
 import { firebaseApp } from "../../../src/commons/libraries/firebase";
+import { Calendar } from "@fullcalendar/core";
+import dayGridPlugin from "@fullcalendar/daygrid";
 
 export default function FirebasePage(): JSX.Element {
   const router = useRouter();
@@ -19,45 +21,45 @@ export default function FirebasePage(): JSX.Element {
   };
 
   const [writer, setWriter] = useState("");
-  const [title, setTitle] = useState("");
-  const [contents, setContents] = useState("");
+  const [place, setPlace] = useState("");
   const [date, setDate] = useState("");
-
-  const [datas, setDatas] = useState("");
 
   const onChangeWriter = (event: ChangeEvent<HTMLInputElement>) => {
     setWriter(event.currentTarget.value);
   };
-  const onChangeTitle = (event: ChangeEvent<HTMLInputElement>) => {
-    setTitle(event.currentTarget.value);
-  };
-  const onChangeContents = (event: ChangeEvent<HTMLInputElement>) => {
-    setContents(event.currentTarget.value);
+  const onChangePlace = (event: ChangeEvent<HTMLInputElement>) => {
+    setPlace(event.currentTarget.value);
   };
 
+  const onChangeDate = (event) => {
+    setDate(event.target.value);
+    // console.log(event.target.value);
+  };
   const onClickSubmit = () => {
-    const practice = collection(getFirestore(firebaseApp), "practice");
+    const concertDate = collection(getFirestore(firebaseApp), "concertDate");
 
-    void addDoc(practice, {
+    void addDoc(concertDate, {
       writer,
-      title,
-      contents,
+      place,
       date,
     });
 
     setWriter("");
-    setTitle("");
-    setContents("");
+    setPlace("");
     setDate("");
+
+    console.log(date);
   };
 
-  const onClickFetch = async (): Promise<void> => {
-    const practice = collection(getFirestore(firebaseApp), "practice");
-    const result = await getDocs(practice);
-    const datas = result.docs.map((el) => el.data());
-    setDatas(datas);
+  const [concertDate, setConcertDate] = useState([]);
 
-    console.log(datas.map((el) => el.contents));
+  const onClickFetch = async (): Promise<void> => {
+    const concertDate = collection(getFirestore(firebaseApp), "concertDate");
+    const result = await getDocs(concertDate);
+    const datas = result.docs.map((el) => el.data());
+    // console.log(datas[0]);
+    setConcertDate(datas);
+    console.log(concertDate);
   };
 
   // const onClickDelete = async () => {
@@ -67,6 +69,8 @@ export default function FirebasePage(): JSX.Element {
   //   });
   // };
 
+  // 달력 시작
+
   return (
     <>
       <button onClick={onClickFirebaseLink}>Firebase 홈페이지</button>
@@ -75,26 +79,19 @@ export default function FirebasePage(): JSX.Element {
           작성자 :
           <input onChange={onChangeWriter} />
         </div>
+
         <div>
-          제목 :
-          <input onChange={onChangeTitle} />
+          장소 :
+          <input onChange={onChangePlace} />
         </div>
         <div>
-          내용 :
-          <input onChange={onChangeContents} />
+          날짜 : <input type="datetime-local" onChange={onChangeDate} />
         </div>
       </div>
       <button onClick={onClickSubmit}>등록하기</button>
       <button onClick={onClickFetch}>조회하기</button>
       {/* <button onClick={onClickDelete}>삭제하기</button> */}
       <div>===========조회 목록===========</div>
-      {/* {datas.map((el) => ( */}
-      {/* <div> */}
-      {/* <div>작성자 :{el.writer}</div> */}
-      {/* <div>제목 :{el.title}</div> */}
-      {/* <div>내용 :{el.contents}</div> */}
-      {/* </div> */}
-      {/* ))} */}
     </>
   );
 }

@@ -1,4 +1,3 @@
-import { firebaseApp } from "./../../../../commons/libraries/firebase";
 import styled from "@emotion/styled";
 
 export const Container = styled.div`
@@ -8,14 +7,20 @@ export const Container = styled.div`
   width: 100%;
   background-color: black;
   color: white;
+  position: relative; // List Item hover시 전체 화면의 가운데로?
 `;
 
 export const Container_top = styled.div`
   width: 80%;
   height: 10vh;
-  border: 1px solid red;
+  border: 1px solid blue;
 `;
-// export const Top_PageNations = styled.div``;
+
+export const SearchContents = styled.div``;
+export const SearchContents_input = styled.input``;
+export const SearchContents_button = styled.button``;
+
+export const Top_PageNations = styled.div``;
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -30,33 +35,41 @@ export const Contents = styled.div`
 
 export const List_Container = styled.div`
   width: 100%;
-  display: grid;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  /* display: grid;
   grid-template-columns: repeat(
     3,
     1fr
-  ); // 1fr 1fr 1fr 1fr; colum 을 3줄, 1fr 크기로 나눈다
+  ); // 1fr 1fr 1fr 1fr; colum 을 3줄, 1fr 크기로 나눈다 */
 `;
 
 export const List_Item = styled.div`
-  height: 400px;
+  width: 300px;
+  height: 350px;
   overflow: hidden;
   border-radius: 30px;
   margin: 20px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
+
   :hover {
     transform: scale(1.02);
   }
+
   box-shadow: 1px 1px 3px white;
 `;
 
 export const Item_Top = styled.div`
   width: 100%;
+  height: 220px;
 `;
 
 export const Top_img = styled.img`
   width: 100%;
-  height: 240px;
+  height: 100%;
 `;
 
 export const Item_Bottom = styled.div`
@@ -81,30 +94,16 @@ export const Right_right = styled.div``;
 
 // 페이지네이션
 export const Wrapper_footer = styled.div`
-  /* width: 100%;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   margin-top: 15px;
-  position: relative;
-  background-color: yellow; */
+  /* position: relative; */
+  border: 1px solid gray;
 `;
 
-// export const CreateNewBoard = styled.button`
-//   position: absolute;
-//   right: 10px;
-//   /* width: 150px; */
-//   height: 45px;
-//   background-color: white;
-//   border: 1px solid #ffd600;
-//   box-shadow: 1px 1px 4px #ffd600;
-//   /* border: 1px solid #f2f2f2; */
-//   /* border-radius: 10px; */
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: space-evenly;
-//   align-items: center;
-//   margin-left: 8%;
-//   cursor: pointer;
-// `;
+export const CreateNewBoard = styled.button`
+  cursor: pointer;
+`;

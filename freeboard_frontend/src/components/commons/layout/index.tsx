@@ -17,7 +17,7 @@ export default function Layout(props) {
     `/homepage/${router.query.boardId}`,
   ];
 
-  console.log(router.query);
+  // console.log(router.query);
   const isHiddenBanner = HIDDEN_BANNER.includes(router.asPath);
 
   return (

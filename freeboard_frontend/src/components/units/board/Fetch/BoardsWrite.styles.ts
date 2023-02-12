@@ -11,7 +11,7 @@ export const PAGE = styled.div`
 `;
 
 export const Container = styled.div`
-  width: 1200px;
+  width: 80vw;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -138,8 +138,8 @@ export const Body_imgWrapper = styled.div`
 `;
 
 export const ImageItem = styled.img`
-  width: 100px;
-  height: 480px;
+  width: 200px;
+  height: 200px;
   margin: 0px 0px 30px 0px;
   object-fit: cover;
 `;

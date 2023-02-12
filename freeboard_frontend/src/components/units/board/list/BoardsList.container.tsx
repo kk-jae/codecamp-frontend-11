@@ -7,7 +7,9 @@ import type {
   IQueryFetchBoardsArgs,
   IQueryFetchBoardsCountArgs,
 } from "../../../../commons/types/generated/types";
-import { MouseEvent } from "react";
+import type { ChangeEvent, MouseEvent } from "react";
+import _ from "lodash";
+import { List_Item } from "./BoardsList.styles";
 
 export default function BoardsListContainer(): JSX.Element {
   const router = useRouter();
@@ -28,7 +30,7 @@ export default function BoardsListContainer(): JSX.Element {
 
   const onClickMovedBoard = (event: MouseEvent<HTMLDivElement>): void => {
     void router.push(`/homepage/${event.currentTarget.id}`);
-    // console.log(event.currentTarget.id);
+    console.log(event.currentTarget);
   };
 
   const loadFunc = (): void => {
@@ -50,6 +52,20 @@ export default function BoardsListContainer(): JSX.Element {
     });
   };
 
+  const getDebounce = _.debounce((value) => {
+    void refetch({ search: value, page: 1 });
+    // 계속 onChangeSearch 가 실행되다가 0.5초 동안 아무동작도 없을때 refetch 실행
+  }, 500);
+
+  const onChangeSearchContents = (
+    event: ChangeEvent<HTMLInputElement>
+  ): void => {
+    // setSearch(event.currentTarget.value);
+    getDebounce(event.currentTarget.value);
+
+    // void refetch({ search: event.currentTarget.value, page: 1 });
+  };
+
   return (
     <BoardsListContainerUI
       data={data}
@@ -58,6 +74,7 @@ export default function BoardsListContainer(): JSX.Element {
       refetch={refetch}
       count={dataBoardCount?.fetchBoardsCount}
       loadFunc={loadFunc}
+      onChangeSearchContents={onChangeSearchContents}
     />
   );
 }
