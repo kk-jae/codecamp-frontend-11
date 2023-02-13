@@ -1,190 +1,156 @@
 import styled from "@emotion/styled";
 //과제
-export const PAGE = styled.div`
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+export const Container = styled.div`
+  padding: 5% 0 5% 0;
+  width: 100%;
+  /* border: 1px solid red; */
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-top: 2%;
 `;
-
-export const Container = styled.div`
+export const Wrapper = styled.div`
   width: 80vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-export const Head = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
-  padding-left: 100px;
-  padding-right: 100px;
-`;
-
-export const Head_header = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  border-bottom: 1px solid #bdbdbd;
-  padding-bottom: 15px;
-`;
-
-export const Header_right = styled.div`
+  height: 80vh;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
 `;
 
-// export const GpsImp = styled.div`
-//   background-color: gray;
-//   width: 100%;
-//   margin-top: 20px;
-//   font-size: 16px;
-//   font-weight: 500;
-//   color: white;
-//   padding: 8px;
-//   text-align: right;
-// `;
-
-export const Header_left = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-`;
-
-export const Writer_Name_Date = styled.div`
+export const Wrapper_Left = styled.div`
   width: 50%;
+  height: 100%;
+  padding: 20px;
 `;
-export const WriterImp = styled.div`
+export const ImageItem = styled.img`
   width: 100%;
-  padding-top: 80px;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+`;
+
+export const Wrapper_Center = styled.div`
+  width: 25%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 18px;
+`;
+
+export const Center_Top = styled.div`
+  width: 100%;
+  height: 7%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-bottom: 15px;
 `;
-
-export const Writer_Img = styled.img`
-  margin: 0px 15px 0px 0px;
-`;
-
-export const WriterImp_left = styled.div`
+export const Center_Top_left = styled.div`
   display: flex;
-  width: 90%;
   flex-direction: row;
+  justify-content: flex-start;
   align-items: center;
 `;
+export const Writer_Img = styled.img`
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+`;
+
 export const Writer_Name = styled.div`
-  width: 100%;
-  font-size: 24px;
-  font-weight: 500;
-  /* background-color: red; */
+  font-size: 20px;
+  font-weight: 700;
   overflow: hidden;
   text-overflow: ellipsis;
 `;
-export const Writer_Date = styled.div`
-  font-size: 16px;
-  font-weight: 400;
-  padding-top: 5px;
-  color: #828282;
-`;
 
-export const WriterImp_right = styled.div`
+export const Center_Top_right = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: flex-end;
+  position: relative;
+`;
+export const Writer_Date = styled.div`
+  font-size: 13px;
+  color: gray;
+`;
+
+export const Center_Top_right_file_gps = styled.div`
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
+  top: 0px;
+  right: 0px;
 `;
 export const Right_file = styled.img`
-  margin-right: 30px;
+  width: 20px;
+  height: 20px;
 `;
 
-export const Right_Gps = styled.img``;
-
-export const Head_body = styled.div`
-  display: flex;
-  flex-direction: column;
+export const Right_Gps = styled.img`
+  width: 25px;
+  height: 25px;
+  margin-left: 5px;
 `;
 
-export const Head_body_left = styled.div`
+export const Center_Middle = styled.div`
+  width: 100%;
+  height: 90%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const Center_Middle_title_detail_comment = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+export const Center_Middle_title_detail = styled.div`
+  width: 100%;
+  /* height: 50%; */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-bottom: 50px;
+`;
+
+export const Center_Middle_comment = styled.div`
+  width: 100%;
+
+  /* height: 50%; */
+`;
+export const Center_Middle_comment_text = styled.div`
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
 `;
 
 export const Body_Title = styled.div`
-  font-size: 36px;
-  font-weight: 700;
-  padding: 85px 0px 50px 0px;
-`;
-
-export const Head_body_center = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-export const Body_Img_Container = styled.div`
-  width: 100px;
-  display: flex;
-  flex-direction: column;
-`;
-
-export const Body_imgWrapper = styled.div`
-  width: 100px;
-`;
-
-export const ImageItem = styled.img`
-  width: 200px;
-  height: 200px;
-  margin: 0px 0px 30px 0px;
-  object-fit: cover;
-`;
-
-// export const Body_img = styled.img`
-//   width: 100%;
-//   height: 480px;
-//   background-color: gray;
-//   margin: 0px 0px 30px 0px;
-//   object-fit: cover;
-// `;
-
-export const Body_detail = styled.div`
-  /* background-color:red; */
   width: 100%;
-  word-wrap: break-word;
-  white-space: pre-wrap;
+  overflow: hidden;
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 10px;
 `;
-
-export const Body_youtube = styled.div`
-  width: 40%;
-  height: 240px;
-  text-align: center;
-  margin: 100px 0px 100px 0px;
+export const Body_detail = styled.div`
+  font-size: 20px;
+  font-weight: 500;
 `;
-
 export const Body_Like = styled.div`
+  width: 50%;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  margin-bottom: 60px;
-  width: 10%;
 `;
 
 export const Like_left = styled.button`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: white;
   border: none;
+  background-color: white;
   cursor: pointer;
 `;
 export const Like_left_img = styled.img`
-  margin-bottom: 10px;
   width: 20px;
   height: 20px;
 `;
@@ -194,63 +160,37 @@ export const Like_left_count = styled.div`
 `;
 
 export const Like_right = styled.button`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: white;
   border: none;
+  background-color: white;
   cursor: pointer;
 `;
+
+export const Body_youtube = styled.div`
+  width: 100px;
+  height: 100px;
+`;
+
 export const Like_right_img = styled.img`
-  margin-bottom: 10px;
   width: 20px;
   height: 20px;
 `;
 export const Like_right_count = styled.div`
-  color: #828282;
+  color: gray;
 `;
 
-export const Body = styled.div`
-  width: calc(100% + 200px);
-  border-bottom: 1px solid #bdbdbd;
-`;
-export const Body_Btn = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin: 100px 0px 100px 0px;
-`;
+export const Body_Btn = styled.div``;
 
 export const Body_Btn_List = styled.button`
-  width: 179px;
-  height: 45px;
-  background-color: white;
-  border: 1px solid #bdbdbd;
   cursor: pointer;
 `;
 export const Body_Btn_update = styled.button`
-  width: 179px;
-  height: 45px;
-  background-color: white;
-  border: 1px solid #bdbdbd;
   cursor: pointer;
-
-  margin: 0px 1% 0px 1%;
 `;
 export const Body_Btn_delete = styled.button`
-  width: 179px;
-  height: 45px;
-  background-color: white;
-
-  border: 1px solid #bdbdbd;
   cursor: pointer;
 `;
 
-export const Footer = styled.div`
-  width: calc(100% + 200px);
-  display: flex;
-  flex-direction: column;
-`;
+export const Footer = styled.div``;
 
 export const Footer_Head = styled.div`
   display: flex;

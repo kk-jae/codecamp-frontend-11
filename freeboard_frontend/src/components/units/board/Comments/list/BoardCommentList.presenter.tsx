@@ -23,22 +23,49 @@ export default function PortFolioQueryUI(props: IProtFolioQueryUI) {
                 {props.data?.fetchBoardComments.map((el, index) =>
                   props.myIndex !== index ? (
                     <S.Footer_Review key={el._id}>
-                      <S.Footer_Review_Profile_img
-                        src="../BoardPage/writerIMG.png"
-                        alt="프로필이미지"
-                      />
+                      <S.Footer_Review_Board_img_writer>
+                        <S.Footer_Review_Profile_img
+                          src="../BoardPage/writerIMG.png"
+                          alt="프로필이미지"
+                        />
+                        <S.Footer_Review_Writer>
+                          {el.writer}
+                        </S.Footer_Review_Writer>
+
+                        <span>
+                          <Rate disabled={true} value={el.rating} />
+                        </span>
+
+                        {/* 수정 삭제 */}
+                        <S.Footer_Review_update_delete>
+                          <S.Footer_Review_update
+                            onClick={props.onClickUpdateBoardCommentInputs}
+                            id={String(index)}
+                            src="../BoardPage/reviewUp.png"
+                            alt="수정"
+                          />
+                          <S.Footer_Review_delete
+                            src="../BoardPage/reviewDel.png"
+                            alt="삭제"
+                            id={el._id}
+                            onClick={props.showModal}
+                          ></S.Footer_Review_delete>
+                          <Modal
+                            title="비밀번호를 입력하세요"
+                            open={props.isModalOpen}
+                            onOk={props.handleOk}
+                            onCancel={props.handleCancel}
+                          >
+                            <input
+                              type="password"
+                              onChange={props.onChangeCommentPassword}
+                            />
+                          </Modal>
+                        </S.Footer_Review_update_delete>
+                        {/* 수정 삭제 종료 */}
+                      </S.Footer_Review_Board_img_writer>
+
                       <S.Footer_Review_Board>
-                        <S.Footer_Review_Board_Writer_Rating>
-                          <S.Footer_Review_Writer>
-                            {el.writer}
-                          </S.Footer_Review_Writer>
-                          <S.Footer_Review_Rating>
-                            <span>
-                              <Rate disabled={true} value={el.rating} />
-                            </span>
-                          </S.Footer_Review_Rating>
-                          {/* <S.Footer_Review_Rating>{el.rating}</S.Footer_Review_Rating> */}
-                        </S.Footer_Review_Board_Writer_Rating>
                         <S.Footer_Review_contents>
                           {el.contents}
                         </S.Footer_Review_contents>
@@ -46,31 +73,6 @@ export default function PortFolioQueryUI(props: IProtFolioQueryUI) {
                           {getDate(el.createdAt)}
                         </S.Footer_Review_date>
                       </S.Footer_Review_Board>
-                      <S.Footer_Review_update_delete>
-                        <S.Footer_Review_update
-                          onClick={props.onClickUpdateBoardCommentInputs}
-                          id={String(index)}
-                          src="../BoardPage/reviewUp.png"
-                          alt="수정"
-                        />
-                        <S.Footer_Review_delete
-                          src="../BoardPage/reviewDel.png"
-                          alt="삭제"
-                          id={el._id}
-                          onClick={props.showModal}
-                        ></S.Footer_Review_delete>
-                        <Modal
-                          title="비밀번호를 입력하세요"
-                          open={props.isModalOpen}
-                          onOk={props.handleOk}
-                          onCancel={props.handleCancel}
-                        >
-                          <input
-                            type="password"
-                            onChange={props.onChangeCommentPassword}
-                          />
-                        </Modal>
-                      </S.Footer_Review_update_delete>
                     </S.Footer_Review>
                   ) : (
                     // ====================버튼 눌렸을때 ==================

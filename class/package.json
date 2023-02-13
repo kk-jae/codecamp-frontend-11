@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.0.1",
-    "@apollo/client": "^3.7.1",
+    "@apollo/client": "^3.7.7",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@types/apollo-upload-client": "^17.0.2",
@@ -48,5 +48,8 @@
     "eslint-plugin-react": "^7.32.1",
     "prettier": "2.8.3",
     "typescript": "*"
+  },
+  "resolutions": {
+    "@types/react": "17.0.2"
   }
 }

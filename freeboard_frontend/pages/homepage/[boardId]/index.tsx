@@ -4,7 +4,7 @@ export default function PortFolioMoved() {
   return (
     <div>
       <PortFolioQueryContainer />
-      <PortFolioMovedComments />
+      {/* <PortFolioMovedComments /> */}
     </div>
   );
 

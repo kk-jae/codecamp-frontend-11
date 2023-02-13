@@ -39,35 +39,35 @@ export default function BoardsListContainerUI(
         </S.Container_top>
         <S.Wrapper>
           <S.Contents>
-            <S.List_Container>
-              {/* <InfiniteScroll
-                  pageStart={0}
-                  loadMore={props.loadFunc}
-                  hasMore={true}
-                > */}
-              {props.data?.fetchBoards.map((el, index) => (
-                <S.List_Item onClick={props.onClickMovedBoard} id={el._id}>
-                  <S.Item_Top>
-                    <S.Top_img
-                      src={`https://storage.googleapis.com/${el.images[0]}`}
-                      alt="이미지"
-                    />
-                  </S.Item_Top>
+            <InfiniteScroll
+              pageStart={0}
+              loadMore={props.loadFunc}
+              hasMore={true}
+            >
+              <S.List_Container>
+                {props.data?.fetchBoards.map((el, index) => (
+                  <S.List_Item onClick={props.onClickMovedBoard} id={el._id}>
+                    <S.Item_Top>
+                      <S.Top_img
+                        src={`https://storage.googleapis.com/${el.images[0]}`}
+                        alt="이미지가 없습니다"
+                      />
+                    </S.Item_Top>
 
-                  <S.Item_Bottom>
-                    <S.Right_Bottom>
-                      <S.Bottom_writer>{el.writer}</S.Bottom_writer>
-                      <S.Bottom_title>{el.title}</S.Bottom_title>
-                    </S.Right_Bottom>
-                    <S.Right_right></S.Right_right>
-                  </S.Item_Bottom>
-                </S.List_Item>
-              ))}
-              {/* </InfiniteScroll> */}
-            </S.List_Container>
+                    <S.Item_Bottom>
+                      <S.Right_Bottom>
+                        <S.Bottom_writer>{el.writer}</S.Bottom_writer>
+                        <S.Bottom_title>{el.title}</S.Bottom_title>
+                      </S.Right_Bottom>
+                      <S.Right_right></S.Right_right>
+                    </S.Item_Bottom>
+                  </S.List_Item>
+                ))}
+              </S.List_Container>
+            </InfiniteScroll>
             <S.Wrapper_footer>
               {/* 페이지 네이션 시작 */}
-              <Paginations01 refetch={props.refetch} count={props.count} />
+              {/* <Paginations01 refetch={props.refetch} count={props.count} /> */}
               {/* 페이지 네이션 종료 */}
             </S.Wrapper_footer>
           </S.Contents>
