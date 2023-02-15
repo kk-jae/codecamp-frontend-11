@@ -110,7 +110,7 @@ export const AdrTopInput = styled.input`
   font-weight: 400;
 
   ::placeholder {
-    color: ${(props) => (props.readOnly ? "black" : "gray")};
+    color: ${(props) => (!props.readOnly ? "black" : "gray")};
     /* background-color: ${(props: IProps) =>
       props.isActive ? "#FFD600" : ""}; */
   }

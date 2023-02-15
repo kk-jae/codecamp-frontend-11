@@ -8,6 +8,7 @@ import {
   deleteDoc,
   updateDoc,
   deleteField,
+  DocumentData,
 } from "firebase/firestore/lite";
 import { firebaseApp } from "../../../src/commons/libraries/firebase";
 import { Calendar } from "@fullcalendar/core";
@@ -51,15 +52,14 @@ export default function FirebasePage(): JSX.Element {
     console.log(date);
   };
 
-  const [concertDate, setConcertDate] = useState([]);
+  const [concertDates, setConcertDates] = useState<DocumentData[]>([]);
 
   const onClickFetch = async (): Promise<void> => {
     const concertDate = collection(getFirestore(firebaseApp), "concertDate");
     const result = await getDocs(concertDate);
     const datas = result.docs.map((el) => el.data());
-    // console.log(datas[0]);
-    setConcertDate(datas);
-    console.log(concertDate);
+    setConcertDates(datas);
+    console.log(concertDates.map((el) => el.writer));
   };
 
   // const onClickDelete = async () => {
@@ -92,6 +92,7 @@ export default function FirebasePage(): JSX.Element {
       <button onClick={onClickFetch}>조회하기</button>
       {/* <button onClick={onClickDelete}>삭제하기</button> */}
       <div>===========조회 목록===========</div>
+      {/* <div>{concertDate.map((el) => el.writer)}</div> */}
     </>
   );
 }

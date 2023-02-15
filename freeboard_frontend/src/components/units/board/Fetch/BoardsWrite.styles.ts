@@ -10,21 +10,28 @@ export const Container = styled.div`
 `;
 export const Wrapper = styled.div`
   width: 80vw;
-  height: 80vh;
+  min-height: 80vh;
   display: flex;
   flex-direction: row;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 1px 1px 12px 1px rgb(33, 25, 34);
 `;
 
 export const Wrapper_Left = styled.div`
   width: 50%;
   height: 100%;
-  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
 `;
 export const ImageItem = styled.img`
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  margin-top: 10%;
+  object-fit: contain;
   border-radius: 20px;
+  top: 0;
+  left: 0;
 `;
 
 export const Wrapper_Center = styled.div`
@@ -73,14 +80,21 @@ export const Writer_Date = styled.div`
   color: gray;
 `;
 
+export const Center_Middle = styled.div`
+  width: 100%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+`;
+
 export const Center_Top_right_file_gps = styled.div`
-  position: absolute;
+  /* position: absolute; */
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  top: 0px;
-  right: 0px;
 `;
 export const Right_file = styled.img`
   width: 20px;
@@ -91,15 +105,6 @@ export const Right_Gps = styled.img`
   width: 25px;
   height: 25px;
   margin-left: 5px;
-`;
-
-export const Center_Middle = styled.div`
-  width: 100%;
-  height: 90%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
 `;
 
 export const Center_Middle_title_detail_comment = styled.div`

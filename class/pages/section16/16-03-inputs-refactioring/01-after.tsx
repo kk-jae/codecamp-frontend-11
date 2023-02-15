@@ -2,11 +2,9 @@ import { useMutation, gql } from "@apollo/client";
 import { useState } from "react";
 
 const 나의그래프큐엘셋팅 = gql`
-  mutation createBoard($writer: String, $title: String, $content: String) {
-    createBoard(writer: $writer, title: $title, contents: $contents) {
+  mutation createBoard($createBoardInput: CreateBoardInput!) {
+    createBoard(createBoardInput: $createBoardInput) {
       _id
-      number
-      message
     }
   }
 `;
@@ -16,6 +14,7 @@ export default function GraphqlMutationPage() {
     writer: "",
     title: "",
     contents: "",
+    password: "",
   });
 
   // const [writer, setWriter] = useState("");
@@ -85,6 +84,7 @@ export default function GraphqlMutationPage() {
   return (
     <div>
       작성자 : <input type="text" id="writer" onChange={onChangeInputs} />
+      비밀번호 : <input type="text" id="password" onChange={onChangeInputs} />
       제목 : <input type="text" id="title" onChange={onChangeInputs} />
       내용 : <input type="text" id="contents" onChange={onChangeInputs} />
       <button onClick={onClickSubmit}> GRAPHQL-API 요청하기</button>;

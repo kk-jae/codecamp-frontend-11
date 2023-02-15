@@ -10,11 +10,13 @@ export default function Layout(props) {
   const router = useRouter();
 
   const HIDDEN_BANNER = [
-    "/homepage/list",
-    "/homepage/new",
-    "/homepage/logIn",
-    "/homepage/sighUp",
-    `/homepage/${router.query.boardId}`,
+    "/homepage",
+    // "/homepage/list",
+    // "/homepage/new",
+    // "/homepage/logIn",
+    // "/homepage/sighUp",
+    // `/homepage/${router.query.boardId}`,
+    // "/homepage/myPage",
   ];
 
   // console.log(router.query);
@@ -25,7 +27,7 @@ export default function Layout(props) {
     <>
       <LayoutHeader />
       <LayoutNavigation />
-      {!isHiddenBanner && <LayoutBanner />}
+      {isHiddenBanner && <LayoutBanner />}
       <LayoutBody>
         <div>{props.children}</div>
       </LayoutBody>

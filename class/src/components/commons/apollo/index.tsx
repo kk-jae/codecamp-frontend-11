@@ -5,6 +5,7 @@ import {
   ApolloLink,
 } from "@apollo/client";
 import { createUploadLink } from "apollo-upload-client";
+import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { accessTokenState } from "../../../commons/stores";
 
@@ -14,13 +15,38 @@ interface IApolloSettingProps {
   children: JSX.Element;
 }
 export default function ApolloSetting(props: IApolloSettingProps): JSX.Element {
-  const [accessToken] = useRecoilState(accessTokenState);
+  const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
+
+  // LocalStorage에 저장하는 방법
+  // 1. 조건문
+  // 2. useEffect
+
+  // 1. 프리렌더링 예제 - process.borwer, windnw 방법
+  // if (process.browser) {
+  //   // 또는 if(typeof window !== "undefined")
+  //   // 브라우저다, 윈도우가 있다는 동일한 말 입니다.
+  //   console.log("나는 지금 브라우저다!!");
+  //   const result = localStorage.getItem("accessToken");
+  //   setAccessToken(result ?? ""); // 없으면 빈문자열
+  // } else {
+  //   console.log(
+  //     "지금은 프론트엔드 서버다!! (즉, yarn dev로 실행시킨 프로그램 내부다)"
+  //   );
+  // }
+
+  // 2. 프리렌더링 무시 - useEffect 방법
+  useEffect(() => {
+    const result = localStorage.getItem("accessToken");
+    // getItem : localStorage에 저장된 accessToken을 사용하겠다.
+    setAccessToken(result ?? ""); // 없으면 빈문자열
+  }, []);
+
   // 이미지 업로드를 위한 셋팅
   const uploadLink = createUploadLink({
     uri: "http://backend-practice.codebootcamp.co.kr/graphql",
 
     // 로그인 글로벌 스테이트 사용 셋팅 시작
-    headers: { Authorization: `Bearer ${accessToken}` }, // playground에서 입력했던 헤더 (Authorization)
+    headers: { Authorization: `Bearer ${accessToken}` },
     // 로그인 글로벌 스테이트 사용 셋팅 종료
   });
 

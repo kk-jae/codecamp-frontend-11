@@ -30,7 +30,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Contents = styled.div`
-  width: 60%;
+  width: 80%;
 `;
 
 export const List_Container = styled.div`

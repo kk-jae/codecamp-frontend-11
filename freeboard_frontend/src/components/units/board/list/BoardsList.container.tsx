@@ -10,6 +10,7 @@ import type {
 import type { ChangeEvent, MouseEvent } from "react";
 import _ from "lodash";
 import { List_Item } from "./BoardsList.styles";
+import { useState } from "react";
 
 export default function BoardsListContainer(): JSX.Element {
   const router = useRouter();
@@ -30,7 +31,7 @@ export default function BoardsListContainer(): JSX.Element {
 
   const onClickMovedBoard = (event: MouseEvent<HTMLDivElement>): void => {
     void router.push(`/homepage/${event.currentTarget.id}`);
-    console.log(event.currentTarget);
+    console.log(event.currentTarget.id);
   };
 
   const loadFunc = (): void => {

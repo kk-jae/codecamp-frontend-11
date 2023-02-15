@@ -23,8 +23,9 @@ export const UPDATE_BOARD = gql`
     }
   }
 `;
+`;
 
-// export const UPDATE_BOARD = gql`
+// export const UPDATE_BOARD = gql`;
 //   mutation updateBoard(
 //     $updateBoardInput: UpdateBoardInput!
 //     $password: String

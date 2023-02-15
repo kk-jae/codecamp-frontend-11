@@ -9,7 +9,6 @@ import Paginations01 from "../../../commons/paginations/Paginations01.container"
 import { ApolloQueryResult } from "@apollo/client";
 import React from "react";
 import InfiniteScroll from "react-infinite-scroller";
-import SearchContentsComponent from "../../../commons/searchContents";
 
 interface IBoardsListContainerUIProps {
   data: Pick<IQuery, "fetchBoards">;
@@ -19,6 +18,10 @@ interface IBoardsListContainerUIProps {
     variables?: Partial<IQueryFetchBoardsArgs> | undefined
   ) => Promise<ApolloQueryResult<Pick<IQuery, "fetchBoards">>>;
   count?: number;
+}
+
+{
+  /* <PortFolioMoved /> */
 }
 
 export default function BoardsListContainerUI(
@@ -46,7 +49,12 @@ export default function BoardsListContainerUI(
             >
               <S.List_Container>
                 {props.data?.fetchBoards.map((el, index) => (
-                  <S.List_Item onClick={props.onClickMovedBoard} id={el._id}>
+                  // <S.List_Item onClick={props.onClickMovedBoard} id={el._id}>
+                  <S.List_Item
+                    onClick={props.onClickMovedBoard}
+                    id={el._id}
+                    key={index}
+                  >
                     <S.Item_Top>
                       <S.Top_img
                         src={`https://storage.googleapis.com/${el.images[0]}`}

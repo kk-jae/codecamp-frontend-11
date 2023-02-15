@@ -5,6 +5,7 @@ import {
   ApolloLink,
 } from "@apollo/client";
 import { createUploadLink } from "apollo-upload-client";
+import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { accessTokenState } from "../library/recoil";
 
@@ -13,6 +14,11 @@ interface IApolloSettingProps {
 }
 export default function ApolloSetting(props: IApolloSettingProps): JSX.Element {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
+
+  useEffect(() => {
+    const result = localStorage.getItem("accessToken");
+    setAccessToken(result ?? "");
+  }, []);
 
   const uploadLink = createUploadLink({
     uri: "http://backend-practice.codebootcamp.co.kr/graphql", // 15부터 적용

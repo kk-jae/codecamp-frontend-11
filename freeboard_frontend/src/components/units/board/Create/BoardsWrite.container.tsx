@@ -1,5 +1,5 @@
 import { useMutation } from "@apollo/client";
-import { useState, ChangeEvent, useRef } from "react";
+import { useState, ChangeEvent, useRef, useEffect } from "react";
 import { useRouter } from "next/router";
 import PortFolioCreateBoardsUI from "./BoardsWrite.presenter";
 import { CREATE_BOARD, UPDATE_BOARD, UPLOAD_FILE } from "./BoardsWrite.queries";
@@ -47,7 +47,8 @@ export default function PortFolioCreateBoards(
   const [addressZipCode, setAddressZipCode] = useState("");
   const [addressDetail, setAddressDetail] = useState("");
 
-  const [imgUrl, setImgUrl] = useState(""); // API 에서 보내주는 url입니다. (googleapis에 적용하면 됩니다.)
+  const [fileUrls, setFileUrls] = useState(["", "", ""]);
+  // API 에서 보내주는 url입니다. (googleapis에 적용하면 됩니다.)
 
   const onChangeWriter = (event: ChangeEvent<HTMLInputElement>) => {
     setWriter(event.target.value);
@@ -105,20 +106,19 @@ export default function PortFolioCreateBoards(
     setYoutubeUrl(event.target.value);
   };
 
-  const onChangeUploadFile = async (event) => {
-    // console.log(event.target?.files[0]);
-    const file = event.target?.files[0];
-
-    const result = await uploadFile({
-      variables: {
-        file: file,
-      },
-    });
-
-    setImgUrl(result.data?.uploadFile.url);
-    // console.log(imgUrl);
-    // console.log(imgUrl);
+  const onChangeFileUrls = (fileUrl: string, index: number): void => {
+    const newFileUrls = [...fileUrls];
+    // 얕은 복사
+    // fileUrls 가 배열의 형태이므로 하나씩 넣어주기 위해 스프레드 연산자 사용
+    newFileUrls[index] = fileUrl;
+    setFileUrls(newFileUrls);
   };
+  useEffect(() => {
+    const images = props.data?.fetchBoard.images;
+    if (images !== undefined && images !== null) setFileUrls([...images]);
+  }, [props.data]);
+  // 추가적인 렌더링이 한번 더 일어나 불필요하지만, 코드 길이가 대폭 줄어 유지보수가 간편한 장점이 있습니다.
+  // 이미지의 디폴트벨류 관리를 위한 코드 종료
 
   // if문을 분리해서 다시 진행
   const onClickContents = async () => {
@@ -148,17 +148,16 @@ export default function PortFolioCreateBoards(
           variables: {
             createBoardInput: {
               writer: writer,
-              password, //value 생략 가능
-              title, //value 생략 가능
+              password,
+              title,
               contents,
-              //키와 value가 동일하면 value 생략 가능합니다. (shorthand-property)
               youtubeUrl,
               boardAddress: {
                 zipcode: addressZipCode,
                 address: address,
                 addressDetail: addressDetail,
               },
-              images: [imgUrl],
+              images: [...fileUrls],
             },
           },
         });
@@ -173,6 +172,10 @@ export default function PortFolioCreateBoards(
   };
 
   const onClickUpdateBoard = async () => {
+    const currentFiles = JSON.stringify(fileUrls);
+    const defaultFiles = JSON.stringify(props.data?.fetchBoard.images);
+    const isChangedFiles = currentFiles !== defaultFiles;
+
     try {
       const updateBoardInput: IUpdateBoardInput = {};
       if (title) updateBoardInput.title = title;
@@ -181,7 +184,16 @@ export default function PortFolioCreateBoards(
       // }
       if (contents) updateBoardInput.contents = contents;
       if (youtubeUrl) updateBoardInput.youtubeUrl = youtubeUrl;
-      if (imgUrl) updateBoardInput.images = [imgUrl];
+      if (addressZipCode || address || addressDetail) {
+        updateBoardInput.boardAddress = {};
+        if (addressZipCode)
+          updateBoardInput.boardAddress.zipcode = addressZipCode;
+        if (address) updateBoardInput.boardAddress.address = address;
+        if (addressDetail)
+          updateBoardInput.boardAddress.addressDetail = addressDetail;
+      }
+
+      if (isChangedFiles) updateBoardInput.images = fileUrls;
 
       const result = await updateBoard({
         variables: {
@@ -191,7 +203,8 @@ export default function PortFolioCreateBoards(
         },
       });
 
-      router.push(`/homepage/${result.data?.updateBoard._id}`);
+      console.log(addressZipCode);
+      // router.push(`/homepage/${result.data?.updateBoard._id}`);
     } catch (error) {
       if (error instanceof Error)
         Modal.error({
@@ -270,8 +283,8 @@ export default function PortFolioCreateBoards(
 
       // 이미지 업로드
 
-      onChangeUploadFile={onChangeUploadFile}
-      imgUrl={imgUrl}
+      onChangeFileUrls={onChangeFileUrls}
+      fileUrls={fileUrls}
     />
   );
 }

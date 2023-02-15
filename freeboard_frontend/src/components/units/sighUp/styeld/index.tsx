@@ -56,6 +56,35 @@ export const Body_Password2 = styled.div`
   width: 100%;
 `;
 
+export const Body_Picture = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+`;
+
+export const Body_Picture_Input_noneDisplay = styled.input`
+  display: none;
+`;
+
+export const Body_Picture_Input_Display = styled.div`
+  height: 50px;
+  cursor: pointer;
+  font-size: 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+`;
+
+export const Body_Picture_IMG = styled.img`
+  /* background-color: blue; */
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  cursor: pointer;
+  margin: 5px 8px 0px 0px;
+  border-radius: 20px;
+`;
+
 export const Body_Text = styled.div`
   font-size: 16px;
   margin-bottom: 10px;

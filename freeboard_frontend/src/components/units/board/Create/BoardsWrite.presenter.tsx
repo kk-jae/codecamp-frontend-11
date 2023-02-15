@@ -2,8 +2,8 @@ import * as S from "./BoardsWrite.styles";
 import { IPortFolioCreateBoardsUIProps } from "../Create/BoardsWrite.type";
 import DaumPostcodeEmbed from "react-daum-postcode";
 import { Modal } from "antd";
-import Upload01Container from "../../../../commons/upload/01/container";
-import { uuidv4 } from "@firebase/util";
+import { v4 as uuidv4 } from "uuid";
+import Uploads01 from "../../../uploads/01/Uploads01.container";
 
 export default function PortFolioCreateBoardsUI(
   props: IPortFolioCreateBoardsUIProps
@@ -65,7 +65,15 @@ export default function PortFolioCreateBoardsUI(
         <S.Content>
           <S.ContentHead>주소</S.ContentHead>
           <S.AdrTop>
-            <S.AdrTopInput placeholder="07250" value={props.addressZipCode} />
+            <S.AdrTopInput
+              placeholder="07250"
+              readOnly
+              value={
+                props.addressZipCode
+                  ? props.addressZipCode
+                  : props.data?.fetchBoard.boardAddress?.zipcode ?? ""
+              }
+            />
             <S.AdrTopBtn onClick={props.AddressShowModal}>
               우편번호 검색
             </S.AdrTopBtn>
@@ -80,7 +88,14 @@ export default function PortFolioCreateBoardsUI(
             )}
           </S.AdrTop>
           <S.AdrBot>
-            <S.ContentInput value={props.address} />
+            <S.ContentInput
+              readOnly
+              value={
+                props.address
+                  ? props.address
+                  : props.data?.fetchBoard.boardAddress?.address ?? ""
+              }
+            />
             <S.ContentInput onChange={props.onChangeAddressDetail} />
           </S.AdrBot>
         </S.Content>
@@ -96,46 +111,18 @@ export default function PortFolioCreateBoardsUI(
         </S.Content>
         <S.ContentPhoto>
           <S.ContentHead>사진첨부</S.ContentHead>
+          {/* 이미지 업로드 시작*/}
           <S.PhotoHead>
-            {/* 이미지 업로드 시작*/}
-            <input type="file" onChange={props.onChangeUploadFile} />
-            <img
-              src={`https://storage.googleapis.com/${props.imgUrl}`}
-              style={{ width: "100px", height: "100px" }}
-            />
-            {/* <S.ContentPhotoPic1>+</S.ContentPhotoPic1> */}
-            {/* 이미지 업로드 끝 */}
-            {/* <S.ContentPhotoPic1 onClick={props.onClickImage1}>
-              <input
-                type="file"
-                ref={props.uploadImg1}
-                style={{ display: "none" }}
-                onChange={props.onChangeUploadImage1}
+            {props.fileUrls.map((el, index) => (
+              <Uploads01
+                key={uuidv4()}
+                index={index}
+                fileUrl={el}
+                onChangeFileUrls={props.onChangeFileUrls}
               />
-              <S.Pic>+</S.Pic>
-              <S.Pic>Upload</S.Pic>
-            </S.ContentPhotoPic1>
-            <S.ContentPhotoPic2 onClick={props.onClickImage2}>
-              <input
-                type="file"
-                ref={props.uploadImg2}
-                style={{ display: "none" }}
-                onChange={props.onChangeUploadImage2}
-              />
-              <S.Pic>+</S.Pic>
-              <S.Pic>Upload</S.Pic>
-            </S.ContentPhotoPic2>
-            <S.ContentPhotoPic3 onClick={props.onClickImage3}>
-              <input
-                type="file"
-                ref={props.uploadImg3}
-                style={{ display: "none" }}
-                onChange={props.onChangeUploadImage3}
-              />
-              <S.Pic>+</S.Pic>
-              <S.Pic>Upload</S.Pic>
-            </S.ContentPhotoPic3> */}
+            ))}
           </S.PhotoHead>
+          {/* 이미지 업로드 끝 */}
         </S.ContentPhoto>
         <S.Content>
           <S.ContentHead>메인 설정</S.ContentHead>

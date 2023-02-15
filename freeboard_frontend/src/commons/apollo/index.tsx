@@ -5,14 +5,29 @@ import {
   ApolloLink,
 } from "@apollo/client";
 import { createUploadLink } from "apollo-upload-client";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { useRecoilState } from "recoil";
+import { accessTokenState } from "../libraries/stores";
 
 interface IApolloSettingProps {
   children: JSX.Element;
 }
 export default function ApolloSetting(props: IApolloSettingProps): JSX.Element {
+  const router = useRouter();
+  const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
+
+  useEffect(() => {
+    if (accessToken === null) {
+      alert("로그인을 먼저 해주세요~");
+      router.push("/homepage/logIn");
+    }
+  }, []);
+
   // 이미지 업로드를 위한 셋팅
   const uploadLink = createUploadLink({
     uri: "http://backend-practice.codebootcamp.co.kr/graphql", // 15부터 적용
+    headers: { Authorization: `Bearer ${accessToken}` },
   });
   // 이미지 업로드를 위한 셋팅
 

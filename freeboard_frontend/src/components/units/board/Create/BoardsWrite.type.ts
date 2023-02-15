@@ -38,6 +38,6 @@ export interface IPortFolioCreateBoardsUIProps {
 }
 
 export interface IProps {
-  isEdit: boolean;
-  isActive: boolean;
+  isEdit?: boolean;
+  isActive?: boolean;
 }

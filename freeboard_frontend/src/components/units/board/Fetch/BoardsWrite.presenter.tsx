@@ -47,7 +47,6 @@ export default function PortFolioQueryUI(props: IProtFolioQueryUI) {
                 </S.Body_detail>
               </S.Center_Middle_title_detail>
               {/* 댓글 시작 */}
-
               <S.Center_Middle_comment>
                 <S.Center_Middle_comment_text>
                   댓글
