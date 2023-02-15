@@ -1,12 +1,13 @@
 import { useState, MouseEvent } from "react";
 import Paginations01UI from "./Paginations01.presenter";
+import { IPaginations01Props } from "./Paginations01.types";
 
-export default function Paginations01(props): JSX.Element {
+export default function Paginations01(props: IPaginations01Props): JSX.Element {
   const [startPage, setStartPage] = useState(1);
   const lastPage = Math.ceil((props.count ?? 10) / 10); // type에러를 해결하기 위해 ?? 10을 추가하였습니다. (api통해 받아오기 전에는 언디파인드이므로 언디파인드일때 값을 임의로 만들어 놓습니다.)
   const [activedPage, setActivedPage] = useState(1);
 
-  const onClickBoards = (event: MouseEvent<HTMLButtonElement>): void => {
+  const onClickBoards = (event: MouseEvent<HTMLSpanElement>): void => {
     void props.refetch({ page: Number(event?.currentTarget.id) });
     const activedPage = Number(event.currentTarget.id);
     setActivedPage(activedPage);

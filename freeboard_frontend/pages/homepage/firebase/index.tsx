@@ -32,7 +32,7 @@ export default function FirebasePage(): JSX.Element {
     setPlace(event.currentTarget.value);
   };
 
-  const onChangeDate = (event) => {
+  const onChangeDate = (event: ChangeEvent<HTMLInputElement>) => {
     setDate(event.target.value);
     // console.log(event.target.value);
   };

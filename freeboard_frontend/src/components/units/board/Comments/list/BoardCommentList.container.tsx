@@ -12,6 +12,7 @@ import {
 import PortFolioQueryUI from "./BoardCommentList.presenter";
 import { ChangeEvent, useState } from "react";
 import { Modal } from "antd";
+import type { MouseEvent } from "react";
 
 export default function CreateBoardCommentList() {
   const router = useRouter();
@@ -96,7 +97,9 @@ export default function CreateBoardCommentList() {
   // Input 입력창 띄우기 시작
   const [myIndex, setMyIndex] = useState(-1);
 
-  const onClickUpdateBoardCommentInputs = (event) => {
+  const onClickUpdateBoardCommentInputs = (
+    event: MouseEvent<HTMLImageElement>
+  ) => {
     setMyIndex(Number(event?.currentTarget.id));
   };
 

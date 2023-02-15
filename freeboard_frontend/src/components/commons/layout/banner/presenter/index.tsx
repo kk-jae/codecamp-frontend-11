@@ -4,8 +4,9 @@ import {
   FacebookOutlined,
   YoutubeOutlined,
 } from "@ant-design/icons";
+import { IProps } from "../type";
 
-export default function BannerUI(props) {
+export default function BannerUI(props: IProps) {
   return (
     <S.Container>
       <S.Wrapper_1st>
@@ -19,7 +20,7 @@ export default function BannerUI(props) {
               <S.MiddleOne>
                 <S.One>
                   <S.OneImg
-                    src={`https://storage.googleapis.com/${el.images[0]}`}
+                    src={`https://storage.googleapis.com/${el.images?.[0]}`}
                     // src={`https://storage.googleapis.com/${el.images}`}
                     alt="이미지가 없습니다."
                   />

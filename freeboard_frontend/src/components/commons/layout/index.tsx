@@ -6,7 +6,11 @@ import LayoutBody from "./body";
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
 
-export default function Layout(props) {
+interface IProps {
+  children: JSX.Element;
+}
+
+export default function Layout(props: IProps) {
   const router = useRouter();
 
   const HIDDEN_BANNER = [

@@ -2,12 +2,13 @@ import HeaderUI from "../presenter";
 import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
 import { accessTokenState } from "../../../../../commons/libraries/stores";
+import type { MouseEvent } from "react";
 
 export default function HeaderContainer() {
   const router = useRouter();
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
 
-  const onClickMovePage = (event) => {
+  const onClickMovePage = (event: MouseEvent<HTMLSpanElement>) => {
     router.push(event.currentTarget.id);
   };
 
@@ -35,6 +36,8 @@ export default function HeaderContainer() {
       router.push("/homepage/list");
     }
   };
+
+  console.log(accessToken);
 
   return (
     <>

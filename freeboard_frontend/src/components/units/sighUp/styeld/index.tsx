@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const Container = styled.div`
+export const ContainerForm = styled.form`
   width: 100%;
   height: calc(100vh - 140px); // 네비게이션 height
   display: flex;

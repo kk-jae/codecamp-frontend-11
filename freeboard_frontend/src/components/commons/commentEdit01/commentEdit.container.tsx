@@ -2,13 +2,15 @@ import { useQuery, useMutation, gql } from "@apollo/client";
 import { useRouter } from "next/router";
 import CommentEditUI from "./commentEdit.presenter";
 import { useState } from "react";
+import type { ChangeEvent } from "react";
 import {
   FETCH_BOARD_COMMENTS,
   UPDATE_BOARD_COMMENT,
 } from "./commentEdit.queries";
 import { Modal } from "antd";
+import { IPropsCommentEditPage } from "./commentEdit.types";
 
-export default function CommentEditPage(props) {
+export default function CommentEditPage(props: IPropsCommentEditPage) {
   const router = useRouter();
 
   // const { data } = useQuery(FETCH_BOARD_COMMENTS, {
@@ -27,11 +29,15 @@ export default function CommentEditPage(props) {
 
   // const {date} = useQuery(FETCH_BOARD_COMMENTS)
 
-  const onChangeUpdateCommentPassword = (event) => {
+  const onChangeUpdateCommentPassword = (
+    event: ChangeEvent<HTMLInputElement>
+  ) => {
     setUpdateCommentPassword(event?.target.value);
   };
 
-  const onChangeUpdateCommentContents = (event) => {
+  const onChangeUpdateCommentContents = (
+    event: ChangeEvent<HTMLTextAreaElement>
+  ) => {
     setUpdateCommentContents(event?.target.value);
   };
 

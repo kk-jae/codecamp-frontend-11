@@ -3,6 +3,6 @@ import "slick-carousel/slick/slick-theme.css";
 
 import BannerContainer from "./container";
 
-export default function LayoutBanner(props): JSX.Element {
+export default function LayoutBanner(): JSX.Element {
   return <BannerContainer />;
 }

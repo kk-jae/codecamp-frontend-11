@@ -7,7 +7,7 @@ import InfiniteScroll from "react-infinite-scroller";
 import { useState } from "react";
 import CommentEditPage from "../../../../commons/commentEdit01/commentEdit.container";
 
-export default function PortFolioQueryUI(props: IProtFolioQueryUI) {
+export default function PortFolioQueryUI(props) {
   return (
     <S.PAGE>
       <S.Container>

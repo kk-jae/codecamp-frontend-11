@@ -18,10 +18,9 @@ export default function ApolloSetting(props: IApolloSettingProps): JSX.Element {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
 
   useEffect(() => {
-    if (accessToken === null) {
-      alert("로그인을 먼저 해주세요~");
-      router.push("/homepage/logIn");
-    }
+    const result = localStorage.getItem("accessToken");
+    // getItem : localStorage에 저장된 accessToken을 사용하겠다.
+    setAccessToken(result ?? ""); // 없으면 빈문자열
   }, []);
 
   // 이미지 업로드를 위한 셋팅

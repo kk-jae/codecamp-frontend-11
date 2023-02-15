@@ -2,8 +2,9 @@ import * as S from "../commentEdit01/commentEdit.styles";
 import { Rate } from "antd";
 import { Modal } from "antd";
 import { getDate } from "../../../commons/libraries/utils";
+import { IPropsCommentEditPage } from "./commentEdit.types";
 
-export default function CommentEditUI(props: IProtFolioQueryUI) {
+export default function CommentEditUI(props: IPropsCommentEditPage) {
   return (
     <S.PAGE>
       <S.Container>

@@ -1,6 +1,7 @@
 import * as S from "./Paginations01.styles";
+import { IPaginations01UIProps } from "./Paginations01.types";
 
-export default function Paginations01UI(props) {
+export default function Paginations01UI(props: IPaginations01UIProps) {
   return (
     <S.PageNation>
       <S.PageNationBtn
