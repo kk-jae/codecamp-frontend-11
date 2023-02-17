@@ -15,6 +15,12 @@
     "isolatedModules": true,
     "jsx": "preserve"
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "pages/section24/24-08-typescript-generic-practice-hoc/index.tsㅌ",
+    "src/components/commons/hooks/useAuth"
+  ],
   "exclude": ["node_modules"]
 }

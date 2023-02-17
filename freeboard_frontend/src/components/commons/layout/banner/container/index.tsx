@@ -13,10 +13,10 @@ export default function BannerContainer() {
     IQueryFetchBoardsArgs
   >(BEST_ITEM);
   // const router = useRouter();
-  // console.log(data);
+  // // console.log(data);
 
   // const onClickMoveBestItem = (event) => {
-  //   // console.log(event.target);
+  //   // // console.log(event.target);
   // };
   return <BannerUI data={data} />;
 }

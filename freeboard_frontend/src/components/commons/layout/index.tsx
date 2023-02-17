@@ -23,7 +23,7 @@ export default function Layout(props: IProps) {
     // "/homepage/myPage",
   ];
 
-  // console.log(router.query);
+  // // console.log(router.query);
   const isHiddenBanner = HIDDEN_BANNER.includes(router.asPath);
 
   return (

@@ -34,7 +34,7 @@ export default function FirebasePage(): JSX.Element {
 
   const onChangeDate = (event: ChangeEvent<HTMLInputElement>) => {
     setDate(event.target.value);
-    // console.log(event.target.value);
+    // // console.log(event.target.value);
   };
   const onClickSubmit = () => {
     const concertDate = collection(getFirestore(firebaseApp), "concertDate");
@@ -48,8 +48,6 @@ export default function FirebasePage(): JSX.Element {
     setWriter("");
     setPlace("");
     setDate("");
-
-    console.log(date);
   };
 
   const [concertDates, setConcertDates] = useState<DocumentData[]>([]);
@@ -59,7 +57,7 @@ export default function FirebasePage(): JSX.Element {
     const result = await getDocs(concertDate);
     const datas = result.docs.map((el) => el.data());
     setConcertDates(datas);
-    console.log(concertDates.map((el) => el.writer));
+    // // console.log(concertDates.map((el) => el.writer));
   };
 
   // const onClickDelete = async () => {

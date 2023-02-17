@@ -13,6 +13,7 @@ export default function SighUpUI(props) {
             <S.Body_Input
               placeholder="이메일을 입력하세요"
               {...props.register("email")}
+              type="email"
             ></S.Body_Input>
             <S.Body_InputError>
               {props.formState.errors.email?.message}

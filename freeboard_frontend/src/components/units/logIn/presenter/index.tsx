@@ -1,9 +1,22 @@
 import { useRecoilState } from "recoil";
 import { accessTokenState } from "../../../../commons/libraries/stores";
 import * as S from "../styeld/index";
-import { useForm } from "react-hook-form";
+import {
+  FormState,
+  useForm,
+  UseFormHandleSubmit,
+  UseFormRegister,
+} from "react-hook-form";
+import { IData } from "../container";
 
-export default function LogInPageUI(props) {
+interface IProps {
+  onClickLogIn: (data: IData) => Promise<void>;
+  handleSubmit: UseFormHandleSubmit<IData>;
+  register: UseFormRegister<IData>;
+  formState: FormState<IData>;
+}
+
+export default function LogInPageUI(props: IProps) {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
 
   return (

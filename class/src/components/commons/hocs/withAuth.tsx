@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 // 실제로 만들때는 로그인체크 -> withAuth 로 많이 사용합니다.
-export const 로그인체크 = (컴포넌트: any) => (프롭스: any) => {
+export const withAuth = (컴포넌트: any) => (프롭스: any) => {
   const router = useRouter();
 
   useEffect(() => {
@@ -17,3 +17,4 @@ export const 로그인체크 = (컴포넌트: any) => (프롭스: any) => {
 
 // next.js 하이드레이션 원리
 // section 23 학습자료 이론 정독
+// class기반의 로그인 체크입니다.
