@@ -11,7 +11,7 @@ const HeaderRight = [
   { name: "소개" },
   { name: "목록보기", url: "/homepage/list" },
   { name: "마이페이지", url: "/homepage/myPage" },
-  { name: "중고상품", url: "/homepage/UsedItem/FetchUsedItems" },
+  { name: "중고상품", url: "/homepage/UsedItems" },
   // { name: "로그인", url: "/homepage/logIn" },
   // { name: "회원가입", url: "/homepage/sighUp" },
   // { name: "마이페이지" },

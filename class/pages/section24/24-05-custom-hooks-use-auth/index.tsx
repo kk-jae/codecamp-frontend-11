@@ -1,4 +1,4 @@
-import { useAuth } from "../../../src/components/commons/hooks/useAuth/useAuth";
+import { useAuth } from "../../../src/components/commons/hooks/useAuth";
 
 export default function CustomHooksUseAuthPage(): JSX.Element {
   useAuth(); // 로그인 검증 hooks
