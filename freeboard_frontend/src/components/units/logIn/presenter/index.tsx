@@ -17,7 +17,7 @@ interface IProps {
 }
 
 export default function LogInPageUI(props: IProps) {
-  const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
+  // const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
 
   return (
     <S.ContainerForm onSubmit={props.handleSubmit(props.onClickLogIn)}>
