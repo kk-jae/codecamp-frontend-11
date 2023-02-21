@@ -10,6 +10,7 @@ export default function UsedItemsUI() {
       <h1>중고상품 리스트입니다.</h1>
       {data?.fetchUseditems.map((el, index) => (
         <div key={index}>
+          <span>판매자 : {el.seller?.name}</span>
           <span
             style={{ border: "2px solid black" }}
             onClick={onClickMoveToPage(el._id)}
@@ -17,7 +18,7 @@ export default function UsedItemsUI() {
             상품명 : {el.name}
           </span>
           <span>한줄 요약 : {el.remarks}</span>
-          <span>상품설명 : {el.contents}</span>
+          {/* <span>상품설명 : {el.contents}</span> */}
           <span>판매 가격 : {el.price}</span>
           <span>태그입력:{el.tags}</span>
         </div>

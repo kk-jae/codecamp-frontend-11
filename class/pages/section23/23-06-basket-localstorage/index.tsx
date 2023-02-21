@@ -56,6 +56,8 @@ export default function StaticRoutingMovedPage(): JSX.Element {
     localStorage.getItem("baskets");
   }, []);
 
+  // console.log(JSON.parse(localStorage.getItem("baskets")));
+
   return (
     <div>
       {data?.fetchBoards.map((el) => (

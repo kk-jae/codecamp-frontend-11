@@ -15,17 +15,20 @@ const FETCH_USED_ITEM = gql`
       images
       tags
       createdAt
+      seller {
+        name
+      }
     }
   }
 `;
 
-export const useQueryFetchUsedItem = (보드아이디: string) => {
+export const useQueryFetchUsedItem = (id: string) => {
   const query = useQuery<
     Pick<IQuery, "fetchUseditem">,
     IQueryFetchUseditemArgs
   >(FETCH_USED_ITEM, {
     variables: {
-      useditemId: 보드아이디,
+      useditemId: id,
     },
   });
   return query;

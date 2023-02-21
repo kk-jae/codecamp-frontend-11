@@ -3,8 +3,8 @@ import { useRouter } from "next/router";
 export const useMoveToPage = () => {
   const router = useRouter();
 
-  const onClickMoveToPage = (link: string) => () => {
-    router.push(link);
+  const onClickMoveToPage = (url: string) => () => {
+    router.push(url);
   };
 
   return {

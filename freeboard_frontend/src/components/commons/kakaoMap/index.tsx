@@ -1,10 +1,13 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 declare const window: typeof globalThis & {
   kakao: any;
 };
 
 export default function KakaoMapPage(): JSX.Element {
+  const [lat, setLat] = useState("");
+  const [lng, setLng] = useState("");
+
   useEffect(() => {
     const script = document.createElement("script"); // <script></script>
     script.src =
@@ -49,7 +52,10 @@ export default function KakaoMapPage(): JSX.Element {
             let message = "클릭한 위치의 위도는 " + latlng.getLat() + " 이고, ";
             message += "경도는 " + latlng.getLng() + " 입니다";
 
-            console.log(message);
+            // console.log(latlng.La);
+            setLat(latlng.La);
+            setLng(latlng.Ma);
+
             const resultDiv = document.getElementById("clickLatlng");
             if (resultDiv !== null) {
               resultDiv.innerHTML = message;
@@ -63,6 +69,10 @@ export default function KakaoMapPage(): JSX.Element {
   return (
     <>
       <div id="map" style={{ width: 500, height: 400 }}></div>
+      <div>
+        {" "}
+        위도 : {lat}, 경도 : {lng}
+      </div>
     </>
   );
 }
