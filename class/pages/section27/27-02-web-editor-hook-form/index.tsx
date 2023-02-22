@@ -1,7 +1,7 @@
 import "react-quill/dist/quill.snow.css";
 import dynamic from "next/dynamic";
 // import { Modal } from "antd";
-import { wrapFormAcync } from "../../../src/commons/libraries/asyncFunc";
+import { wrapFormAsync } from "../../../src/commons/libraries/asyncFunc";
 import { useForm } from "react-hook-form";
 
 const ReactQuill = dynamic(async () => await import("react-quill"), {
@@ -29,7 +29,7 @@ export default function WebEditorPage(): JSX.Element {
   };
 
   return (
-    <form onSubmit={wrapFormAcync(onClickSubmit)}>
+    <form onSubmit={wrapFormAsync(onClickSubmit)}>
       작성자 : <input type="text" {...register("writer")} />
       <br />
       비밀번호 : <input type="password" {...register("password")} />

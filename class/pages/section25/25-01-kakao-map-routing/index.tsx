@@ -31,7 +31,7 @@ export default function KakaoMapPage(): JSX.Element {
       <div>
         {/* next에서 제공하는 a태그 이므로, SPA 활용 가능 + <a>를 써서 검색 좋아짐 */}
         <Link href="/section25/25-01-kakao-map-routing-moved">
-          <a>Link 태그 카카오 맵 페이지 이동하기</a>
+          <h1>Link 태그 카카오 맵 페이지 이동하기</h1>
         </Link>
 
         {/* 의미가 있는 시멘틱 태그의 장점 */}

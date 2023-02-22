@@ -2,7 +2,7 @@ import "react-quill/dist/quill.snow.css";
 import dynamic from "next/dynamic";
 import { useEffect } from "react";
 // import { Modal } from "antd";
-import { wrapFormAcync } from "../../../src/commons/libraries/asyncFunc";
+import { wrapFormAsync } from "../../../src/commons/libraries/asyncFunc";
 
 // import ReactQuill from "react-quill";
 const ReactQuill = dynamic(async () => await import("react-quill"), {
@@ -26,7 +26,7 @@ export default function WebEditorPage(): JSX.Element {
   // }, []);
 
   const onClickSubmit = async (): Promise<void> => {
-    // event.preventDefault(); => 아래의 wrapFormAcync가 대신 기능을 해줍니다.
+    // event.preventDefault(); => 아래의 wrapFormAsync가 대신 기능을 해줍니다.
     // onSubmit의 기본기능 (버튼클릭시 페이지 이동) 을 막는 기능입니다.
 
     const { Modal } = await import("antd"); // code-splitting(코드스플릿팅)
@@ -35,7 +35,7 @@ export default function WebEditorPage(): JSX.Element {
   };
 
   return (
-    <form onSubmit={wrapFormAcync(onClickSubmit)}>
+    <form onSubmit={wrapFormAsync(onClickSubmit)}>
       작성자 : <input type="text" /> <br />
       비밀번호 : <input type="password" />
       <br />

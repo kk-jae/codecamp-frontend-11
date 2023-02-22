@@ -48,7 +48,7 @@ export default function CreateUsedItemUI(props: IProps) {
           한줄요약:
           <input
             {...register("remarks")}
-            lue={result.data?.fetchUseditem.remarks}
+            defaultValue={result.data?.fetchUseditem.remarks}
           />
           {formState.errors.remarks?.message}
         </div>
@@ -58,7 +58,7 @@ export default function CreateUsedItemUI(props: IProps) {
             onChange={onChangeContents}
             value={result.data?.fetchUseditem.contents}
           />
-          {formState.errors.contents?.message}
+          {/* {formState.errors.contents?.message} */}
         </div>
         <div>
           판매 가격:

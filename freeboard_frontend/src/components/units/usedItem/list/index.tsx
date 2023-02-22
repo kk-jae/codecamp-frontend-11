@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useMoveToPage } from "../../../commons/hooks/custom/useMoveToPage";
 import { useQueryFetchUseditems } from "../../../commons/hooks/query/useQueryFetchUsedItems";
 
@@ -23,6 +24,11 @@ export default function UsedItemsUI() {
           <span>태그입력:{el.tags}</span>
         </div>
       ))}
+      <button>
+        <Link href={`/homepage/UsedItem/new`}>
+          <span>중고상품 등록하기</span>
+        </Link>
+      </button>
     </div>
   );
 }

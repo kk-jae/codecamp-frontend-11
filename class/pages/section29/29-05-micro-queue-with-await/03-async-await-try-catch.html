@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>이벤트 루프</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script>
+      const onClickLoop = () => {
+        // const aaa = () => {
+        //   try {
+        //     axios.get("https://qqqqq.com");
+        //   } catch (error) {
+        //     console.log("에러가 발생하였습니다!");
+        //   }
+        // };
+        // aaa(); // 에러가 잡혔을때 aaa() 함수는 이미 끝났기때문에 catch error가 잡히지 않습니다.
+
+        const bbb = async () => {
+          try {
+            await axios.get("https://qqqqq.com");
+          } catch (error) {
+            console.log("에러가 발생하였습니다!");
+          }
+        };
+
+        bbb(); // catch error가 잡히게 됩니다.
+
+        // await가 있으면 먼저 마이크로큐에 들어가고(Promise 일경우) 이 후 bbb도 따라가 마이크로큐에 들어가기때문에 마치 기다리는 것처럼 느끼게 된다.
+        // callBack -> Promise -> await
+      };
+    </script>
+  </head>
+  <body>
+    <button onclick="onClickLoop()">시작하기</button>
+  </body>
+</html>

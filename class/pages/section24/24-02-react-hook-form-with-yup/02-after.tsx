@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { wrapFormAcync } from "../../../src/commons/libraries/asyncFunc";
+import { wrapFormAsync } from "../../../src/commons/libraries/asyncFunc";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "./02-after.validation";
 
@@ -29,7 +29,7 @@ export default function GraphqlMutationPage(): JSX.Element {
 
   return (
     // 하나의 form으로 그루핑
-    <form onSubmit={wrapFormAcync(handleSubmit(onClickSubmit))}>
+    <form onSubmit={wrapFormAsync(handleSubmit(onClickSubmit))}>
       작성자 : <input type="text" {...register("writer")} />
       <div style={{ color: "red" }}>{formState.errors.writer?.message}</div>
       제목 : <input type="text" {...register("title")} />

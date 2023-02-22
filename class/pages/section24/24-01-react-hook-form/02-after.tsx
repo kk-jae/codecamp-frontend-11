@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { wrapAcync } from "../../../src/commons/libraries/asyncFunc";
+import { wrapAsync } from "../../../src/commons/libraries/asyncFunc";
 
 interface IFormData {
   writer: string;
@@ -23,7 +23,7 @@ export default function GraphqlMutationPage(): JSX.Element {
 
   return (
     // 하나의 form으로 그루핑
-    <form onSubmit={wrapAcync(handleSubmit(onClickSubmit))}>
+    <form onSubmit={wrapAsync(handleSubmit(onClickSubmit))}>
       작성자 : <input type="text" {...register("writer")} />
       제목 : <input type="text" {...register("title")} />
       내용 : <input type="text" {...register("contents")} />

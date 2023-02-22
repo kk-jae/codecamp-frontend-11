@@ -1,7 +1,7 @@
 // 04-gql-mutation
 
 import { useMutation, gql } from "@apollo/client";
-import { wrapAcync } from "../../../src/commons/libraries/asyncFunc";
+import { wrapAsync } from "../../../src/commons/libraries/asyncFunc";
 
 const 나의그래프큐엘셋팅 = gql`
   mutation {
@@ -28,13 +28,13 @@ export default function GraphqlMutationPage(): JSX.Element {
 
   // 함수타입 : () => void
   // 비동기함수 :  () => Promise<void>
-  // const wrapAcync = (asyncFunc: () => Promise<void>) => () => {
+  // const wrapAsync = (asyncFunc: () => Promise<void>) => () => {
   //   void asyncFunc();
   // };
 
   // 한 줄일때는 괄호 () 필요 없음
   return (
-    <button onClick={wrapAcync(onClickSubmit)}> GRAPHQL-API 요청하기</button>
+    <button onClick={wrapAsync(onClickSubmit)}> GRAPHQL-API 요청하기</button>
   );
 }
 
