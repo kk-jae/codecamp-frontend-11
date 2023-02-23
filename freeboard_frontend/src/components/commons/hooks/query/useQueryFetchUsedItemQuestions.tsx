@@ -12,12 +12,15 @@ export const FETCH_USED_ITEM_QUESTIONS = gql`
       user {
         name
       }
+      useditem {
+        _id
+      }
     }
   }
 `;
 
 export const useQueryFetchUsedItemQuestions = (useditemId: string) => {
-  const { data } = useQuery<
+  const { data: dataQuery } = useQuery<
     Pick<IQuery, "fetchUseditemQuestions">,
     IQueryFetchUseditemQuestionsArgs
   >(FETCH_USED_ITEM_QUESTIONS, {
@@ -26,5 +29,5 @@ export const useQueryFetchUsedItemQuestions = (useditemId: string) => {
     },
   });
 
-  return { data };
+  return { dataQuery };
 };
