@@ -5,8 +5,8 @@ import {
 } from "../../../../commons/types/generated/types";
 
 const FETCH_USED_ITEMS = gql`
-  query {
-    fetchUseditems {
+  query fetchUseditems($page: Int) {
+    fetchUseditems(page: $page) {
       _id
       name
       remarks

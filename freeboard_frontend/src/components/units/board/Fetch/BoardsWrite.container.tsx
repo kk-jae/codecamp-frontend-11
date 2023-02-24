@@ -60,7 +60,7 @@ export default function PortFolioQueryContainer() {
       variables: { boardId: String(router.query.boardId) },
     }
   );
-  // // console.log(data);
+  // //  (data);
 
   const [deleteBoard] = useMutation(DELETE_BOARD);
 

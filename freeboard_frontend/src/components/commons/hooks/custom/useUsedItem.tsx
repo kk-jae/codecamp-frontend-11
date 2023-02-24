@@ -1,6 +1,6 @@
 import { Modal } from "antd";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { useMutationCreateUseditem } from "../mutation/useMutationCreateUseditem";
 import useMutationDeleteUsedItem from "../mutation/useMutationDeleteUseditem";
 import { useMutationUpdateUsedItem } from "../mutation/useMutationUpdateUseditem";
@@ -8,7 +8,9 @@ import { useMutationUploadFile } from "../mutation/useMutationUploadFile";
 
 export default function UsedItem(id: string) {
   const router = useRouter();
-  const [imgUrl, setImgUrl] = useState("");
+  const [imgUrl1, setImgUrl1] = useState("");
+  const [imgUrl2, setImgUrl2] = useState("");
+  const [imgUrl3, setImgUrl3] = useState("");
   const [uploadFile] = useMutationUploadFile();
   const [createUseditem] = useMutationCreateUseditem();
   const [updateUseditem] = useMutationUpdateUsedItem();
@@ -32,15 +34,32 @@ export default function UsedItem(id: string) {
     }
   };
 
+  const onChangeUploadFile1 = async (event: ChangeEvent<HTMLInputElement>) => {
+    const result = await uploadFile({
+      variables: {
+        file: event.target.files?.[0],
+      },
+    });
+    setImgUrl1(result.data.uploadFile.url ?? "");
+  };
+  const onChangeUploadFile2 = async (event: ChangeEvent<HTMLInputElement>) => {
+    const result = await uploadFile({
+      variables: {
+        file: event.target.files?.[0],
+      },
+    });
+    setImgUrl2(result.data.uploadFile.url ?? "");
+  };
+  const onChangeUploadFile3 = async (event: ChangeEvent<HTMLInputElement>) => {
+    const result = await uploadFile({
+      variables: {
+        file: event.target.files?.[0],
+      },
+    });
+    setImgUrl3(result.data.uploadFile.url ?? "");
+  };
+
   const onClickCreateUsedItem = async (data: any) => {
-    if (data.images.length !== 0) {
-      const result = await uploadFile({
-        variables: {
-          file: data.images[0], // 아직은 이미지 한개입니다.
-        },
-      });
-      setImgUrl(result.data.uploadFile.url);
-    }
     try {
       await createUseditem({
         variables: {
@@ -49,7 +68,7 @@ export default function UsedItem(id: string) {
             remarks: data.remarks,
             contents: data.contents,
             price: Number(data.price),
-            images: imgUrl,
+            images: [imgUrl1, imgUrl2, imgUrl3],
           },
         },
       });
@@ -68,14 +87,14 @@ export default function UsedItem(id: string) {
   // data : 클릭했을때, 불러오는 input들
   const onClickUpdateUsedItem = async (data: any) => {
     try {
-      const result = await updateUseditem({
+      await updateUseditem({
         variables: {
           updateUseditemInput: {
             name: data.name,
             remarks: data.remarks,
             contents: data.contents,
             price: Number(data.price),
-            images: [imgUrl],
+            images: [imgUrl1, imgUrl2, imgUrl3],
           },
           useditemId: id,
         },
@@ -96,5 +115,8 @@ export default function UsedItem(id: string) {
     onClickCreateUsedItem,
     onClickUpdateUsedItem,
     onClickDeleteUsedItem,
+    onChangeUploadFile1,
+    onChangeUploadFile2,
+    onChangeUploadFile3,
   };
 }

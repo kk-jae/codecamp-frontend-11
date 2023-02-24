@@ -1,4 +1,8 @@
 import { gql, useMutation } from "@apollo/client";
+import {
+  IMutation,
+  IMutationCreateUseditemQuestionAnswerArgs,
+} from "../../../../commons/types/generated/types";
 
 const CREATE_USED_ITEM_QUESTION_ANSWER = gql`
   mutation createUseditemQuestionAnswer(
@@ -15,7 +19,10 @@ const CREATE_USED_ITEM_QUESTION_ANSWER = gql`
 `;
 
 export const useMutationCreateUseditemQuestionAnswer = () => {
-  const mutation = useMutation(CREATE_USED_ITEM_QUESTION_ANSWER);
+  const mutation = useMutation<
+    Pick<IMutation, "createUseditemQuestionAnswer">,
+    IMutationCreateUseditemQuestionAnswerArgs
+  >(CREATE_USED_ITEM_QUESTION_ANSWER);
 
   return mutation;
 };

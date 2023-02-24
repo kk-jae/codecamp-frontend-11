@@ -203,7 +203,7 @@ export default function PortFolioCreateBoards(
         },
       });
 
-      // // console.log(addressZipCode);
+      // //  (addressZipCode);
       // router.push(`/homepage/${result.data?.updateBoard._id}`);
     } catch (error) {
       if (error instanceof Error)

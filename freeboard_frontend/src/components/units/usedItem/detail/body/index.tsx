@@ -10,6 +10,7 @@ export default function UsedItemDetailBody() {
   const { onClickMoveToPage } = useMoveToPage();
   const { onClickDeleteUsedItem } = UsedItem(id);
 
+  console.log(result);
   return (
     <>
       <h1>중고 상품 상세페이지입니다.</h1>
@@ -37,7 +38,7 @@ export default function UsedItemDetailBody() {
             src={`https://storage.googleapis.com/${result.data?.fetchUseditem.images?.[0]}`}
           />
         ) : (
-          <div>이미지가 없습니다</div>
+          <div></div>
         )}
         <button onClick={onClickMoveToPage(`/homepage/UsedItem/${id}/edit`)}>
           상품 수정하기

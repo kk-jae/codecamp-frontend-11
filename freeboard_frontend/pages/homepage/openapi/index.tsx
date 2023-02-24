@@ -12,8 +12,8 @@ export default function RestGetPage(): JSX.Element {
       );
       setLatitude(result.data.latitude);
       setLongitude(result.data.longitude);
-      // // console.log(result.data.latitude); // 사진 주소 (API에서 불러올 수 있음)
-      // // console.log(result); // 사진 주소 (API에서 불러올 수 있음)
+      // //  (result.data.latitude); // 사진 주소 (API에서 불러올 수 있음)
+      // //  (result); // 사진 주소 (API에서 불러올 수 있음)
       // setDog(result.data.message);
     };
     void onClickSync();

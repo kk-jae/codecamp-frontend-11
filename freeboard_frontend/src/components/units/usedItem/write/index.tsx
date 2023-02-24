@@ -8,6 +8,7 @@ import { useQueryFetchUsedItem } from "../../../commons/hooks/query/useQueryFetc
 import { schema } from "../../../commons/validation";
 import dynamic from "next/dynamic";
 import KakaoMapPage from "../../../commons/kakaoMap";
+import { useMutationUploadFile } from "../../../commons/hooks/mutation/useMutationUploadFile";
 
 const ReactQuill = dynamic(async () => await import("react-quill"), {
   ssr: false,
@@ -24,8 +25,14 @@ export default function CreateUsedItemUI(props: IProps) {
     resolver: yupResolver(schema), // 검열
     mode: "onChange",
   });
-  // console.log(result.data?.fetchUseditem.name);
-  const { onClickCreateUsedItem, onClickUpdateUsedItem } = UsedItem(id);
+  //  (result.data?.fetchUseditem.name);
+  const {
+    onClickCreateUsedItem,
+    onClickUpdateUsedItem,
+    onChangeUploadFile1,
+    onChangeUploadFile2,
+    onChangeUploadFile3,
+  } = UsedItem(id);
 
   const onChangeContents = (value: string): void => {
     setValue("contents", value === "<p><br></p>" ? "" : value);
@@ -56,7 +63,7 @@ export default function CreateUsedItemUI(props: IProps) {
           상품 설명:
           <ReactQuill
             onChange={onChangeContents}
-            value={result.data?.fetchUseditem.contents}
+            // value={result.data?.fetchUseditem.contents}
           />
           {/* {formState.errors.contents?.message} */}
         </div>
@@ -81,9 +88,14 @@ export default function CreateUsedItemUI(props: IProps) {
           <KakaoMapPage />
         </div>
         <div>
-          사진첨부 1: <input {...register("images")} type="file" />
+          사진첨부 1: <input type="file" onChange={onChangeUploadFile1} />
         </div>
-
+        <div>
+          사진첨부 2: <input type="file" onChange={onChangeUploadFile2} />
+        </div>
+        <div>
+          사진첨부 3: <input type="file" onChange={onChangeUploadFile3} />
+        </div>
         <button
           onClick={handleSubmit(
             !props.isEdit ? onClickCreateUsedItem : onClickUpdateUsedItem

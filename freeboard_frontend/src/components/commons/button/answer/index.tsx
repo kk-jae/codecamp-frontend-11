@@ -14,9 +14,9 @@ export default function QuestionAnswerButton(props: any) {
   };
   const { register, handleSubmit } = useForm();
 
-  // console.log(props.data.fetchUseditemQuestions);
+  //  (props.data.fetchUseditemQuestions);
   return (
-    <div>
+    <span>
       {myIndex === props.index ? (
         <form
           onSubmit={handleSubmit(onClickUsedItemQuestionAnswer(props.index))}
@@ -28,6 +28,6 @@ export default function QuestionAnswerButton(props: any) {
           답글하기
         </button>
       )}
-    </div>
+    </span>
   );
 }

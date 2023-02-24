@@ -37,7 +37,7 @@ export default function HeaderContainer() {
     }
   };
 
-  // // console.log(accessToken);
+  // //  (accessToken);
 
   return (
     <>

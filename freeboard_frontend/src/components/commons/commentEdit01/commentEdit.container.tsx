@@ -42,7 +42,7 @@ export default function CommentEditPage(props: IPropsCommentEditPage) {
   };
 
   // const onChangeUpdateCommentRating = (event) => {
-  //   // console.log(props.el.rating);
+  //   //  (props.el.rating);
   //   // setUpdateCommentRating(Number(event?.target.value));
   // };
 

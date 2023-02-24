@@ -21,22 +21,13 @@ export default function KakaoMapPage(): JSX.Element {
           center: new window.kakao.maps.LatLng(33.450701, 126.570667),
           level: 3,
         };
-
         const map = new window.kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
-        const imageSrc = "/quiz_2/kakao.png", // 마커이미지의 주소입니다
-          imageSize = new window.kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
-          imageOption = { offset: new window.kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다
 
-        const markerImage = new window.kakao.maps.MarkerImage(
-          imageSrc,
-          imageSize,
-          imageOption
-        );
         const marker = new window.kakao.maps.Marker({
-          // 지도 중심좌표에 마커를 생성합니다
-          position: map.getCenter(),
-        });
-
+            // 지도 중심좌표에 마커를 생성합니다
+            position: map.getCenter(),
+          }),
+          infowindow = new window.kakao.maps.InfoWindow({ zindex: 1 });
         marker.setMap(map);
 
         window.kakao.maps.event.addListener(
@@ -52,7 +43,7 @@ export default function KakaoMapPage(): JSX.Element {
             let message = "클릭한 위치의 위도는 " + latlng.getLat() + " 이고, ";
             message += "경도는 " + latlng.getLng() + " 입니다";
 
-            // console.log(latlng.La);
+            //  (latlng.La);
             setLat(latlng.La);
             setLng(latlng.Ma);
 
@@ -70,7 +61,6 @@ export default function KakaoMapPage(): JSX.Element {
     <>
       <div id="map" style={{ width: 500, height: 400 }}></div>
       <div>
-        {" "}
         위도 : {lat}, 경도 : {lng}
       </div>
     </>

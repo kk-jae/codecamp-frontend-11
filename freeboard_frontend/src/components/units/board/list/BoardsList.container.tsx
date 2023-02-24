@@ -31,7 +31,6 @@ export default function BoardsListContainer(): JSX.Element {
 
   const onClickMovedBoard = (event: MouseEvent<HTMLDivElement>): void => {
     void router.push(`/homepage/${event.currentTarget.id}`);
-    // // console.log(event.currentTarget.id);
   };
 
   const loadFunc = (): void => {

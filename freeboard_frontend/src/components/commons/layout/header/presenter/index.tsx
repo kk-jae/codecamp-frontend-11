@@ -21,7 +21,7 @@ export default function HeaderUI(props: IProps) {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
   const { data } = useQuery(FETCH_USER_LOGGEDIN);
 
-  // // console.log(data);
+  // //  (data);
 
   return (
     <S.Container>

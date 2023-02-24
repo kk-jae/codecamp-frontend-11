@@ -11,7 +11,6 @@ export default function PaymentLoading() {
 
   const onChangeFirst = (p: number) => () => {
     setPrice(Number(p));
-    console.log(p);
   };
 
   const onClickPayment = (): void => {
@@ -37,7 +36,6 @@ export default function PaymentLoading() {
         // callback
         if (rsp.success === true) {
           // 결제 성공 시 로직,
-          console.log(rsp);
           router.push("/28/payment/complete");
           // 백엔드에 결제관련 데이터 넘겨주기 => 즉, 뮤테이션 실행하기
           // createPointTransactionOfLoading (gql)
