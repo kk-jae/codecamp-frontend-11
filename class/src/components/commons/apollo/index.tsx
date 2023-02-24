@@ -7,8 +7,11 @@ import {
 } from "@apollo/client";
 import { createUploadLink } from "apollo-upload-client";
 import { useEffect } from "react";
-import { useRecoilState } from "recoil";
-import { accessTokenState } from "../../../commons/stores";
+import { useRecoilState, useRecoilValueLoadable } from "recoil";
+import {
+  accessTokenState,
+  restoreAccessTokenLoadable,
+} from "../../../commons/stores";
 import { onError } from "@apollo/client/link/error";
 import { getAccessToken } from "../../../commons/libraries/getAccessToken";
 
@@ -19,6 +22,7 @@ interface IApolloSettingProps {
 }
 export default function ApolloSetting(props: IApolloSettingProps): JSX.Element {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
+  const aaa = useRecoilValueLoadable(restoreAccessTokenLoadable);
 
   // LocalStorage에 저장하는 방법
   // 1. 조건문
@@ -39,9 +43,13 @@ export default function ApolloSetting(props: IApolloSettingProps): JSX.Element {
 
   // 2. 프리렌더링 무시 - useEffect 방법
   useEffect(() => {
-    const result = localStorage.getItem("accessToken");
-    // getItem : localStorage에 저장된 accessToken을 사용하겠다.
-    setAccessToken(result ?? ""); // 없으면 빈문자열
+    // 1. 기존방식 (refreshToken 학습 이전)
+    // const result = localStorage.getItem("accessToken");  // getItem : localStorage에 저장된 accessToken을 사용하겠다.
+
+    // 2. 새로운방식 (refreshToken 학습 이후)
+    void aaa.toPromise().then((newAccessToken) => {
+      setAccessToken(newAccessToken ?? "");
+    });
   }, []);
 
   // 리프레쉬토큰
