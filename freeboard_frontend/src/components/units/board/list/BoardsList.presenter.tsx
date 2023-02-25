@@ -9,6 +9,8 @@ import Paginations01 from "../../../commons/paginations/Paginations01.container"
 import { ApolloQueryResult } from "@apollo/client";
 import React from "react";
 import InfiniteScroll from "react-infinite-scroller";
+import { uuidv4 } from "@firebase/util";
+import { LikeOutlined, SearchOutlined, UserOutlined } from "@ant-design/icons";
 
 interface IBoardsListContainerUIProps {
   data: Pick<IQuery, "fetchBoards">;
@@ -20,35 +22,70 @@ interface IBoardsListContainerUIProps {
   count?: number;
   onChangeSearchContents: (event: ChangeEvent<HTMLInputElement>) => void;
   loadFunc: any;
-}
-
-{
-  /* <PortFolioMoved /> */
+  dataBoardBest: any;
 }
 
 export default function BoardsListContainerUI(
   props: IBoardsListContainerUIProps
 ) {
+  console.log(props.dataBoardBest);
   return (
     <>
       <S.Container>
-        {/* <S.Container_top>
+        <S.BestItemMainTitle>베스트 게시글</S.BestItemMainTitle>
+        <S.BestItem>
+          {props.dataBoardBest?.fetchBoardsOfTheBest.map(
+            (el: any, index: number) => (
+              <S.ItemWrapper key={index}>
+                <S.BestItemImg
+                  src={
+                    el.images[0]
+                      ? `https://storage.googleapis.com/${el.images[0]}`
+                      : "/기본이미지.png"
+                  }
+                  alt="??"
+                />
+                <S.BestItemText>
+                  <S.TextTop>
+                    <S.BestItemTitle>{el.title}</S.BestItemTitle>
+                  </S.TextTop>
+                  <S.TextBottom>
+                    <S.Bottom_Left>
+                      <S.BestItemWriter>
+                        <UserOutlined /> {el.writer}
+                      </S.BestItemWriter>
+                      <S.BestItemCreatedAt>
+                        {getDate(el.createdAt)}
+                      </S.BestItemCreatedAt>
+                    </S.Bottom_Left>
+                    <S.Bottom_Right>
+                      <S.BestItemLikeCount>
+                        <LikeOutlined style={{ color: "#FFD600" }} />
+                        {el.likeCount}
+                      </S.BestItemLikeCount>
+                    </S.Bottom_Right>
+                  </S.TextBottom>
+                </S.BestItemText>
+              </S.ItemWrapper>
+            )
+          )}
+        </S.BestItem>
+        <S.Container_top>
           <S.SearchContents>
-            <S.SearchContents_input onChange={props.onChangeSearchContents} />
-            <S.SearchContents_button>검색</S.SearchContents_button>
+            <S.SearchContents_input
+              onChange={props.onChangeSearchContents}
+              placeholder="제목을 검색하세요"
+            />
+            <S.SearchContents_button>
+              <SearchOutlined />
+            </S.SearchContents_button>
           </S.SearchContents>
           <S.CreateNewBoard onClick={props.onClickNewCreateBoard}>
-            <img src="../BoardPage/List_newBoard.png" alt="게시글등록"></img>
             게시물 등록하기
           </S.CreateNewBoard>
-        </S.Container_top> */}
+        </S.Container_top>
         <S.Wrapper>
           <S.Contents>
-            {/* <InfiniteScroll
-              pageStart={0}
-              loadMore={props.loadFunc}
-              hasMore={true}
-            > */}
             <S.List_Container>
               <S.List_Item>
                 <S.Bottom>
@@ -65,13 +102,6 @@ export default function BoardsListContainerUI(
                   id={el._id}
                   key={index}
                 >
-                  {/* <S.Item_Top>
-                    <S.Top_img
-                      src={`https://storage.googleapis.com/${el.images[0]}`}
-                      alt="이미지가 없습니다"
-                    />
-                  </S.Item_Top> */}
-
                   <S.Item_Bottom>
                     <S.Bottom>
                       <S.Bottom_Num>{index}</S.Bottom_Num>
@@ -83,11 +113,9 @@ export default function BoardsListContainerUI(
                 </S.List_Item>
               ))}
             </S.List_Container>
-            {/* </InfiniteScroll> */}
+
             <S.Wrapper_footer>
-              {/* 페이지 네이션 시작 */}
               <Paginations01 refetch={props.refetch} count={props.count} />
-              {/* 페이지 네이션 종료 */}
             </S.Wrapper_footer>
           </S.Contents>
         </S.Wrapper>

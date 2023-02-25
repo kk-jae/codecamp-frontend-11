@@ -1,6 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import { IQuery } from "../../../src/commons/types/generated/types";
-import { WithAuth } from "../../../src/components/units/commons/example/hoc/withAuth";
+import { withAuth } from "../../../src/components/commons/example/hoc/withAuth";
 
 const FETCH_USER_LOGGEDIN = gql`
   query {
@@ -22,4 +22,4 @@ function HocMainPage() {
   );
 }
 
-export default WithAuth(HocMainPage);
+export default withAuth(HocMainPage);

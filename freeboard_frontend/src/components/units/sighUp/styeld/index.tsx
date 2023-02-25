@@ -128,6 +128,7 @@ export const Footer_Submit = styled.button`
   border: 1px solid white;
   box-shadow: 1px 1px 5px black;
   transition: all 0.2s;
+  cursor: pointer;
 
   :active {
     transform: scale(0.97);

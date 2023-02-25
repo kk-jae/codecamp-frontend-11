@@ -52,6 +52,10 @@ export default function ApolloSetting(props: IApolloSettingProps): JSX.Element {
     });
   }, []);
 
+  // graphQLErrors : 에러들을 캐치해줍니다.
+  // operation : 방금전에 실패했던 쿼리가 뭐였는지 알아둡니다.
+  // forward : 실패했던 쿼리들을 재전송 합니다
+
   // 리프레쉬토큰
   const errorLink = onError(({ graphQLErrors, operation, forward }) => {
     // 1. 에러를 캐치

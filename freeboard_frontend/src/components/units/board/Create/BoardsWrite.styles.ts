@@ -2,9 +2,6 @@ import styled from "@emotion/styled";
 import { IProps } from "./BoardsWrite.type";
 
 export const Container = styled.div`
-  /* box-sizing: board-box;
-  margin: 0;
-  padding: 0; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -12,6 +9,7 @@ export const Container = styled.div`
   width: 1200px;
   background-color: white;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+  margin: auto;
 `;
 
 export const Head = styled.div`

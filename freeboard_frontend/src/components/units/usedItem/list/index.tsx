@@ -58,7 +58,10 @@ export default function UsedItemsUI() {
         </InfiniteScroll>
         <S.NewUseItem>
           <Link href={`/homepage/UsedItem/new`}>
-            <span>중고상품 등록하기</span>
+            <span>
+              상품 <br />
+              등록
+            </span>
           </Link>
         </S.NewUseItem>
       </S.Container2>

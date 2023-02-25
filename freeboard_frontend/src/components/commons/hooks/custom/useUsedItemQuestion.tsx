@@ -26,14 +26,20 @@ export default function UsedItemQuestion(args: string) {
     });
   };
 
-  const onClickDeleteUsedItemQuestion = async () => {
-    const result = await deleteUseditemQuestion({
-      variables: {
-        useditemQuestionId: args,
-      },
-    });
-    result;
-  };
+  const onClickDeleteUsedItemQuestion =
+    (useditemQuestionId: string) => async () => {
+      const result = await deleteUseditemQuestion({
+        variables: {
+          useditemQuestionId,
+        },
+        refetchQueries: [
+          {
+            query: FETCH_USED_ITEM_QUESTIONS,
+            variables: { useditemId: args },
+          },
+        ],
+      });
+    };
 
   return { onClickCreateUsedItemQuestion, onClickDeleteUsedItemQuestion };
 }

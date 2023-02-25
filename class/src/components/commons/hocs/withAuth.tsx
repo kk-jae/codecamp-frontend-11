@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useRecoilValueLoadable } from "recoil";
-import { getAccessToken } from "../../../commons/libraries/getAccessToken";
 import { restoreAccessTokenLoadable } from "../../../commons/stores";
 
 // 실제로 만들때는 로그인체크 -> withAuth 로 많이 사용합니다.

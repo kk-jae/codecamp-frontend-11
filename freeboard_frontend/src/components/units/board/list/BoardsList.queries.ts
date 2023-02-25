@@ -19,3 +19,15 @@ export const FETCH_BOARDS_COUNT = gql`
     fetchBoardsCount
   }
 `;
+
+export const FETCH_BOARDS_BEST = gql`
+  query {
+    fetchBoardsOfTheBest {
+      images
+      title
+      writer
+      likeCount
+      createdAt
+    }
+  }
+`;

@@ -63,9 +63,8 @@ export default function CreateUsedItemUI(props: IProps) {
           상품 설명:
           <ReactQuill
             onChange={onChangeContents}
-            // value={result.data?.fetchUseditem.contents}
+            defaultValue={result.data?.fetchUseditem.contents}
           />
-          {/* {formState.errors.contents?.message} */}
         </div>
         <div>
           판매 가격:

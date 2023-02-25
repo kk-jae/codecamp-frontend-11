@@ -1,162 +1,166 @@
 import styled from "@emotion/styled";
-import exp from "constants";
 
 export const Container = styled.div`
   width: 100%;
+  display: flex;
+  flex-direction: column;
 `;
 export const Wrapper_1st = styled.div`
+  background-color: #fffff3;
   width: 100%;
-  height: 90vh;
-  background-image: url("/skipjack/skipjackMain.png");
-  background-size: cover;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  position: relative;
-  align-items: center;
-
-  :after {
-    content: "";
-    background-color: black;
-    opacity: 0.6;
-    width: 100%;
-    height: 90vh;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    z-index: 1;
-  }
-`;
-
-export const TopContainer = styled.div`
-  color: white;
-  font-size: 100px;
-  font-weight: 700;
-  margin-top: 10%;
-  z-index: 3;
-`;
-
-export const Wrapper_2st = styled.div`
-  width: 100%;
-  height: 150vh;
-`;
-
-export const MiddleContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  position: relative;
-  padding: 20px;
-  background-color: black;
-`;
-
-export const MiddleBest3Text = styled.div`
-  font-size: 120px;
-  font-weight: 800;
-  color: #fbf251;
-  position: absolute;
-  top: -100px;
-  left: 50px;
-  z-index: 2;
-  transform: rotate(-10deg);
-`;
-
-export const ElContainer = styled.div`
-  width: 100%;
-  height: 25%;
-  /* height: 50%; */
-`;
-export const MiddleOne = styled.div`
-  width: 100%;
-  height: 100%;
-  background-color: black;
-`;
-export const One = styled.div`
-  width: 100%;
-  height: 100%;
+  height: 500px;
   display: flex;
   flex-direction: row;
 `;
-export const OneImg = styled.img`
-  width: 25%;
-  height: 100%;
-  background-size: cover;
-  border-radius: 50px;
-  scale: 0.9;
-  transition: all 0.3s ease-in-out;
-  color: white;
 
-  :hover {
-    scale: 0.95;
-  }
-`;
-export const OneText = styled.div`
-  width: 65%;
-  height: 100%;
-  color: white;
+export const My = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
   padding: 30px;
 `;
 
-export const OneText_Name = styled.div`
-  font-size: 40px;
-  font-weight: 800;
-  padding-bottom: 20px;
+export const My_img = styled.div`
+  width: 25%;
+  border-radius: 50%;
+  background-image: url("/my.jpg");
+  background-size: cover;
 `;
-
-export const OneText_Name_kr = styled.span``;
-
-export const OneText_Name_en = styled.span`
-  font-size: 25px;
-  padding-left: 20px;
-`;
-
-export const OneText_Contents = styled.div`
-  width: 100%;
-  font-size: 23px;
-`;
-
-export const OneImp = styled.div`
-  width: 10%;
-  height: 100%;
+export const My_text = styled.div`
+  width: 75%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
+  padding: 20px;
+`;
+
+export const My_text_one = styled.div`
   font-size: 40px;
-  color: white;
+  font-weight: 700;
+  padding-bottom: 30px;
 `;
-
-export const OneImp_Instagram = styled.div`
-  transition: all 0.3s ease-in-out;
-
-  :hover {
-    scale: 1.2;
-  }
+export const My_text_two = styled.div`
+  font-size: 20px;
+  line-height: 45px;
 `;
-export const OneImp_Youtube = styled.div`
-  transition: all 0.3s ease-in-out;
+export const My_text_three = styled.div``;
 
-  :hover {
-    scale: 1.2;
-  }
-`;
-export const OneImp_FaceBook = styled.div`
-  transition: all 0.3s ease-in-out;
-
-  :hover {
-    scale: 1.2;
-  }
-`;
-
-export const OneImp_Like = styled.div`
-  font-size: 30px;
-  color: red;
-`;
-
-export const MiddleTwo = styled.div`
+export const Wrapper_2st = styled.div`
   width: 100%;
-  height: 33%;
-  background-color: black;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  position: relative;
 `;
+
+export const Work = styled.div`
+  font-size: 40px;
+  font-weight: 700;
+  padding-bottom: 50px;
+`;
+
+export const Item = styled.div`
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+`;
+
+export const UsedItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 500px;
+  box-shadow: 0px 4px 20px rgba(167, 115, 244, 0.2);
+  border: 3px solid #a593e0;
+  border-radius: 30px;
+  text-align: center;
+
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  padding: 13px;
+
+  :hover {
+    transform: scale(1.03);
+  }
+`;
+export const Board = styled.div`
+  width: 400px;
+  height: 500px;
+  border: 3px solid #a593e0;
+  box-shadow: 0px 4px 20px rgba(167, 115, 244, 0.2);
+  border-radius: 30px;
+  text-align: center;
+  cursor: pointer;
+  padding: 13px;
+  transition: all 0.2s ease-in-out;
+
+  :hover {
+    transform: scale(1.03);
+  }
+`;
+
+export const UsedItemTilte = styled.div`
+  width: 100%;
+  font-size: 25px;
+  font-weight: 700;
+  margin-bottom: 10px;
+`;
+export const UsedItemImg = styled.img`
+  width: 100%;
+  border-radius: 10px;
+`;
+export const BoardTilte = styled.div`
+  width: 100%;
+  font-size: 25px;
+  font-weight: 700;
+  margin-bottom: 10px;
+`;
+export const BoardImg = styled.img`
+  margin-top: 8px;
+  width: 95%;
+  height: 85%;
+  border-radius: 10px;
+`;
+
+// export const Video = styled.video`
+//   /* position: absolute; */
+//   width: 100%;
+//   height: 100%;
+//   object-fit: cover;
+//   background-position: center;
+// `;
+
+export const Icon_img = styled.img`
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+`;
+
+export const LeftIcon = styled.div`
+  width: 200px;
+  height: 100%;
+  position: absolute;
+  left: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+`;
+export const RightIcon = styled.div`
+  width: 200px;
+  height: 100%;
+  position: absolute;
+  right: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+`;
+
 export const MiddleThree = styled.div`
   width: 100%;
   height: 33%;
@@ -164,5 +168,36 @@ export const MiddleThree = styled.div`
 `;
 export const Wrapper_3st = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 40vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const Contact = styled.div`
+  font-size: 40px;
+  font-weight: 700;
+  padding: 30px;
+`;
+export const Imp = styled.div`
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+export const Name = styled.div`
+  padding-bottom: 8px;
+`;
+export const Email = styled.div`
+  padding-bottom: 8px;
+`;
+export const Phone = styled.div`
+  padding-bottom: 8px;
+`;
+export const Github = styled.div`
+  padding-bottom: 8px;
+`;
+export const Blog = styled.div`
+  padding-bottom: 8px;
 `;

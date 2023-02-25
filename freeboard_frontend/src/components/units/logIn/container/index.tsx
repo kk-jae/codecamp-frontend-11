@@ -37,7 +37,7 @@ export default function LogInPageContainer() {
       const accessToken = result.data?.loginUser.accessToken;
       setAccessToken(accessToken);
       localStorage.setItem("accessToken", accessToken);
-      router.push("/homepage/list");
+      router.push("/homepage/UsedItem/list");
       Modal.success({
         content: "로그인에 성공하였습니다.",
       });

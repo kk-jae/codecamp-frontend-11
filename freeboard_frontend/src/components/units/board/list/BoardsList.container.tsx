@@ -1,4 +1,8 @@
-import { FETCH_BOARDS, FETCH_BOARDS_COUNT } from "./BoardsList.queries";
+import {
+  FETCH_BOARDS,
+  FETCH_BOARDS_BEST,
+  FETCH_BOARDS_COUNT,
+} from "./BoardsList.queries";
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import BoardsListContainerUI from "./BoardsList.presenter";
@@ -9,8 +13,6 @@ import type {
 } from "../../../../commons/types/generated/types";
 import type { ChangeEvent, MouseEvent } from "react";
 import _ from "lodash";
-import { List_Item } from "./BoardsList.styles";
-import { useState } from "react";
 
 export default function BoardsListContainer(): JSX.Element {
   const router = useRouter();
@@ -24,6 +26,11 @@ export default function BoardsListContainer(): JSX.Element {
     Pick<IQuery, "fetchBoardsCount">,
     IQueryFetchBoardsCountArgs
   >(FETCH_BOARDS_COUNT);
+
+  const { data: dataBoardBest } = useQuery<
+    Pick<IQuery, "fetchBoardsOfTheBest">,
+    IQueryFetchBoardsArgs
+  >(FETCH_BOARDS_BEST);
 
   const onClickNewCreateBoard = (): void => {
     void router.push("/homepage/new");
@@ -75,6 +82,7 @@ export default function BoardsListContainer(): JSX.Element {
       count={dataBoardCount?.fetchBoardsCount}
       loadFunc={loadFunc}
       onChangeSearchContents={onChangeSearchContents}
+      dataBoardBest={dataBoardBest}
     />
   );
 }
