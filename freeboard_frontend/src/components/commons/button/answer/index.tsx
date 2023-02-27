@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useQueryIdChecker } from "../../hooks/custom/useQueryIdChecker";
 import UsedItemQuestionAnswer from "../../hooks/custom/useUsedItemQuestionAnswer";
+import * as S from "../answer/index.styled";
 
 export default function QuestionAnswerButton(props: any) {
   // const { id } = useQueryIdChecker("usedItem");
+  const { register, handleSubmit } = useForm();
+
   const { onClickUsedItemQuestionAnswer } = UsedItemQuestionAnswer();
 
   const [myIndex, setMyIndex] = useState(-1);
@@ -12,22 +14,34 @@ export default function QuestionAnswerButton(props: any) {
   const onClickMyIndex = (event: any) => {
     setMyIndex(Number(event?.currentTarget.id));
   };
-  const { register, handleSubmit } = useForm();
+
+  const onClickCancel = () => {
+    setMyIndex(-1);
+  };
 
   //  (props.data.fetchUseditemQuestions);
   return (
-    <span>
+    <S.Container>
       {myIndex === props.index ? (
-        <form
+        <S.Answer
           onSubmit={handleSubmit(onClickUsedItemQuestionAnswer(props.index))}
         >
-          내용 :<input {...register("contents")} /> <button>문의하기</button>
-        </form>
+          <S.Answer_input
+            {...register("contents")}
+            placeholder="작성자님에게 전달할 내용을 입력하세요"
+          />{" "}
+          <S.Answer_Btn>
+            <S.Answer_Btn_detail>등록</S.Answer_Btn_detail>
+            <S.Answer_Btn_detail onClick={onClickCancel}>
+              취소
+            </S.Answer_Btn_detail>
+          </S.Answer_Btn>
+        </S.Answer>
       ) : (
-        <button onClick={onClickMyIndex} id={String(props.index)}>
+        <S.Btn onClick={onClickMyIndex} id={String(props.index)}>
           답글하기
-        </button>
+        </S.Btn>
       )}
-    </span>
+    </S.Container>
   );
 }

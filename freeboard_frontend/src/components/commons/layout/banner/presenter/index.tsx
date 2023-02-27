@@ -53,7 +53,7 @@ export default function BannerUI(props) {
         <S.Item>
           <S.UsedItem onClick={props.onClickUsedItem}>
             <S.UsedItemTilte>중고 마켓</S.UsedItemTilte>
-            <S.UsedItemImg src="/test.gif" />
+            <S.UsedItemImg src="/중고나라.gif" />
           </S.UsedItem>
           <S.Board onClick={props.onClickBoard}>
             <S.BoardTilte>자유게시판</S.BoardTilte>

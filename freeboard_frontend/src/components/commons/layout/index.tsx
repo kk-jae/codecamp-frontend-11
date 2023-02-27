@@ -26,16 +26,14 @@ export default function Layout(props: IProps) {
 
   return (
     <>
-      {isOpenMainHeader && <LayoutMainHeader />}
+      {/* {isOpenMainHeader && <LayoutMainHeader />} */}
       {!isHiddenSubHeader && <LayoutSubHeader />}
-      {isOpenBanner && <LayoutBanner />}
+      {/* {isOpenBanner && <LayoutBanner />} */}
       {!isHiddenNavigation && <LayoutNavigation />}
-      {/* <LayoutBanner /> */}
       <LayoutBody>
         <div>{props.children}</div>
       </LayoutBody>
       {/* <LayoutFooter /> */}
     </>
-    // </LayoutContainer>
   );
 }

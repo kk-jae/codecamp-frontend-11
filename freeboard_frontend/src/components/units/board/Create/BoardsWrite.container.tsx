@@ -30,7 +30,7 @@ export default function PortFolioCreateBoards(
   >(UPDATE_BOARD);
   const router = useRouter();
 
-  const [uploadFile] = useMutation(UPLOAD_FILE);
+  // const [uploadFile] = useMutation(UPLOAD_FILE);
 
   const [writer, setWriter] = useState("");
   const [password, setPassword] = useState("");

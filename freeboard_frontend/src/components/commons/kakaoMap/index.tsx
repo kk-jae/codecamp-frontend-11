@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import * as S from "../kakaoMap/index.styled";
 
 declare const window: typeof globalThis & {
   kakao: any;
@@ -58,11 +59,16 @@ export default function KakaoMapPage(): JSX.Element {
   }, []);
 
   return (
-    <>
+    <S.Container>
       <div id="map" style={{ width: 500, height: 400 }}></div>
-      <div>
-        위도 : {lat}, 경도 : {lng}
-      </div>
-    </>
+      {lat ? (
+        <S.LatLng_Wrapper>
+          <S.LatLng>위도 : {lat}</S.LatLng>
+          <S.LatLng>경도 : {lng}</S.LatLng>
+        </S.LatLng_Wrapper>
+      ) : (
+        <div></div>
+      )}
+    </S.Container>
   );
 }

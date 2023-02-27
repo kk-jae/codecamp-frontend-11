@@ -17,7 +17,12 @@ export default function PortFolioQueryUI(props: IProtFolioQueryUI) {
             alt="이미지가 없습니다."
           /> */}
           <S.ImageCarouselContainer>
-            <BoardCarousel data={props.data?.fetchBoard.images} />
+            {props.data?.fetchBoard.images?.length !== 0 ? (
+              <BoardCarousel data={props.data?.fetchBoard.images} />
+            ) : (
+              <img src="d" alt="이미지를 등록해보세요😀" />
+            )}
+            {/* <BoardCarousel data={props.data?.fetchBoard.images} /> */}
           </S.ImageCarouselContainer>
         </S.Wrapper_Left>
         <S.Wrapper_Center>

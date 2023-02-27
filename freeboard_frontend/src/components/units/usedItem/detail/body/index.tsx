@@ -5,12 +5,14 @@ import DOMPurify from "dompurify";
 import UsedItem from "../../../../commons/hooks/custom/useUsedItem";
 import * as S from "../body/index.styled";
 import { getDate } from "../../../../../commons/libraries/utils";
+import AddLocalStorage from "../../../../commons/hooks/custom/AddLocalStorage";
 
 export default function UsedItemDetailBody() {
   const { id } = useQueryIdChecker("usedItem");
   const result = useQueryFetchUsedItem(id);
   const { onClickMoveToPage } = useMoveToPage();
   const { onClickDeleteUsedItem } = UsedItem(id);
+  const { onClickAddLocalStorage } = AddLocalStorage();
 
   return (
     <S.Container>
@@ -35,7 +37,27 @@ export default function UsedItemDetailBody() {
           <span style={{ fontWeight: "700" }}>판매 가격</span> :{" "}
           {result.data?.fetchUseditem.price} 원
         </S.Top_Price>
-        {/* <div>거래 위치 : {}</div> */}
+        <S.Top_Basket
+          onClick={onClickAddLocalStorage(result.data?.fetchUseditem)}
+        >
+          찜하기
+        </S.Top_Basket>
+        <S.Top_Btn>
+          <S.Top_Btn_Detail
+            // src="/BoardPage/reviewUp.png"
+            onClick={onClickMoveToPage(`/homepage/UsedItem/${id}/edit`)}
+          >
+            상품 <br />
+            수정
+          </S.Top_Btn_Detail>
+          <S.Top_Btn_Detail
+            // src="/BoardPage/reviewDel.png"
+            onClick={onClickDeleteUsedItem}
+          >
+            상품 <br />
+            삭제
+          </S.Top_Btn_Detail>
+        </S.Top_Btn>
       </S.UsedItemDetail_Top>
       <S.UsedItemDetail_Middle>
         <div>
@@ -49,20 +71,16 @@ export default function UsedItemDetailBody() {
           )}
         </div>
         {/* <div>태그 입력 : {result.data?.fetchUseditem.}</div> */}
-        {result.data?.fetchUseditem.images?.[0] ? (
-          <img
-            src={`https://storage.googleapis.com/${result.data?.fetchUseditem.images?.[0]}`}
-          />
-        ) : (
-          <div></div>
+        {result.data?.fetchUseditem.images?.map((el) =>
+          el ? (
+            <S.UsedItemDetail_Image
+              src={`https://storage.googleapis.com/${el}`}
+            />
+          ) : (
+            <div></div>
+          )
         )}
       </S.UsedItemDetail_Middle>
-      <div>
-        <button onClick={onClickMoveToPage(`/homepage/UsedItem/${id}/edit`)}>
-          상품 수정하기
-        </button>
-        <button onClick={onClickDeleteUsedItem}>상품 삭제하기</button>
-      </div>
     </S.Container>
   );
 }

@@ -28,7 +28,6 @@ interface IBoardsListContainerUIProps {
 export default function BoardsListContainerUI(
   props: IBoardsListContainerUIProps
 ) {
-  console.log(props.dataBoardBest);
   return (
     <>
       <S.Container>

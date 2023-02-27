@@ -7,7 +7,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 0px 5% 0px 5%;
+  padding: 0px 10% 0px 10%;
   opacity: 0.8;
 `;
 
@@ -75,6 +75,10 @@ export const Right_Container_Button = styled.div`
 `;
 
 export const Button_Item = styled.span`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   font-weight: 600;
   padding-left: 20px;
   cursor: pointer;
@@ -100,4 +104,9 @@ export const Button_Item = styled.span`
       }
     }
   }
+`;
+
+export const Button_Item_Icon = styled.div``;
+export const Button_Item_Text = styled.div`
+  font-size: 16px;
 `;

@@ -78,15 +78,16 @@ export const Price = styled.div`
 export const NewUseItem = styled.button`
   text-align: center;
   position: fixed;
-  width: 60px;
-  height: 60px;
+  width: 55px;
+  height: 55px;
   border-radius: 50%;
-  right: 21%;
-  bottom: 5%;
+  bottom: 3%;
+  right: 4%;
   font-weight: 700;
   color: white;
   background-color: black;
   cursor: pointer;
+  font-size: 14px;
 `;
 
 //   cursor: pointer;

@@ -1,10 +1,10 @@
 import { withAuth } from "../../../src/components/commons/withAuth";
-import MyPageContainer from "../../../src/components/units/myPage/container";
+import MyPageUI from "../../../src/components/units/myPage";
 
 function MyPage(): JSX.Element {
   return (
     <>
-      <MyPageContainer />
+      <MyPageUI />
     </>
   );
 }

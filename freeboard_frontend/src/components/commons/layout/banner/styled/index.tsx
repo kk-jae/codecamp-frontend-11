@@ -110,7 +110,9 @@ export const UsedItemTilte = styled.div`
   margin-bottom: 10px;
 `;
 export const UsedItemImg = styled.img`
-  width: 100%;
+  margin-top: 8px;
+  width: 95%;
+  height: 85%;
   border-radius: 10px;
 `;
 export const BoardTilte = styled.div`
