@@ -18,6 +18,7 @@ export const My = styled.div`
   display: flex;
   flex-direction: row;
   padding: 30px;
+  /* transition: all 0.3s ease-in-out; */
 `;
 
 export const My_img = styled.div`
@@ -54,6 +55,7 @@ export const Wrapper_2st = styled.div`
   justify-content: space-evenly;
   align-items: center;
   position: relative;
+  animation: Wrapper2st 1s ease-in-out 0.3s;
 `;
 
 export const Work = styled.div`

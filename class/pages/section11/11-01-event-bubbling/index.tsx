@@ -1,7 +1,8 @@
 //08-02 자료
 
 import { useQuery, gql } from "@apollo/client";
-import { MouseEvent } from "react";
+import { uuidv4 } from "@firebase/util";
+import type { MouseEvent } from "react";
 
 const FETCH_BOARDS = gql`
   query {
@@ -22,7 +23,7 @@ export default function StaticRoutingMovedPage() {
     // alert(event.target.id);
     // 태그에 id값이 없는곳을 클릭하면 id가 없으므로 아무것도 출력되지 않습니다.
 
-    alert(event.currentTarget.id); //currentTarget은 무조건 부모여야 합니다.
+    alert(event.currentTarget.id); // currentTarget은 무조건 부모여야 합니다.
     // alert(event.target.id); // 부모를 클릭하면 id 값을 가져오지만, 자식을 클릭하면 id값을 가져오지 못합니다.
 
     // 자식을 포함한 부모의 아무곳이나 클릭해도 id 값을 가져올 수 있습니다.
@@ -33,7 +34,7 @@ export default function StaticRoutingMovedPage() {
   return (
     <div>
       {data?.fetchBoards.map((el: any) => (
-        <div id={el.writer} onClick={onClickAlert}>
+        <div id={el.writer} onClick={onClickAlert} key={uuidv4}>
           <span style={{ margin: "10px" }}>{el.number}</span>
           <span style={{ margin: "10px" }}>{el.title}</span>
           <span style={{ margin: "10px" }}>{el.writer}</span>

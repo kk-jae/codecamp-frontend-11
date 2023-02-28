@@ -13,7 +13,7 @@ export default function HeaderContainer() {
   };
 
   const onClickLogo = () => {
-    router.push("/homepage");
+    router.push("/");
   };
 
   const onClickLogin = () => {

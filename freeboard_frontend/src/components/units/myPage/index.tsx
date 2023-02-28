@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { accessTokenState } from "../../../commons/libraries/stores";
 import useQueryfetchUserLoggeIn from "../../commons/hooks/query/useQueryFetchUserLoggeIn";
@@ -8,8 +8,19 @@ export default function MyPageUI(): JSX.Element {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
   const { data } = useQueryfetchUserLoggeIn();
 
+  const [TodayUsedItem, setTodayUsedItem] = useState();
   useEffect(() => {
-    console.log(JSON.parse(localStorage.baskets));
+    if (typeof window !== "undefined") {
+      const getDataLocalS = (basket: string) => {
+        let localData = localStorage.getItem(basket);
+        if (localData === null || localData === undefined) {
+          return []; // or some other default value
+        }
+        return JSON.parse(localData);
+      };
+      let localData = getDataLocalS("baskets");
+      setTodayUsedItem(localData);
+    }
   }, []);
 
   return (
@@ -36,15 +47,27 @@ export default function MyPageUI(): JSX.Element {
           </S.Profile_right>
         </S.Profile_Wrapper>
         <S.Baskets>
-          <S.Baskets_left>최근 본 상품</S.Baskets_left>
+          <S.Baskets_left>오늘 본 상품</S.Baskets_left>
           <S.Baskets_right>
-            {/* {JSON.parse(localStorage.baskets).map((el) => (
-              { el.images[0] ?
-                <S.Baskets_images src={`https://storage.googleapis.com/${el.images[0]}`}/>
-
-              }
-
-            ))} */}
+            {TodayUsedItem ? (
+              TodayUsedItem.map((el) => (
+                <S.Baskets_item>
+                  {el.images[0] ? (
+                    <S.Baskets_image
+                      src={`https://storage.googleapis.com/${el.images[0]}`}
+                    />
+                  ) : (
+                    <S.Baskets_image src={"/상품 기본이미지.png"} />
+                  )}
+                  <S.Baskets_seller_price>
+                    <S.Baskets_seller>상품명 : {el.name}</S.Baskets_seller>
+                    <S.Baskets_price>가격 : {el.price} 원</S.Baskets_price>
+                  </S.Baskets_seller_price>
+                </S.Baskets_item>
+              ))
+            ) : (
+              <div>오늘 본 상품이 없습니다.</div>
+            )}
           </S.Baskets_right>
         </S.Baskets>
       </S.Wrapper>

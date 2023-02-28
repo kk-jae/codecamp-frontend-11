@@ -1,12 +1,15 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import InfiniteScroll from "react-infinite-scroller";
 import { useMoveToPage } from "../../../commons/hooks/custom/useMoveToPage";
 import { useQueryFetchUseditems } from "../../../commons/hooks/query/useQueryFetchUsedItems";
 import * as S from "../list/index.styled";
 
 export default function UsedItemsUI() {
+  const router = useRouter();
+
   const { data, fetchMore } = useQueryFetchUseditems();
-  const { onClickMoveToPage } = useMoveToPage();
+  const { onClickMoveToPageAddBasket } = useMoveToPage();
 
   const loadFunc = (): void => {
     if (data === undefined) return;
@@ -36,7 +39,7 @@ export default function UsedItemsUI() {
         <InfiniteScroll pageStart={0} loadMore={loadFunc} hasMore={true}>
           <S.Wrapper>
             {data?.fetchUseditems.map((el, index) => (
-              <S.Item key={index} onClick={onClickMoveToPage(el._id)}>
+              <S.Item key={index} onClick={onClickMoveToPageAddBasket(el)}>
                 <S.Item_Img
                   src={
                     el.images?.[0]

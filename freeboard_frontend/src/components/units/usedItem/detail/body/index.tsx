@@ -6,6 +6,7 @@ import UsedItem from "../../../../commons/hooks/custom/useUsedItem";
 import * as S from "../body/index.styled";
 import { getDate } from "../../../../../commons/libraries/utils";
 import AddLocalStorage from "../../../../commons/hooks/custom/AddLocalStorage";
+import UsedItemToggle from "../../../../commons/hooks/custom/useUsedItemToggle";
 
 export default function UsedItemDetailBody() {
   const { id } = useQueryIdChecker("usedItem");
@@ -13,6 +14,7 @@ export default function UsedItemDetailBody() {
   const { onClickMoveToPage } = useMoveToPage();
   const { onClickDeleteUsedItem } = UsedItem(id);
   const { onClickAddLocalStorage } = AddLocalStorage();
+  // const { onClickUsedItemToggle } = UsedItemToggle();
 
   return (
     <S.Container>
@@ -38,7 +40,8 @@ export default function UsedItemDetailBody() {
           {result.data?.fetchUseditem.price} 원
         </S.Top_Price>
         <S.Top_Basket
-          onClick={onClickAddLocalStorage(result.data?.fetchUseditem)}
+        // onClick={onClickAddLocalStorage(result.data?.fetchUseditem)}
+        // onClick={onClickUsedItemToggle}
         >
           찜하기
         </S.Top_Basket>

@@ -5,11 +5,13 @@ export default function HeaderUI() {
     <S.Container>
       <S.Wrapper>
         <S.Header>
-          <S.Header_left>포트폴리오</S.Header_left>
-          <S.Header_right>메뉴바</S.Header_right>
+          <S.Header_left>HyunJae Kwon</S.Header_left>
+          <S.Header_right>
+            <S.right_item>ABOUT ME</S.right_item>
+            <S.right_item>WORK</S.right_item>
+            <S.right_item>CONTACT</S.right_item>
+          </S.Header_right>
         </S.Header>
-        <S.Body>dd</S.Body>
-        <S.Footer></S.Footer>
       </S.Wrapper>
     </S.Container>
   );

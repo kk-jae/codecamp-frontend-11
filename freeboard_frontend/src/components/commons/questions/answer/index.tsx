@@ -12,7 +12,7 @@ export default function QuestionsListAnswer(props: IProps) {
     <>
       {data?.fetchUseditemQuestionAnswers.length !== 0 ? (
         <S.Container>
-          <div style={{ display: "flex" }}>
+          <S.Main_wrapper>
             <S.Img src="/down-right-arrow.png" />
             {data?.fetchUseditemQuestionAnswers.map((el, index) => (
               <S.Wrapper key={index}>
@@ -20,7 +20,7 @@ export default function QuestionsListAnswer(props: IProps) {
                 <S.Buyer_contents>{el.contents}</S.Buyer_contents>
               </S.Wrapper>
             ))}
-          </div>
+          </S.Main_wrapper>
         </S.Container>
       ) : (
         <span style={{ display: "none" }}></span>

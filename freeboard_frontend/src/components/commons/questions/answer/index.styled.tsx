@@ -9,6 +9,10 @@ export const Container = styled.div`
   display: flex;
   flex-direction: row;
 `;
+export const Main_wrapper = styled.div`
+  width: 100%;
+  /* display: flex; */
+`;
 
 export const Img = styled.img`
   width: 20px;
@@ -20,6 +24,8 @@ export const Wrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  line-height: 30px;
+  padding: 4px;
 `;
 
 export const Buyer_name = styled.div`

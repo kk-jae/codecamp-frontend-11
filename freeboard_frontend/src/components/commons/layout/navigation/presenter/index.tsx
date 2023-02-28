@@ -1,3 +1,4 @@
+import { uuidv4 } from "@firebase/util";
 import { useMoveToPage } from "../../../hooks/custom/useMoveToPage";
 import * as S from "../stlyed/index";
 
@@ -15,15 +16,15 @@ export default function NavigationUI() {
     <S.Container>
       <S.Wrapper>
         <S.Board>
-          {Board.map((el) => (
-            <S.Board_Menu onClick={onClickMoveToPage(el.url)}>
+          {Board.map((el, index) => (
+            <S.Board_Menu onClick={onClickMoveToPage(el.url)} key={index}>
               {el.name}
             </S.Board_Menu>
           ))}
         </S.Board>
         <S.UsedItem>
-          {UsedItem.map((el) => (
-            <S.UsedItem_Menu onClick={onClickMoveToPage(el.url)}>
+          {UsedItem.map((el, index) => (
+            <S.UsedItem_Menu onClick={onClickMoveToPage(el.url)} key={index}>
               {el.name}
             </S.UsedItem_Menu>
           ))}

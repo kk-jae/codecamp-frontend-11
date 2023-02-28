@@ -19,10 +19,6 @@ import { useRouter } from "next/router";
 export default function BannerUI(props) {
   const router = useRouter();
 
-  const onClickBoard = () => {
-    router.push("/homepage/list");
-  };
-
   return (
     <S.Container>
       <S.Wrapper_1st>
