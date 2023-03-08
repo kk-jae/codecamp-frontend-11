@@ -1,9 +1,6 @@
-import { useRecoilState } from "recoil";
-import { accessTokenState } from "../../../../commons/libraries/stores";
 import * as S from "../styeld/index";
 import {
   FormState,
-  useForm,
   UseFormHandleSubmit,
   UseFormRegister,
 } from "react-hook-form";
@@ -32,6 +29,7 @@ export default function LogInPageUI(props: IProps) {
               placeholder="이메일을 입력하세요"
               type="email"
               {...props.register("email")}
+              value="kk_jae@naver.com"
             ></S.Body_Input>
             <S.Body_InputError>
               {props.formState.errors.email?.message}
@@ -43,6 +41,7 @@ export default function LogInPageUI(props: IProps) {
               placeholder="비밀번호를 입력하세요"
               type="password"
               {...props.register("password")}
+              value="123"
             ></S.Body_Input>
             <S.Body_InputError>
               {props.formState.errors.password?.message}

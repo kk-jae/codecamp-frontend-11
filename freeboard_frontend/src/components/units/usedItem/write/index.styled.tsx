@@ -104,3 +104,67 @@ export const Create_btn = styled.button`
   border: 1px solid #555e6a;
   cursor: pointer;
 `;
+
+// 주소
+export const Middle_middle_wrapper_box = styled.div``;
+
+export const Middle_middle_text = styled.div`
+  font-weight: 500;
+  font-size: 24px;
+`;
+export const Middle_middle_address_detail = styled.div`
+  margin-top: 36px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 39px;
+`;
+export const Address_kakao = styled.div`
+  width: 364px;
+  height: 252px;
+  margin-right: 26px;
+`;
+
+export const Address_search_wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+  width: 83%;
+`;
+export const Address_search = styled.div`
+  margin-bottom: 26px;
+`;
+export const AdrTop = styled.div`
+  display: flex;
+`;
+
+export const AdrTopInput = styled.input`
+  width: 77px;
+  height: 52px;
+  text-align: center;
+  margin-right: 10px;
+  border: 1px solid #bdbdbd;
+  font-size: 16px;
+  font-weight: 400;
+
+  /* ::placeholder {
+    color: ${(props) => (!props.readOnly ? "black" : "gray")};
+  } */
+`;
+
+export const AdrTopBtn = styled.button`
+  background-color: black;
+  color: white;
+  width: 124px;
+  height: 52px;
+  border: 1px solid black;
+  cursor: pointer;
+`;
+
+export const AdrInput = styled.input`
+  width: 100%;
+  height: 56px;
+  background-color: #e9e9e9;
+  border: none;
+  margin-bottom: 24px;
+  padding-left: 19px;
+`;

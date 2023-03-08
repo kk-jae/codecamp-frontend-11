@@ -109,4 +109,8 @@ export const Button_Item = styled.span`
 export const Button_Item_Icon = styled.div``;
 export const Button_Item_Text = styled.div`
   font-size: 16px;
+
+  :hover {
+    font-weight: 700;
+  }
 `;

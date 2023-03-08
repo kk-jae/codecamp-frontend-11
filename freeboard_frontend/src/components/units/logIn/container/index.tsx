@@ -2,13 +2,13 @@ import LogInPageUI from "../presenter";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../query/index";
 import { useRecoilState } from "recoil";
-import { accessTokenState } from "../../../../commons/libraries/stores";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { schema } from "./validation";
 import { Modal } from "antd";
+import { accessTokenState } from "../../../../commons/stores";
 
 export interface IData {
   email: string;

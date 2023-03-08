@@ -18,6 +18,12 @@ const FETCH_USED_ITEM = gql`
       seller {
         name
       }
+      useditemAddress {
+        address
+        zipcode
+        addressDetail
+      }
+      pickedCount
     }
   }
 `;

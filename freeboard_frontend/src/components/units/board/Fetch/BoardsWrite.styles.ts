@@ -3,14 +3,13 @@ import styled from "@emotion/styled";
 export const Container = styled.div`
   padding: 5% 0 5% 0;
   width: 100%;
-  /* border: 1px solid red; */
   display: flex;
   flex-direction: row;
   justify-content: center;
 `;
 export const Wrapper = styled.div`
   width: 80vw;
-  min-height: 80vh;
+  min-height: 50vh;
   display: flex;
   flex-direction: row;
   padding: 20px;
@@ -26,8 +25,9 @@ export const Wrapper_Left = styled.div`
   justify-content: center;
   align-items: flex-start;
 `;
+
 export const ImageItem = styled.img`
-  width: 80%;
+  width: 100%;
   margin-top: 10%;
   object-fit: contain;
   border-radius: 20px;

@@ -59,7 +59,7 @@ export default function UsedItem(id: string) {
     setImgUrl3(result.data.uploadFile.url ?? "");
   };
 
-  const onClickCreateUsedItem = async (data: any) => {
+  const onClickCreateUsedItem = (zipcode) => (address) => async (data: any) => {
     try {
       await createUseditem({
         variables: {
@@ -69,6 +69,11 @@ export default function UsedItem(id: string) {
             contents: data.contents,
             price: Number(data.price),
             images: [imgUrl1, imgUrl2, imgUrl3],
+            useditemAddress: {
+              zipcode,
+              address,
+              addressDetail: data.addressDetail,
+            },
           },
         },
       });

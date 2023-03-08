@@ -12,16 +12,13 @@ export default function PortFolioQueryUI(props: IProtFolioQueryUI) {
     <S.Container>
       <S.Wrapper>
         <S.Wrapper_Left>
-          {/* <S.ImageItem
-            src={`https://storage.googleapis.com/${props.data?.fetchBoard.images[0]}`}
-            alt="이미지가 없습니다."
-          /> */}
           <S.ImageCarouselContainer>
-            {props.data?.fetchBoard.images?.length !== 0 ? (
-              <BoardCarousel data={props.data?.fetchBoard.images} />
-            ) : (
-              <img src="d" alt="이미지를 등록해보세요😀" />
-            )}
+            <S.ImageItem
+              src={`https://storage.googleapis.com/${props.data?.fetchBoard.images[0]}`}
+              alt="이미지가 없습니다."
+            />
+            {/* <BoardCarousel data={props.data?.fetchBoard.images} /> */}
+
             {/* <BoardCarousel data={props.data?.fetchBoard.images} /> */}
           </S.ImageCarouselContainer>
         </S.Wrapper_Left>
@@ -57,14 +54,12 @@ export default function PortFolioQueryUI(props: IProtFolioQueryUI) {
                   {props.data?.fetchBoard?.contents}
                 </S.Body_detail>
               </S.Center_Middle_title_detail>
-              {/* 댓글 시작 */}
               <S.Center_Middle_comment>
                 <S.Center_Middle_comment_text>
                   댓글
                 </S.Center_Middle_comment_text>
                 <PortFolioMovedComments />
               </S.Center_Middle_comment>
-              {/* 댓글 종료 */}
             </S.Center_Middle_title_detail_comment>
           </S.Center_Middle>
           <S.Youtube_Btn>

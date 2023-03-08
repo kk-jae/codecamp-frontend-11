@@ -1,18 +1,11 @@
-import { useEffect, useState } from "react";
-import * as S from "../kakaoMap/index.styled";
+import { useEffect } from "react";
+import * as S from "./index.styled";
 
-declare const window: typeof globalThis & {
-  kakao: any;
-};
-
-export default function KakaoMapPage(): JSX.Element {
-  const [lat, setLat] = useState("");
-  const [lng, setLng] = useState("");
-
+export default function KakaoMapPage(props) {
   useEffect(() => {
     const script = document.createElement("script"); // <script></script>
     script.src =
-      "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=1eb43d8b4157c3b6f8b95c19a43d7619";
+      "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=1eb43d8b4157c3b6f8b95c19a43d7619&libraries=services";
     document.head.appendChild(script); // <head><script></script></head>
 
     script.onload = () => {
@@ -24,51 +17,41 @@ export default function KakaoMapPage(): JSX.Element {
         };
         const map = new window.kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
 
-        const marker = new window.kakao.maps.Marker({
-            // 지도 중심좌표에 마커를 생성합니다
-            position: map.getCenter(),
-          }),
-          infowindow = new window.kakao.maps.InfoWindow({ zindex: 1 });
-        marker.setMap(map);
+        const geocoder = new window.kakao.maps.services.Geocoder();
 
-        window.kakao.maps.event.addListener(
-          map,
-          "click",
-          function (mouseEvent: any) {
-            // 클릭한 위도, 경도 정보를 가져옵니다
-            const latlng = mouseEvent.latLng;
+        geocoder.addressSearch(
+          // props.address,
+          props.address ? props.address : props.isEditData ?? "",
 
-            // 마커 위치를 클릭한 위치로 옮깁니다
-            marker.setPosition(latlng);
+          function (result, status) {
+            if (status === window.kakao.maps.services.Status.OK) {
+              const coords = new window.kakao.maps.LatLng(
+                result[0].y,
+                result[0].x
+              );
 
-            let message = "클릭한 위치의 위도는 " + latlng.getLat() + " 이고, ";
-            message += "경도는 " + latlng.getLng() + " 입니다";
-
-            //  (latlng.La);
-            setLat(latlng.La);
-            setLng(latlng.Ma);
-
-            const resultDiv = document.getElementById("clickLatlng");
-            if (resultDiv !== null) {
-              resultDiv.innerHTML = message;
+              const marker = new window.kakao.maps.Marker({
+                map: map,
+                position: coords,
+              });
+              const infowindow = new window.kakao.maps.InfoWindow({
+                content: `<div style="width:200px;text-align:center;padding:6px;">${
+                  props.address ? props.address : props.isEditData ?? ""
+                }</div>`,
+                // '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>',
+              });
+              infowindow.open(map, marker);
+              map.setCenter(coords);
             }
           }
         );
       });
     };
-  }, []);
+  }, [props.address]);
 
   return (
     <S.Container>
-      <div id="map" style={{ width: 500, height: 400 }}></div>
-      {lat ? (
-        <S.LatLng_Wrapper>
-          <S.LatLng>위도 : {lat}</S.LatLng>
-          <S.LatLng>경도 : {lng}</S.LatLng>
-        </S.LatLng_Wrapper>
-      ) : (
-        <div></div>
-      )}
+      <S.KakaoMap id="map"></S.KakaoMap>
     </S.Container>
   );
 }

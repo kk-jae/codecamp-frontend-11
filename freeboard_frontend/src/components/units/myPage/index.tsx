@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
-import { accessTokenState } from "../../../commons/libraries/stores";
-import useQueryfetchUserLoggeIn from "../../commons/hooks/query/useQueryFetchUserLoggeIn";
+import { accessTokenState } from "../../../commons/stores";
+import { useQueryFetchUserLoggedIn } from "../../commons/hooks/query/useQueryFetchUserLoggedIn";
 import * as S from "../myPage/index.styled";
+import PaymentUI from "../payment";
 
 export default function MyPageUI(): JSX.Element {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
-  const { data } = useQueryfetchUserLoggeIn();
+  const { data } = useQueryFetchUserLoggedIn();
 
   const [TodayUsedItem, setTodayUsedItem] = useState();
   useEffect(() => {
@@ -42,7 +43,8 @@ export default function MyPageUI(): JSX.Element {
             </S.Profile_right_text>
             <S.Profile_right_text>
               <S.Right_selet>포인트</S.Right_selet>{" "}
-              {data?.fetchUserLoggedIn?.userPoint}
+              {data?.fetchUserLoggedIn?.userPoint.amount} 원
+              <PaymentUI />
             </S.Profile_right_text>
           </S.Profile_right>
         </S.Profile_Wrapper>

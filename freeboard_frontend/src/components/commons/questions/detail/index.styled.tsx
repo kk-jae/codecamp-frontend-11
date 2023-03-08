@@ -24,6 +24,42 @@ export const Buyer_img = styled.img`
   border-radius: 50%;
 `;
 
+export const Buyer_Text = styled.form`
+  position: relative;
+  width: 1000px;
+  height: 80px;
+`;
+export const Buyer_contentsEdit = styled.textarea`
+  padding: 10px;
+  width: 100%;
+  height: 100%;
+  border: none;
+  font-size: 13px;
+  background-color: #f5f5f5;
+`;
+export const Btn1 = styled.button`
+  cursor: pointer;
+  position: absolute;
+  background-color: #353d4a;
+  color: white;
+  bottom: 0;
+  right: 70px;
+  margin: 0px 8px 8px 0px;
+  font-weight: 600;
+  font-size: 12px;
+`;
+export const Btn2 = styled.button`
+  cursor: pointer;
+  position: absolute;
+  background-color: #353d4a;
+  color: white;
+  bottom: 0;
+  right: 0;
+  margin: 0px 8px 8px 0px;
+  font-weight: 600;
+  font-size: 12px;
+`;
+
 export const Buyer_right = styled.div`
   width: 95%;
   display: flex;
@@ -53,7 +89,7 @@ export const Buyer_contents = styled.div`
 
 export const Buyer_right_btn = styled.div``;
 
-export const DeleteBtn = styled.button`
+export const QuestionBtn = styled.button`
   color: gray;
   font-size: 12px;
   border: 1px solid #eaeaea;

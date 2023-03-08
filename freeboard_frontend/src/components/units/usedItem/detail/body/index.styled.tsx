@@ -67,3 +67,18 @@ export const UsedItemDetail_Image = styled.img`
   height: 400px;
   object-fit: contain;
 `;
+
+// 주소
+export const Bottom_left_bottom = styled.div`
+  padding-left: 40px;
+  font-weight: 500;
+  font-size: 24px;
+`;
+export const Bottom_left_bottom_text = styled.div``;
+export const Bottom_left_bottom_map = styled.div`
+  width: 860px;
+  height: 448px;
+  background-color: gray;
+  margin-top: 19px;
+  margin-bottom: 100px;
+`;

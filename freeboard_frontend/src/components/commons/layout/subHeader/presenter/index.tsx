@@ -1,7 +1,6 @@
 import * as S from "../styled/index";
 import { Avatar, Space } from "antd";
 import { useRecoilState } from "recoil";
-import { accessTokenState } from "../../../../../commons/libraries/stores/index";
 import { useQuery } from "@apollo/client";
 import { FETCH_USER_LOGGEDIN } from "../query";
 import { IProps } from "../types";
@@ -12,6 +11,8 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import { useMoveToPage } from "../../../hooks/custom/useMoveToPage";
+import useLogOut from "../../../hooks/custom/useLogOut";
+import { accessTokenState } from "../../../../../commons/stores";
 // import { v4 as uuidv4 } from "uuid";
 
 const HeaderRight = [
@@ -23,6 +24,7 @@ const HeaderRight = [
 
 export default function HeaderUI(props: IProps) {
   const { onClickMoveToPage } = useMoveToPage();
+  const { onClickLogOut } = useLogOut();
 
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
   const { data } = useQuery(FETCH_USER_LOGGEDIN);
@@ -53,7 +55,13 @@ export default function HeaderUI(props: IProps) {
               <S.Button_Item_Icon>
                 {accessToken ? <LogoutOutlined /> : <LoginOutlined />}
               </S.Button_Item_Icon>
-              <S.Button_Item_Text>
+              <S.Button_Item_Text
+                onClick={
+                  accessToken
+                    ? onClickLogOut
+                    : onClickMoveToPage("/homepage/logIn")
+                }
+              >
                 {accessToken ? "로그아웃" : "로그인"}
               </S.Button_Item_Text>
             </S.Button_Item>

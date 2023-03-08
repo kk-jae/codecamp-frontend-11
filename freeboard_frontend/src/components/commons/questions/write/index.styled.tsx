@@ -25,7 +25,6 @@ export const Buyer_img = styled.img`
 
 export const Buyer_Text = styled.div`
   position: relative;
-  background-color: red;
   width: 1000px;
   height: 80px;
 `;
